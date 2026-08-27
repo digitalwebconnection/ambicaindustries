@@ -1,6 +1,6 @@
 import { siteConfig } from '../../data/siteConfig';
 
-const WHATSAPP_ICON = 'https://www.shreeumiyaint.com/images/whatsapp.webp';
+const WHATSAPP_ICON = 'https://www.ambicaindustry.com/images/whatsapp.webp';
 
 export default function WhatsAppButton() {
   return (

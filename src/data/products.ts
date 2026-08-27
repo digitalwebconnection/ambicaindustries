@@ -18,8 +18,6 @@ import leatherDyesImg from '../assets/images/products/close-up-engraving-art-too
 import woodDyesImg from '../assets/images/products/person-varnishing-wood-with-big-brush.jpg';
 import foodDyesImg from '../assets/images/products/pilaf-is-cooked-pita-bread-shah-pilaf-azerbaijani-cuisine-top-view.jpg';
 
-const IMG = 'https://www.shreeumiyaint.com/images';
-
 export const productCategories: ProductCategory[] = [
   {
     name: 'Acid Dyes',

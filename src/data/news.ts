@@ -1,3 +1,7 @@
+import imgNews1 from '../assets/images/hero/dyeing-fabrics-colorful-vats.jpg';
+import imgNews2 from '../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.jpg';
+import imgNews3 from '../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg';
+
 export interface NewsItem {
   date: string;
   title: string;
@@ -6,8 +10,6 @@ export interface NewsItem {
   image: string;
 }
 
-const IMG = 'https://www.shreeumiyaint.com/images';
-
 export const newsItems: NewsItem[] = [
   {
     date: 'August 12, 2019',
@@ -15,7 +17,7 @@ export const newsItems: NewsItem[] = [
     excerpt:
       'We also have our all acid black series dyes batch ready to dispatch for our clients.',
     author: 'hukum',
-    image: `${IMG}/new-image-1.webp`,
+    image: imgNews1,
   },
   {
     date: 'August 12, 2019',
@@ -23,7 +25,7 @@ export const newsItems: NewsItem[] = [
     excerpt:
       'We also have our all acid black series dyes batch ready to dispatch for our clients.',
     author: 'hukum',
-    image: `${IMG}/new-image-2.webp`,
+    image: imgNews2,
   },
   {
     date: 'August 12, 2019',
@@ -31,6 +33,6 @@ export const newsItems: NewsItem[] = [
     excerpt:
       'We also have our all acid black series dyes batch ready to dispatch for our clients.',
     author: 'hukum',
-    image: `${IMG}/new-image-1.webp`,
+    image: imgNews3,
   },
 ];

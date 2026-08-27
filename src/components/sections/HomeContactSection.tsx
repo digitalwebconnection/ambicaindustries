@@ -1,9 +1,9 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { siteConfig } from "../../data/siteConfig";
 import { useState } from "react";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

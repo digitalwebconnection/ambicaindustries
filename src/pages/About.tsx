@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import { FlaskConical, ShieldCheck, Truck, HeadphonesIcon, Microscope } from 'lucide-react';
 
-const IMG = 'https://www.shreeumiyaint.com/images';
+const IMG = 'https://www.ambicaindustry.com/images';
 
 const teamExpertise = [
   {

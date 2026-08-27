@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, type Variants, AnimatePresence } from "framer-motion";
 import {
   Microscope,
   CircleDollarSign,
@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import ctaBackground from "../../assets/images/hero/dyeing-fabrics-colorful-vats.jpg";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,

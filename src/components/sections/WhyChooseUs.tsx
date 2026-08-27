@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Shield, Lightbulb, Leaf, Users, ArrowRight } from "lucide-react";
 
 // Import existing hero images for the cards
@@ -7,7 +7,7 @@ import imgInnovation from "../../assets/images/hero/industrial-paint-mixing-proc
 import imgSustainability from "../../assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.jpg";
 import imgCustomer from "../../assets/images/hero/close-up-row-paint-cans-with-different-colors.jpg";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

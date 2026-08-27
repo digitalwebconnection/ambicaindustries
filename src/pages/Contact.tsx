@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import { siteConfig } from '../data/siteConfig';
-import { MapPin, Phone, Mail, Building2 } from 'lucide-react';
+import { Phone, Mail, Building2 } from 'lucide-react';
 
 const contactCards = [
   {
