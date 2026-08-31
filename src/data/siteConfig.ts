@@ -5,8 +5,8 @@ export const siteConfig = {
     'Ambica Industry is renowned Synthetic and Natural Food Colours Manufacturers in Ahmedabad, India. We provide lake color, acid dyes & direct dyes.',
   established: 1998,
   phone: {
-    india: '(+91) 9099161452',
-    canada: '(+1) 416-578-5397',
+    india: '(+91) 9876543210',
+    canada: '(+1) 987-654-3210',
   },
   email: 'info@ambicaindustry.com',
   website: 'https://www.ambicaindustry.com/',
@@ -14,7 +14,7 @@ export const siteConfig = {
   addresses: {
     office: {
       label: 'Office Address',
-      text: 'Ambica Industry, Bodakdev, Ahmedabad, Gujarat, India-380054',
+      text: 'Ambica Industry, Ahmedabad, Gujarat, India-380054',
     },
   },
   social: {

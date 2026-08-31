@@ -79,7 +79,7 @@ export default function RnDSection() {
     }
     timerRef.current = setInterval(() => {
       setActiveIdx((prev) => (prev + 1) % features.length);
-    }, 4000);
+    }, 3000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
