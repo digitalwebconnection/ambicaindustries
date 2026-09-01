@@ -26,43 +26,43 @@ const features = [
     title: "Uncompromising Quality",
     description:
       "Quality is achieved only by conducting rigorous research, a standard our company always strives for.",
-    color: "bg-gradient-to-br from-blue-500 to-primary",
+    color: "bg-gradient-to-br from-blue-400 to-primary",
     glow: "shadow-[0_0_20px_rgba(6,64,140,0.4)]",
     lineColor: "from-blue-400 to-primary shadow-[0_0_15px_rgba(6,64,140,0.5)]",
-    iconColor: "text-blue-500",
+    iconColor: "text-primary",
   },
   {
     icon: <CircleDollarSign className="w-7 h-7" />,
     title: "Cost Reduction",
     description:
       "Optimizing the manufacturing process allows us to sell products at a highly competitive market price.",
-    color: "bg-gradient-to-br from-amber-400 to-accent-gold",
-    glow: "shadow-[0_0_20px_rgba(253,195,1,0.4)]",
+    color: "bg-gradient-to-br from-red-500 to-accent-red",
+    glow: "shadow-[0_0_20px_rgba(211,2,2,0.4)]",
     lineColor:
-      "from-amber-400 to-accent-gold shadow-[0_0_15px_rgba(253,195,1,0.5)]",
-    iconColor: "text-amber-500",
+      "from-red-500 to-accent-red shadow-[0_0_15px_rgba(211,2,2,0.5)]",
+    iconColor: "text-accent-red",
   },
   {
     icon: <Target className="w-7 h-7" />,
     title: "Client Satisfaction",
     description:
       "Every new product line is meticulously designed to satisfy and exceed our client requirements.",
-    color: "bg-gradient-to-br from-pink-500 to-accent-pink",
-    glow: "shadow-[0_0_20px_rgba(217,23,156,0.4)]",
+    color: "bg-gradient-to-br from-primary to-primary-dark",
+    glow: "shadow-[0_0_20px_rgba(0,58,124,0.4)]",
     lineColor:
-      "from-pink-400 to-accent-pink shadow-[0_0_15px_rgba(217,23,156,0.5)]",
-    iconColor: "text-pink-500",
+      "from-primary to-primary-dark shadow-[0_0_15px_rgba(0,58,124,0.5)]",
+    iconColor: "text-primary-dark",
   },
   {
     icon: <Leaf className="w-7 h-7" />,
     title: "Eco-Friendly Production",
     description:
       "It is crucial to ensure we are producing sustainable products which do not harm our environment.",
-    color: "bg-gradient-to-br from-emerald-400 to-emerald-600",
-    glow: "shadow-[0_0_20px_rgba(16,185,129,0.4)]",
+    color: "bg-gradient-to-br from-accent-red to-accent-red-dark",
+    glow: "shadow-[0_0_20px_rgba(176,1,1,0.4)]",
     lineColor:
-      "from-emerald-400 to-emerald-600 shadow-[0_0_15px_rgba(16,185,129,0.5)]",
-    iconColor: "text-emerald-500",
+      "from-accent-red to-accent-red-dark shadow-[0_0_15px_rgba(176,1,1,0.5)]",
+    iconColor: "text-accent-red",
   },
 ];
 
