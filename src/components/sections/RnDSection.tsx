@@ -26,10 +26,10 @@ const features = [
     title: "Uncompromising Quality",
     description:
       "Quality is achieved only by conducting rigorous research, a standard our company always strives for.",
-    color: "bg-gradient-to-br from-blue-400 to-primary",
-    glow: "shadow-[0_0_20px_rgba(6,64,140,0.4)]",
-    lineColor: "from-blue-400 to-primary shadow-[0_0_15px_rgba(6,64,140,0.5)]",
-    iconColor: "text-primary",
+    color: "bg-gradient-to-br from-primary to-primary-dark",
+    glow: "shadow-[0_0_20px_rgba(0,58,124,0.4)]",
+    lineColor: "from-primary to-primary-dark shadow-[0_0_15px_rgba(0,58,124,0.5)]",
+    iconColor: "text-primary-dark",
   },
   {
     icon: <CircleDollarSign className="w-7 h-7" />,
