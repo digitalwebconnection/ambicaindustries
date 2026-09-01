@@ -36,10 +36,10 @@ const features = [
     title: "Cost Reduction",
     description:
       "Optimizing the manufacturing process allows us to sell products at a highly competitive market price.",
-    color: "bg-gradient-to-br from-red-500 to-accent-red",
-    glow: "shadow-[0_0_20px_rgba(211,2,2,0.4)]",
+    color: "bg-gradient-to-br from-accent-red to-accent-red-dark",
+    glow: "shadow-[0_0_20px_rgba(176,1,1,0.4)]",
     lineColor:
-      "from-red-500 to-accent-red shadow-[0_0_15px_rgba(211,2,2,0.5)]",
+      "from-accent-red to-accent-red-dark shadow-[0_0_15px_rgba(176,1,1,0.5)]",
     iconColor: "text-accent-red",
   },
   {
