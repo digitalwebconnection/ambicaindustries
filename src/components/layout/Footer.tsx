@@ -55,16 +55,16 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               {[
-                { name: 'About Us', path: '/about' },
-                { name: 'R & D', path: '/r-and-d' },
-                { name: 'Infrastructure', path: '/infrastructure' },
-                { name: 'Quality', path: '/quality' },
+                { name: 'About Us', path: '/#about' },
+                { name: 'R & D', path: '/#r-and-d' },
+                { name: 'Industries', path: '/#industries' },
+                { name: 'Why Choose Us', path: '/#why-choose-us' },
               ].map((item) => (
                 <li key={item.name}>
-                  <Link to={item.path} className="text-white/60 hover:text-white transition-colors flex items-center group">
+                  <a href={item.path} className="text-white/60 hover:text-white transition-colors flex items-center group">
                     <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent-red" />
                     {item.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -78,13 +78,12 @@ export default function Footer() {
             <ul className="space-y-4">
               {productCategories.map((cat) => (
                 <li key={cat.slug}>
-                  <Link
-                    to={`/products/${cat.slug}`}
-                    className="text-white/60 hover:text-white transition-colors flex items-center group"
+                  <span
+                    className="text-white/60 hover:text-white transition-colors flex items-center group cursor-default"
                   >
                     <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent-red" />
                     {cat.name}
-                  </Link>
+                  </span>
                 </li>
               ))}
             </ul>
