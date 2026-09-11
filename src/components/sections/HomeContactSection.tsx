@@ -1,5 +1,6 @@
 import { motion, type Variants } from "framer-motion";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { siteConfig } from "../../data/siteConfig";
 import { useState } from "react";
 
@@ -73,10 +74,48 @@ export default function HomeContactSection() {
                 <div className="w-12 h-12 bg-accent-red/10 rounded-full flex items-center justify-center shrink-0">
                   <Phone className="w-5 h-5 text-accent-red" />
                 </div>
-                <div>
-                  <h4 className="text-base font-bold text-[#003A7C] mb-1">Call Us Directly</h4>
-                  <p className="text-slate-600 text-sm mb-0.5">India: {siteConfig.phone.india}</p>
-                  <p className="text-slate-600 text-sm">Canada: {siteConfig.phone.canada}</p>
+                <div className="flex-1">
+                  <h4 className="text-base font-bold text-[#003A7C] mb-1.5">Call & WhatsApp</h4>
+                  <p className="text-slate-600 text-sm mb-1">
+                    <span className="font-semibold text-slate-700">Office:</span>{' '}
+                    <a href={`tel:${siteConfig.phone.landline}`} className="hover:text-accent-red transition-colors">
+                      {siteConfig.phone.landline}
+                    </a>
+                  </p>
+                  <div className="flex items-center gap-2 text-slate-600 text-sm mb-1">
+                    <span>
+                      <span className="font-semibold text-slate-700">Shailesh Shah:</span>{' '}
+                      <a href={`tel:${siteConfig.phone.shailesh.tel}`} className="hover:text-accent-red transition-colors">
+                        {siteConfig.phone.shailesh.number}
+                      </a>
+                    </span>
+                    <a
+                      href={siteConfig.phone.shailesh.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#25D366] hover:scale-110 transition-transform"
+                      title="WhatsApp Shailesh Shah"
+                    >
+                      <FaWhatsapp size={16} />
+                    </a>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-600 text-sm">
+                    <span>
+                      <span className="font-semibold text-slate-700">Samir Shah:</span>{' '}
+                      <a href={`tel:${siteConfig.phone.samir.tel}`} className="hover:text-accent-red transition-colors">
+                        {siteConfig.phone.samir.number}
+                      </a>
+                    </span>
+                    <a
+                      href={siteConfig.phone.samir.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#25D366] hover:scale-110 transition-transform"
+                      title="WhatsApp Samir Shah"
+                    >
+                      <FaWhatsapp size={16} />
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -87,7 +126,9 @@ export default function HomeContactSection() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-[#003A7C] mb-1">Email Us</h4>
-                  <p className="text-slate-600 text-sm">{siteConfig.email}</p>
+                  <a href={`mailto:${siteConfig.email}`} className="text-slate-600 text-sm hover:text-accent-red transition-colors">
+                    {siteConfig.email}
+                  </a>
                 </div>
               </div>
 
@@ -98,9 +139,14 @@ export default function HomeContactSection() {
                 </div>
                 <div>
                   <h4 className="text-base font-bold text-[#003A7C] mb-1">Head Office</h4>
-                  <p className="text-slate-600 text-sm leading-relaxed max-w-sm">
+                  <a
+                    href={siteConfig.addresses.office.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-600 text-sm leading-relaxed max-w-sm block hover:text-accent-red transition-colors"
+                  >
                     {siteConfig.addresses.office.text}
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

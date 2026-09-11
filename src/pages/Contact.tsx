@@ -13,8 +13,8 @@ const contactCards = [
 
   {
     icon: Phone,
-    title: 'Phone',
-    content: `${siteConfig.phone.canada}\n${siteConfig.phone.india}`,
+    title: 'Phone & WhatsApp',
+    content: `Office: ${siteConfig.phone.landline}\nShailesh Shah: ${siteConfig.phone.shailesh.number}\nSamir Shah: ${siteConfig.phone.samir.number}`,
     gradient: 'from-accent-orange to-red-500',
   },
   {

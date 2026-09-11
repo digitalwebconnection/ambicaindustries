@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
-import { FiFacebook, FiLinkedin, FiTwitter, FiInstagram } from 'react-icons/fi';
+import { FiFacebook, FiInstagram } from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
 import { siteConfig } from '../../data/siteConfig';
 import { productCategories } from '../../data/products';
 
@@ -15,7 +16,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
           
           {/* Brand Column */}
-          <div className="lg:col-span-4 pr-0 lg:pr-8">
+          <div className="lg:col-span-4 pr-0 lg:pr-6">
             <Link to="/" className="inline-block mb-8 group">
                <div className="flex items-center">
                  <div className="w-48 bg-white rounded-lg p-3 shadow-sm group-hover:shadow-md transition-all">
@@ -27,11 +28,9 @@ export default function Footer() {
               {siteConfig.footerDescription}
             </p>
             {/* Social Icons */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               {[
                 { icon: FiFacebook, link: siteConfig.social.facebook, label: 'Facebook' },
-                { icon: FiTwitter, link: siteConfig.social.twitter, label: 'Twitter' },
-                { icon: FiLinkedin, link: siteConfig.social.linkedin, label: 'LinkedIn' },
                 { icon: FiInstagram, link: siteConfig.social.instagram, label: 'Instagram' },
               ].map((social, idx) => (
                 <a 
@@ -40,7 +39,7 @@ export default function Footer() {
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-accent-red hover:bg-accent-red hover:text-white hover:-translate-y-1 transition-all duration-300 shadow-md"
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 shadow-md hover:-translate-y-1 bg-white text-accent-red hover:bg-accent-red hover:text-white"
                 >
                   <social.icon size={18} />
                 </a>
@@ -49,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Company Links Column */}
-          <div className="lg:col-span-2 lg:ml-8">
+          <div className="lg:col-span-2 lg:ml-4">
             <h4 className="text-white font-bold mb-8 uppercase tracking-wider text-sm">
               Company
             </h4>
@@ -71,7 +70,7 @@ export default function Footer() {
           </div>
 
           {/* Products Column */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-2">
             <h4 className="text-white font-bold mb-8 uppercase tracking-wider text-sm">
               Our Products
             </h4>
@@ -90,34 +89,125 @@ export default function Footer() {
           </div>
 
           {/* Contact Column */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <h4 className="text-white font-bold mb-8 uppercase tracking-wider text-sm">
               Contact Us
             </h4>
-            <ul className="space-y-6">
-              <li className="flex items-start gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md group-hover:bg-accent-red group-hover:text-white transition-colors">
+            <ul className="space-y-5">
+              {/* Address */}
+              <li className="flex items-start gap-3.5 group">
+                <a
+                  href={siteConfig.addresses.office.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md group-hover:bg-red-700 hover:scale-105 transition-all mt-0.5"
+                  title="View on Google Maps"
+                  aria-label="View address on Google Maps"
+                >
                   <MapPin size={18} />
-                </div>
-                <div className="text-base mt-0.5">
-                  <span className="block text-white font-semibold mb-1">{siteConfig.addresses.office.label}</span>
-                  <span className="text-white/60 block leading-relaxed">{siteConfig.addresses.office.text}</span>
+                </a>
+                <div className="text-sm">
+                  <span className="block text-white font-semibold mb-1">
+                    {siteConfig.addresses.office.label}
+                  </span>
+                  <a
+                    href={siteConfig.addresses.office.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-white transition-colors block leading-relaxed"
+                    title="Open in Google Maps"
+                  >
+                    {siteConfig.addresses.office.text}
+                   
+                  </a>
                 </div>
               </li>
-              <li className="flex items-start gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md group-hover:bg-accent-red group-hover:text-white transition-colors">
+
+              {/* Phone Numbers & WhatsApp */}
+              <li className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md mt-0.5">
                   <Phone size={18} />
                 </div>
-                <div className="flex flex-col text-base gap-1 mt-1">
-                  <a href={`tel:${siteConfig.phone.india}`} className="text-white/60 hover:text-white transition-colors font-medium">{siteConfig.phone.india}</a>
-                  <a href={`tel:${siteConfig.phone.canada}`} className="text-white/60 hover:text-white transition-colors font-medium">{siteConfig.phone.canada}</a>
+                <div className="flex-1 space-y-2 text-sm">
+                  <span className="block text-white font-semibold">Phone & WhatsApp</span>
+
+                  {/* Landline */}
+                  <div className="flex items-center gap-2 text-white/70">
+                    <span className="text-xs text-white/40 uppercase tracking-wider font-semibold">Office:</span>
+                    <a
+                      href={`tel:${siteConfig.phone.landline}`}
+                      className="hover:text-white transition-colors font-medium hover:underline underline-offset-2"
+                      title="Call Office Landline"
+                    >
+                      {siteConfig.phone.landline}
+                    </a>
+                  </div>
+
+                  {/* Shailesh Shah */}
+                  <div className="flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                    <a
+                      href={`tel:${siteConfig.phone.shailesh.tel}`}
+                      className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium flex items-center gap-1.5"
+                      title="Call Shailesh Shah"
+                    >
+                      <span className="text-white/60 text-xs">Shailesh Shah:</span>
+                      <span className="text-white font-semibold">{siteConfig.phone.shailesh.number}</span>
+                    </a>
+                    <a
+                      href={siteConfig.phone.shailesh.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shrink-0 shadow transition-transform hover:scale-110"
+                      title="Chat with Shailesh Shah on WhatsApp"
+                      aria-label="WhatsApp Shailesh Shah"
+                    >
+                      <FaWhatsapp size={15} />
+                    </a>
+                  </div>
+
+                  {/* Samir Shah */}
+                  <div className="flex items-center justify-between gap-2 bg-white/5 hover:bg-white/10 px-3 py-1.5 rounded-lg border border-white/10 transition-colors">
+                    <a
+                      href={`tel:${siteConfig.phone.samir.tel}`}
+                      className="text-white/80 hover:text-white transition-colors text-xs sm:text-sm font-medium flex items-center gap-1.5"
+                      title="Call Samir Shah"
+                    >
+                      <span className="text-white/60 text-xs">Samir Shah:</span>
+                      <span className="text-white font-semibold">{siteConfig.phone.samir.number}</span>
+                    </a>
+                    <a
+                      href={siteConfig.phone.samir.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-7 h-7 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white flex items-center justify-center shrink-0 shadow transition-transform hover:scale-110"
+                      title="Chat with Samir Shah on WhatsApp"
+                      aria-label="WhatsApp Samir Shah"
+                    >
+                      <FaWhatsapp size={15} />
+                    </a>
+                  </div>
                 </div>
               </li>
-              <li className="flex items-center gap-4 group">
-                <div className="w-11 h-11 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md group-hover:bg-accent-red group-hover:text-white transition-colors">
+
+              {/* Email */}
+              <li className="flex items-start gap-3.5 group">
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="w-10 h-10 rounded-full bg-accent-red flex items-center justify-center shrink-0 text-white shadow-md group-hover:bg-red-700 hover:scale-105 transition-all mt-0.5"
+                  title="Send Email"
+                  aria-label="Send Email"
+                >
                   <Mail size={18} />
+                </a>
+                <div className="text-sm">
+                  <span className="block text-white font-semibold mb-1">Email Us</span>
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="text-white/70 hover:text-white transition-colors font-medium break-all text-sm block hover:underline underline-offset-2"
+                  >
+                    {siteConfig.email}
+                  </a>
                 </div>
-                <a href={`mailto:${siteConfig.email}`} className="text-base text-white/60 hover:text-white transition-colors mt-0.5 font-medium">{siteConfig.email}</a>
               </li>
             </ul>
           </div>

@@ -22,12 +22,18 @@ export default function TopBar() {
         <div className="flex-1 bg-[#003A7C] text-white flex items-center justify-center sm:justify-between px-4 sm:px-8 py-2.5 sm:py-0">
           
           {/* Address (Hidden on mobile to save space) */}
-          <div className="hidden lg:flex items-center gap-2.5 group cursor-default opacity-90 hover:opacity-100 transition-opacity">
+          <a 
+            href={siteConfig.addresses.office.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:flex items-center gap-2.5 group opacity-90 hover:opacity-100 transition-opacity"
+            title="Open in Google Maps"
+          >
             <MapPin size={14} className="text-accent-red group-hover:-translate-y-0.5 transition-transform" />
-            <span className="truncate max-w-[500px] xl:max-w-[700px] normal-case text-[13px] font-medium tracking-wide">
+            <span className="truncate max-w-[500px] xl:max-w-[700px] normal-case text-[13px] font-medium tracking-wide group-hover:underline underline-offset-2">
               {siteConfig.addresses.office.text}
             </span>
-          </div>
+          </a>
 
           <div className="flex-1 lg:hidden" />
 
