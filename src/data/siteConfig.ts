@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: 'Food Color Manufacturers, Exporter & Suppliers in India',
   description:
     'Ambica Industry is renowned Synthetic and Natural Food Colours Manufacturers in Ahmedabad, India. We provide lake color, acid dyes & direct dyes.',
-  established: 1998,
+  established: 1986,
   phone: {
     landline: '+91-079-22810801',
     shailesh: {

@@ -33,16 +33,16 @@ export default function AboutPreview() {
                 WELCOME TO AMBICA INDUSTRY
               </span>
             </div>
-            
+
             <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-primary-dark mb-8 leading-[1.1]">
-              Textile & Paper Dyes <br/>
+              Textile & Paper Dyes <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-red to-accent-red-dark">
                 Manufacturer
               </span>
             </h2>
-            
+
             <p className="text-slate-600 text-lg leading-relaxed mb-10">
-              Since 1998, Ambica Industry has been a trusted leader in manufacturing high-quality, reliable, and innovative dye solutions specifically tailored for the textile and paper sectors. Founded by our father, we proudly carry forward a second-generation legacy of excellence. Today, we specialize in developing vibrant, deep-penetrating, and long-lasting colors that meet the strict performance demands of fashion, home textiles, industrial fabrics, and diverse paper manufacturing processes worldwide.
+              Since 1986, Ambica Industry has been a trusted leader in manufacturing high-quality, reliable, and innovative dye solutions specifically tailored for the textile and paper sectors. Founded by our father, we proudly carry forward a second-generation legacy of excellence. Today, we specialize in developing vibrant, deep-penetrating, and long-lasting colors that meet the strict performance demands of fashion, home textiles, industrial fabrics, and diverse paper manufacturing processes worldwide.
             </p>
 
             <Link
@@ -58,9 +58,9 @@ export default function AboutPreview() {
           <motion.div variants={fadeUp} className="relative mt-12 lg:mt-0">
             {/* Main Image */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl aspect-[200/190] w-full max-w-[500px] ml-auto">
-              <img 
-                src={mainImg} 
-                alt="Industrial Colors" 
+              <img
+                src={mainImg}
+                alt="Industrial Colors"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                 loading="lazy"
                 decoding="async"
@@ -70,9 +70,9 @@ export default function AboutPreview() {
 
             {/* Secondary Floating Image */}
             <div className="absolute -left-6 lg:-left-12 top-12 w-40 h-40 sm:w-50 sm:h-50 rounded-xl overflow-hidden border-white shadow-xl z-20 hidden sm:block">
-              <img 
-                src={secondaryImg} 
-                alt="Textile Fabrics" 
+              <img
+                src={secondaryImg}
+                alt="Textile Fabrics"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 decoding="async"
@@ -82,14 +82,14 @@ export default function AboutPreview() {
             {/* Floating Stats Card */}
             <div className="absolute -bottom-8 lg:-bottom-12 -left-4 sm:left-4 lg:-left-12 right-0 sm:right-auto bg-white p-4 sm:py-5 sm:px-6 rounded-xl shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] z-30 border border-slate-50">
               <div className="flex items-center justify-between gap-3 sm:gap-5 divide-x divide-slate-100">
-                
+
                 {/* Stat 1 */}
                 <div className="flex flex-col items-center flex-1 px-2 sm:px-4">
                   <div className="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center mb-2.5">
                     <Award className="w-5 h-5 text-amber-500" strokeWidth={2} />
                   </div>
                   <span className="font-extrabold text-[24px] sm:text-[28px] text-primary-dark leading-none mb-1">25+</span>
-                  <span className="text-[10px] sm:text-[11px] text-slate-500 font-bold uppercase tracking-widest text-center leading-relaxed">Years<br/>Exp.</span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-500 font-bold uppercase tracking-widest text-center leading-relaxed">Years<br />Exp.</span>
                 </div>
 
                 {/* Stat 2 */}

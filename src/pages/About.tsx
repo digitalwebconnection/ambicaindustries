@@ -70,7 +70,7 @@ export default function About() {
             >
               <h2 className="text-3xl font-bold text-primary-dark mb-6">Our Story</h2>
               <p className="text-gray-text leading-relaxed mb-4">
-                Since 1998, Ambica Industry has been a trusted name in the textile
+                Since 1986, Ambica Industry has been a trusted name in the textile
                 industry, delivering high-quality, reliable, and innovative dye solutions for
                 fabrics and garments. It is a legacy that we carry towards Color dyes for varies
                 industries.
