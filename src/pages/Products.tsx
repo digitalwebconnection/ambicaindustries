@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { productCategories } from '../data/products';
-import { ArrowRight, ChevronRight, Layers } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Products() {
   return (
