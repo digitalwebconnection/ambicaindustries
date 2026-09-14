@@ -11,7 +11,7 @@ export default function ProductQuickNav() {
         <Link to="/" className="shrink-0 flex items-center gap-3">
           <img src={LOGO} alt="Ambica Industry" className="h-16 w-auto" />
           <span className="font-bold text-2xl tracking-tight text-primary-dark">Ambica Industry</span>
-        </Link>
+        </Link>         
 
         {/* Quick Nav Links */}
         <nav className="flex items-center gap-0">

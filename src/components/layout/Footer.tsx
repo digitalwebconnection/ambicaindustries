@@ -16,7 +16,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
           
           {/* Brand Column */}
+<<<<<<< Updated upstream
           <div className="lg:col-span-4 pr-0 lg:pr-6">
+=======
+          <div className="lg:col-span-3 pr-0 lg:pr-4">
+>>>>>>> Stashed changes
             <Link to="/" className="inline-block mb-8 group">
                <div className="flex items-center">
                  <div className="w-48 bg-white rounded-lg p-3 shadow-sm group-hover:shadow-md transition-all">
@@ -49,6 +53,7 @@ export default function Footer() {
 
           {/* Company Links Column */}
           <div className="lg:col-span-2 lg:ml-4">
+
             <h4 className="text-white font-bold mb-8 uppercase tracking-wider text-sm">
               Company
             </h4>
@@ -83,6 +88,28 @@ export default function Footer() {
                     <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent-red" />
                     {cat.name}
                   </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Other Pages Column */}
+          <div className="lg:col-span-2">
+            <h4 className="text-white font-bold mb-8 uppercase tracking-wider text-sm">
+              Other
+            </h4>
+            <ul className="space-y-4">
+              {[
+                { name: 'About', path: '/about' },
+                { name: 'Products', path: '/products' },
+                { name: 'Contact', path: '/contact' },
+                { name: 'Enquiry', path: '/enquiry' },
+              ].map((item) => (
+                <li key={item.name}>
+                  <Link to={item.path} className="text-white/60 hover:text-white transition-colors flex items-center group">
+                    <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent-red" />
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
