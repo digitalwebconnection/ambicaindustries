@@ -75,7 +75,7 @@ export default function IndustriesServed() {
           transition={{ staggerChildren: 0.08 }}
           className="text-center mb-16 md:mb-24"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-4 mb-6">
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-4 mb-5">
             <span className="h-[2px] w-10 bg-primary rounded-full" />
             <span className="text-primary font-bold text-sm uppercase tracking-widest">
               Global Reach
@@ -99,20 +99,20 @@ export default function IndustriesServed() {
         </motion.div>
 
         {/* Stepping Carousel Slider */}
-        <div className="relative w-full py-10">
+        <div className="relative w-full ">
           {/* Gradient Edges for smooth fade-in/out effect */}
           <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
           
           <div 
             ref={scrollRef}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pt-4 pb-6 -mt-4 [&::-webkit-scrollbar]:hidden"
+            className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pt-2 pb-6 -mt-5 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {[...industries, ...industries].map((industry, idx) => (
               <div
                 key={`${industry.name}-${idx}`}
-                className="snap-start group relative h-[400px] w-[90%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden cursor-pointer bg-white shadow-xl hover:shadow-xl transition-shadow duration-500 hover:-translate-y-1.5"
+                className="snap-start group relative h-97 w-[90%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden cursor-pointer bg-white shadow-xl hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
               >
                 {/* Background Image */}
                 <img
@@ -120,7 +120,7 @@ export default function IndustriesServed() {
                   alt={industry.name}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110  "
                 />
 
                 {/* Advanced Gradient Overlay */}

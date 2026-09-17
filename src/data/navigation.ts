@@ -29,9 +29,9 @@ export const quickNavItems = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Products', href: '/products' },
-  { label: 'Industries', href: '/#industries' },
-  { label: 'R&D', href: '/#r-and-d' },
+  { label: 'Industry', href: '/industry' },
+  { label: 'R&D', href: '/rnd' },
   { label: 'Why Us', href: '/#why-choose-us' },
   { label: 'Contact Us', href: '/contact' },
-  { label: 'Get a Free Sample', href: '/#quote' },
+  // { label: 'Get a Free Sample', href: '/#quote' },
 ];

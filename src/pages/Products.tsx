@@ -16,7 +16,7 @@ export default function Products() {
           <div className="absolute bottom-[-10%] left-[-5%] w-[20rem] h-[20rem] rounded-full bg-accent-red/5 blur-[80px]" />
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
             
             {/* Left Content */}
@@ -28,7 +28,7 @@ export default function Products() {
             >
               <h1 className="text-4xl md:text-5xl lg:text-[54px] font-extrabold text-primary-dark mb-4 leading-[1.15] tracking-tight">
                 Discover Our Premium <br className="hidden lg:block" />
-                <span className="text-primary relative inline-block mt-1">
+                <span className="text-accent-red relative inline-block mt-1">
                   Dye Collections
                   {/* Decorative underline */}
                   <div className="absolute -bottom-1 left-0 w-full h-1 bg-accent-red/80 rounded-full transform -rotate-1" />
@@ -40,15 +40,9 @@ export default function Products() {
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-5">
-                <a href="#catalog" onClick={(e) => { e.preventDefault(); window.scrollBy({ top: 500, behavior: 'smooth' }); }} className="bg-primary text-white px-7 py-3 rounded-full font-bold shadow-[0_8px_20px_rgba(6,64,140,0.25)] hover:shadow-[0_12px_25px_rgba(6,64,140,0.35)] hover:-translate-y-1 transition-all duration-300">
+                <a href="#catalog" onClick={(e) => { e.preventDefault(); window.scrollBy({ top: 500, behavior: 'smooth' }); }} className="bg-primary text-white px-8 py-2.5 rounded-full font-bold shadow-[0_8px_20px_rgba(6,64,140,0.25)] hover:shadow-[0_12px_25px_rgba(6,64,140,0.35)] hover:-translate-y-1 transition-all duration-300">
                   Browse Catalog
                 </a>
-                <div className="flex items-center gap-3 text-sm font-semibold text-primary-dark">
-                  <div className="w-9 h-9 rounded-full bg-accent-red/10 flex items-center justify-center">
-                    <span className="w-2.5 h-2.5 bg-accent-red rounded-full animate-pulse" />
-                  </div>
-                  Global Shipping <br/> Available
-                </div>
               </div>
             </motion.div>
 
@@ -94,8 +88,8 @@ export default function Products() {
 
       {/* Main Content */}
       <section className="py-16 md:py-24 relative z-20 -mt-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="space-y-12 md:space-y-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-12 md:space-y-14">
             {productCategories.map((category, i) => (
               <motion.div
                 key={category.slug}
@@ -106,7 +100,7 @@ export default function Products() {
                 className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center bg-white rounded-xl p-6 lg:p-10 shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-500"
               >
                 {/* Product Image */}
-                <div className={`lg:col-span-5 h-full ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+                <div className={`lg:col-span-5 w-full ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <Link
                     to={`/products/${category.slug}`}
                     className="group block rounded-xl overflow-hidden relative h-[300px] lg:h-[450px] w-full shadow-lg"

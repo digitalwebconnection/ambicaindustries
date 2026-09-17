@@ -16,7 +16,7 @@ export default function AboutCTA() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Banner Container */}
-        <div className="bg-[#021f42] rounded-3xl p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 shadow-2xl relative overflow-hidden">
+        <div className="bg-[#021f42] rounded-xl p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12 shadow-2xl relative overflow-hidden">
           
           {/* Subtle Background Pattern inside Banner */}
           <div 
@@ -32,7 +32,7 @@ export default function AboutCTA() {
             </h2>
             <a
               href="/contact"
-              className="inline-flex items-center justify-center bg-accent-red text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-accent-red transition-all duration-300 shadow-[0_4px_14px_rgba(211,2,2,0.3)] hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center bg-accent-red text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-accent-red transition-all duration-300 shadow-[0_4px_14px_rgba(211,2,2,0.3)] hover:shadow-lg hover:-translate-y-0.5"
             >
               Talk to an expert now
             </a>

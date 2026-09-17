@@ -16,7 +16,7 @@ export default function AboutHero() {
   };
 
   return (
-    <section className="relative flex items-center py-12 lg:py-20 overflow-hidden bg-white">
+    <section className="relative flex items-center py-12 lg:py-16 overflow-hidden bg-white">
       {/* Subtle Background Elements for depth */}
       <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[600px] h-[600px] bg-accent-red/5 rounded-full blur-3xl pointer-events-none" />
@@ -45,7 +45,7 @@ export default function AboutHero() {
             </h1>
 
             {/* Narrative Description */}
-            <p className="text-lg text-slate-600 leading-relaxed mb-10 font-medium max-w-[480px]">
+            <p className="text-lg text-slate-600 leading-relaxed mb-10 font-medium max-w-2xl">
               Ambica Industry is a premier global exporter of high-performance textile dyes. We blend rigorous formulation with sustainable practices to deliver vibrant, reliable colors to over 30 nations.
             </p>
 
@@ -54,7 +54,7 @@ export default function AboutHero() {
               <button
                 type="button"
                 onClick={handleScrollToStory}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary hover:bg-primary-dark text-white text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-primary hover:bg-primary-dark text-white text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <span>Explore Our Story</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -63,7 +63,7 @@ export default function AboutHero() {
               <button
                 type="button"
                 onClick={handleOpenQuote}
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-white hover:bg-slate-50 text-accent-red border-2 border-accent-red/20 hover:border-accent-red text-base font-bold shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-white hover:bg-slate-50 text-accent-red border-2 border-accent-red/20 hover:border-accent-red text-base font-bold shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <FileText size={18} className="group-hover:rotate-12 transition-transform duration-300" />
                 <span>Request Quote</span>

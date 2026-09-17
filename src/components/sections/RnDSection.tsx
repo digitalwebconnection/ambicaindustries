@@ -119,7 +119,7 @@ export default function RnDSection() {
         }}
       />
 
-      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row-reverse gap-16 lg:gap-20 items-center">
           {/* Left Text Content */}
           <motion.div
@@ -299,7 +299,7 @@ export default function RnDSection() {
         {/* Dark Blue Overlay for text readability */}
         <div className="absolute inset-0 bg-primary-dark/50 z-0" />
 
-        <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
           <div className="max-w-2xl text-center md:text-left">
             <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
               Ready to elevate your manufacturing?

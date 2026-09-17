@@ -102,7 +102,7 @@ export default function Navbar() {
               scrolled ? 'gap-1' : 'gap-2'
             }`}>
               {quickNavItems.map((item) => {
-                if (item.label === 'Get a Free Sample') {
+                if (item.label === 'Contact Us') {
                   return (
                     <span key={item.href} className="ml-4">
                       <Link

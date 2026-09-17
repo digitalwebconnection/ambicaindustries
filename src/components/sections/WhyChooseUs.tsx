@@ -66,14 +66,14 @@ export default function WhyChooseUs() {
         }}
       />
 
-      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           transition={{ staggerChildren: 0.08 }}
-          className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
+          className="flex flex-col md:flex-row justify-between items-end gap-8 mb-12"
         >
           <div className="max-w-2xl relative">
             <motion.div

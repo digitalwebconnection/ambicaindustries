@@ -32,8 +32,8 @@ export const productCategories: ProductCategory[] = [
       { name: 'Acid Brown Dyes', slug: 'acid-brown-dyes' },
       { name: 'Acid Red Dyes', slug: 'acid-red-dyes' },
       { name: 'Acid Yellow Dyes', slug: 'acid-yellow-dyes' },
-      { name: 'Acid Orange Dyes', slug: 'acid-orange-dyes' },
-      { name: 'Acid Green Dyes', slug: 'acid-green-dyes' },
+      // { name: 'Acid Orange Dyes', slug: 'acid-orange-dyes' },
+      // { name: 'Acid Green Dyes', slug: 'acid-green-dyes' },
     ],
   },
   {

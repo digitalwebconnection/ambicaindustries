@@ -59,7 +59,7 @@ export default function About() {
 
       {/* Company History */}
       <section id="our-story" className="py-16 md:py-24 bg-white">
-        <div className="max-w-[1210px] mx-auto px-4">
+        <div className="max-w-7xl px-4 sm:px-6 md:px-8 mx-auto ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -67,7 +67,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <div className="rounded-2xl overflow-hidden shadow-card">
+              <div className="rounded-xl overflow-hidden shadow-card">
                 <img
                   src="/about-us.jpg"
                   alt="About Ambica Industry"
@@ -122,7 +122,7 @@ export default function About() {
           <div className="absolute bottom-[-10%] right-[-5%] w-[30rem] h-[30rem] rounded-full bg-accent-pink/5 blur-3xl" />
         </div>
 
-        <div className="max-w-[1210px] mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,14 +130,14 @@ export default function About() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-bold text-primary-dark mb-6">
-              Meet Our Team Expertise
+              Meet Our <span className="bg-linear-to-r from-accent-red to-accent-red-dark text-transparent bg-clip-text">Team Expertise</span>
             </h2>
             <p className="text-gray-text max-w-2xl mx-auto text-lg leading-relaxed">
               Dedicated professionals committed to delivering excellence, innovation, and unwavering quality in every drop of color we produce.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {teamExpertise.map((item, i) => (
               <motion.div
                 key={item.title}
@@ -145,7 +145,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="relative bg-white rounded-2xl p-8 shadow-sm shadow-black/30 hover:shadow-[0_20px_40px_rgba(6,64,140,0.08)] transition-all duration-500 hover:-translate-y-2 group overflow-hidden hover:border-primary/20"
+                className="relative bg-white rounded-lg p-8 shadow-md shadow-black/40 hover:shadow-2xl  transition-all duration-500 hover:-translate-y-2 group overflow-hidden hover:border-primary/20"
               >
                 {/* Decorative Hover Blob */}
                 <div className="absolute top-0 right-0 -mr-12 -mt-12 w-40 h-40 rounded-full bg-gradient-to-br from-primary/5 to-accent-pink/5 blur-2xl group-hover:scale-150 transition-transform duration-700 ease-out" />

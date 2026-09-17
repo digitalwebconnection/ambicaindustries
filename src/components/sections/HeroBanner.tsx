@@ -76,7 +76,7 @@ export default function HeroBanner() {
         </AnimatePresence>
         
         {/* Dark overlay to ensure text/nav visibility if it overlaps */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-slate-900/40 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-900/60 via-transparent to-slate-900/40 pointer-events-none" />
       </div>
     </section>
   );
