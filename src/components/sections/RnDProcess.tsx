@@ -78,7 +78,7 @@ export default function RnDProcess() {
                  initial={{ opacity: 0, y: 30 }} 
                  whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
                  transition={{ duration: 0.5, delay: index * 0.11 }} className="relative flex justify-center">
-                  <div className="group relative flex flex-col items-center justify-center text-center w-70 h-70  rounded-full border border-slate-200 bg-white px-8 shadow-sm transition-all duration-500 hover:border-accent-red hover:bg-accent-red/5 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-2">
+                  <div className="group relative flex flex-col items-center justify-center text-center w-70 h-70  rounded-full border border-slate-200 bg-white px-8 shadow-sm transition-all duration-500 hover:border-accent-red hover:bg-accent-red/5 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-2">
 
                     <span className="absolute top-5 text-sm font-bold tracking-widest text-accent-red">
                       {step.number}

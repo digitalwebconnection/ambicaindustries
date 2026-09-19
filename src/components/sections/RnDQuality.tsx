@@ -5,8 +5,7 @@ import {
   Microscope,
   Beaker,
   ShieldCheck,
-  Factory,
-  CheckCircle2,
+  Factory
 } from "lucide-react";
 
 const focusPoints = [

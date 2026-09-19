@@ -60,14 +60,14 @@ export default function HeroSection() {
             <div className="flex gap-5">
               <button
                 type="button"
-                className="group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-accent-red hover:bg-accent-red-dark text-white text-base font-bold shadow-md hover:shadow-lg hover:shadow-accent-red/50 hover:-translate-y-1 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-accent-red hover:bg-accent-red-dark text-white text-base font-bold shadow-md hover:shadow-lg hover:shadow-accent-red/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <span>Talk to an expert</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
               <button
                 type="button"
-                className="group inline-flex text-accent-red items-center justify-center gap-3 px-8 py-2.5 rounded-full border-2 border-accent-red/70 bg-white hover:bg-accent-red/5 hover:text-accent-red text-base font-bold shadow-md shadow-accent-red/20 hover:shadow-lg hover:shadow-accent-red/35 hover:-translate-y-1 transition-all duration-300"
+                className="group inline-flex text-accent-red items-center justify-center gap-3 px-8 py-2.5 rounded-full border-2 border-accent-red/70 bg-white hover:bg-accent-red/5 hover:text-accent-red text-base font-bold shadow-md shadow-accent-red/20 hover:shadow-lg hover:shadow-accent-red/35 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <span>Explore Our R&D</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
