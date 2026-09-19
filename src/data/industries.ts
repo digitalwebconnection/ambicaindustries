@@ -97,7 +97,7 @@ export const customerTypes : IndustryCustomers[] = [
     },
     {
       id: 4,
-      title: "Paper Manufacturers",
+      title: "Paper Producers",
       description:
         "Precision color solutions for paper and pulp manufacturers requiring uniform shades and dependable performance.",
       image: "https://plus.unsplash.com/premium_photo-1776768157535-1b6c85962090?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGR5ZSUyMHBhcGVyc3xlbnwwfHwwfHx8MA%3D%3D",

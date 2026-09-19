@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { productCategories } from '../data/products';
 import { ArrowRight } from 'lucide-react';
+import Faqs from '../components/sections/Faqs';
+import { productsFaqs } from '../data/faq';
 
 export default function Products() {
   return (
@@ -163,6 +165,7 @@ export default function Products() {
           </div>
         </div>
       </section>
+      <Faqs faqs={productsFaqs} />
     </div>
   );
 }

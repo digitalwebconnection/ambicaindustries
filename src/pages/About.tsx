@@ -3,6 +3,8 @@ import AboutHero from "../components/sections/AboutHero";
 import AboutQuote from "../components/sections/AboutQuote";
 import AboutBentoStats from "../components/sections/AboutBentoStats";
 import AboutCTA from "../components/sections/AboutCTA";
+import Faqs from "../components/sections/Faqs";
+import { aboutFaqs } from "../data/faq";
 import {
   FlaskConical,
   ShieldCheck,
@@ -169,6 +171,8 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <Faqs faqs={aboutFaqs}/>
     </>
   );
 }

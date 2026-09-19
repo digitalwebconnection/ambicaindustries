@@ -112,7 +112,7 @@ export default function IndustriesServed() {
             {[...industries, ...industries].map((industry, idx) => (
               <div
                 key={`${industry.name}-${idx}`}
-                className="snap-start group relative h-97 w-[90%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden cursor-pointer bg-white shadow-xl hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
+                className="snap-start group relative h-97 w-[90%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden  bg-white shadow-xl hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
               >
                 {/* Background Image */}
                 <img

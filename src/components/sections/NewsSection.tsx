@@ -58,7 +58,7 @@ export default function NewsSection() {
             <motion.article
               key={i}
               variants={fadeUp}
-              className="group cursor-pointer flex flex-col border border-slate-200 rounded-xl overflow-hidden shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-[#003A7C]/10 transition-all duration-300 bg-white"
+              className="group  flex flex-col border border-slate-200 rounded-xl overflow-hidden shadow-lg shadow-black/50 hover:shadow-2xl hover:shadow-[#003A7C]/10 transition-all duration-300 bg-white"
             >
               {/* Flat Image Container without shadows */}
               <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden shrink-0 border-b border-slate-100">

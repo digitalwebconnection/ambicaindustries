@@ -17,8 +17,12 @@ export default function HeroIndustry() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }} className="">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary-dark tracking-tight leading-[1.1] mb-6 relative">
-              Industries We <span className="text-accent-red">Serve</span>
-              <span className="absolute w-50 h-1 left-0 -rotate-2 top-32 bg-accent-red" />
+              Industries We 
+              <span className="text-accent-red relative inline-block mt-1">
+                    Serve
+                  <div className="absolute -bottom-1 left-0 w-full h-1 bg-accent-red/90 rounded-full transform -rotate-2" />
+                </span>
+              
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed mb-10 font-medium">
               From organic cotton and paper pulp to automotive textiles, leather goods, and specialized inks — Ambica Industry formulates dye solutions across a diverse range of application sectors worldwide.
@@ -35,21 +39,21 @@ export default function HeroIndustry() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="relative h-130">
 
             <div className="absolute left-7 top-20 w-[50%] -rotate-5 overflow-hidden"
               style={{ clipPath: "polygon(0 8%, 92% 0, 100% 88%, 82% 100%, 5% 92%)", }}
             >
               <img src={hero1} alt="Dyed cotton and textile sample from Ambica Industry"
-              className="w-full h-full object-cover" />
+              className="w-full h-full object-cover" fetchPriority="high"  decoding="async" />
             </div>
 
               <div className="absolute right-5 bottom-7 w-[57%] rotate-5 overflow-hidden"
                 style={{ clipPath: "polygon(8% 0, 100% 10%, 92% 94%, 70% 100%, 0 82%)", }}>
                 
                 <img src={hero2} alt="Leather and ink application sample from Ambica Industry"
-                className="w-full h-full object-cover" />
+                className="w-full h-full object-cover"  fetchPriority="high"  decoding="async" />
               </div>
           </motion.div>
         </div>

@@ -2,11 +2,13 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+// import WhyChooseUs from './components/sections/WhyChooseUs';
 
 // Lazy load non-critical pages for faster initial load
 const About = lazy(() => import('./pages/About'));
 const Industry = lazy(() => import('./pages/Industry'))
 const RnD = lazy(() => import('./pages/RnD'))
+const WhyUs = lazy(() => import('./pages/WhyUs'))
 const Products = lazy(() => import('./pages/Products'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Enquiry = lazy(() => import('./pages/Enquiry'));
@@ -29,6 +31,7 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/industry" element={<Industry/>} />
+          <Route path="/why-choose-us" element={<WhyUs/>} />
           <Route path="/rnd" element={<RnD/>} />
           <Route path="/products/:category" element={<ProductCategory />} />
           <Route path="/products/:category/:slug" element={<ProductCategory />} />

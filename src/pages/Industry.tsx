@@ -4,6 +4,7 @@ import IndustriesServed from "../components/sections/IndustriesServed";
 import IndustryCTA from "../components/sections/IndustryCTA";
 import IndustryCustomers from "../components/sections/IndustryCustomers";
 import ProductToIndustry from "../components/sections/ProductToIndsustry";
+import { industriesFaqs } from "../data/faq";
 
 
 
@@ -15,7 +16,7 @@ export default function Industry(){
             <IndustriesServed/>
             <IndustryCTA/>
             <ProductToIndustry/>
-            <Faqs/>
+            <Faqs faqs={industriesFaqs}/>
 
         </>
     )

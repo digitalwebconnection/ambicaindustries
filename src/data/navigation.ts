@@ -31,7 +31,7 @@ export const quickNavItems = [
   { label: 'Products', href: '/products' },
   { label: 'Industry', href: '/industry' },
   { label: 'R&D', href: '/rnd' },
-  { label: 'Why Us', href: '/#why-choose-us' },
+  { label: 'Why Us', href: '/why-choose-us' },
   { label: 'Contact Us', href: '/contact' },
   // { label: 'Get a Free Sample', href: '/#quote' },
 ];

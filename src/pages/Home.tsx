@@ -7,6 +7,7 @@ import NewsSection from '../components/sections/NewsSection';
 import WhyChooseUs from '../components/sections/WhyChooseUs';
 import HomeContactSection from '../components/sections/HomeContactSection';
 import Faqs from '../components/sections/Faqs';
+import { homeFaqs } from "../data/faq";
 
 export default function Home() {
   return (
@@ -19,7 +20,7 @@ export default function Home() {
       <div id="news"><NewsSection /></div>
       <div id="why-choose-us"><WhyChooseUs /></div>
       <HomeContactSection />
-      <div id="faq"><Faqs /></div>
+      <div id="faq"><Faqs faqs={homeFaqs} /></div>
     </>
   );
 }

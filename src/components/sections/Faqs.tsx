@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "../../data/faq";
+import type { FAQ } from "../../data/faq";
 
-export default function Faqs() {
+export default function Faqs({ faqs }: { faqs: FAQ[] }) {
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const handleToggle = (index: number) => {
@@ -21,7 +22,7 @@ export default function Faqs() {
       >
         <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark capitalize leading-[1.1] mb-2">
           Frequently Asked{" "}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-red to-accent-red-dark">
+          <span className="text-accent-red">
             Questions
           </span>
         </h2>
@@ -37,19 +38,17 @@ export default function Faqs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: index * 0.03 }}
-              className={`border rounded-xl  transition-all duration-300 ${
-                isOpen
-                  ? "border-accent-red/50 bg-accent-red/1  shadow-lg shadow-accent-red/10"
+              className={`border rounded-xl  transition-all duration-300 
+                ${isOpen  ? "border-accent-red/50 bg-accent-red/1  shadow-lg shadow-accent-red/10"
                   : "border-slate-300 shadow-sm"
-              }`}
+                }`}
             >
               <motion.button onClick={() => handleToggle(index)}
-                className="w-full flex items-center justify-between gap-4 px-5 py-5 text-left group"
+                className="w-full cursor-pointer flex items-center justify-between gap-4 px-5 py-5 text-left group"
               >
                 <span
-                  className={`font-semibold transition-colors tracking-tight text-md  ${
-                    isOpen ? "text-accent-red-dark" : "text-slate-800"
-                  }`}
+                  className={`font-semibold transition-colors    tracking-tight text-md  ${isOpen ? "text-accent-red-dark" : "text-slate-800"
+                    }`}
                 >
                   {item.question}
                 </span>
@@ -60,9 +59,8 @@ export default function Faqs() {
                 >
                   <ChevronDown
                     size={20}
-                    className={`transition-colors duration-300 group-hover:text-accent-red-dark ${
-                      isOpen ? "text-accent-red-dark" : "text-slate-500"
-                    }`}
+                    className={`transition-colors duration-300 group-hover:text-accent-red-dark ${isOpen ? "text-accent-red-dark" : "text-slate-500"
+                      }`}
                   />
                 </motion.div>
               </motion.button>
