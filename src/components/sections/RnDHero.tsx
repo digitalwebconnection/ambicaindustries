@@ -88,15 +88,15 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0.6 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.18  }}
-                className={`absolute rounded-full overflow-hidden group  shadow-2xl hover:z-40 ${img.size} ${img.position} ${img.z}`}
+                transition={{ duration: 0.7, delay: index * 0.18 }}
+                className={`absolute rounded-full overflow-hidden group transition-all shadow-2xl hover:z-40 ${img.size} ${img.position} ${img.z}`}
               >
                 <img
                   src={img.src}
                   alt={img.alt}
                   className="w-full h-full group-hover:scale-115 transition-all duration-700 object-cover"
                 />
-                
+
                 <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 text-white text-sm font-bold text-center px-3 transition-opacity duration-300">
                     {img.label}

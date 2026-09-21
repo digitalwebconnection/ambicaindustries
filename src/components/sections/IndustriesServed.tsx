@@ -60,7 +60,7 @@ export default function IndustriesServed() {
   }, []);
 
   return (
-    <section className="py-8 md:py-14 bg-white relative overflow-hidden">
+    <section className="py-8 md:py-8 bg-white relative overflow-hidden">
       {/* Decorative Orbs */}
       <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(253, 195, 1, 0.05) 0%, transparent 70%)' }} />
       <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(217, 23, 156, 0.05) 0%, transparent 70%)' }} />

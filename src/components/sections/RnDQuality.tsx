@@ -50,7 +50,7 @@ const focusPoints = [
 
 export default function RnDQuality() {
   return (
-    <section className="relative overflow-hidden bg-white py-14 lg:py-16">
+    <section className="relative overflow-hidden bg-white py-6 lg:py-8">
      
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div

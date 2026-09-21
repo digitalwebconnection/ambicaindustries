@@ -4,7 +4,7 @@ import { customerTypes } from "../../data/industries";
 export default function IndustryCustomers() {
 
   return (
-    <section className="py-16 md:py-14 bg-white">
+    <section className="py-6 md:py-10 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -13,7 +13,7 @@ export default function IndustryCustomers() {
           transition={{ duration: 1.08 }}
           className="max-w-4xl mb-10">
           <div className="text-sm font-semibold uppercase flex items-center tracking-wider text-accent-red">
-            <span className="w-11 mr-2 bg-accent-red h-0.5" />
+            <span className="w-10 mr-2 bg-accent-red h-0.5" />
             Who We Serve
           </div>
           <h2 className="mt-3 text-4xl md:text-5xl font-extrabold tracking-wide  text-primary-dark">
