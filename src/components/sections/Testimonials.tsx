@@ -20,7 +20,7 @@ export default function Testimonials() {
   }, [emblaApi]);
 
   return (
-    <section className="py-12 md:py-14 bg-white">
+    <section className="py-10 md:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <motion.div
@@ -77,13 +77,13 @@ export default function Testimonials() {
           <div className="flex justify-center gap-3 mt-8">
             <button
               onClick={scrollPrev}
-              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300 cursor-pointer"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={scrollNext}
-              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300"
+              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300 cursor-pointer"
             >
               <ChevronRight size={20} />
             </button>

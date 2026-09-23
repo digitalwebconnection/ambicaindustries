@@ -2,6 +2,8 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 // import WhyChooseUs from './components/sections/WhyChooseUs';
 
 // Lazy load non-critical pages for faster initial load
@@ -37,6 +39,8 @@ export default function App() {
           <Route path="/products/:category/:slug" element={<ProductCategory />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/enquiry" element={<Enquiry />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/termsof-service" element={<TermsOfService />} />
         </Routes>
       </Suspense>
     </Layout>

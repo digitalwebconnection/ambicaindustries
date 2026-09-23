@@ -13,9 +13,9 @@ export default function Industry(){
         <>
             <HeroIndsutry/>
             <IndustryCustomers/>
+            <ProductToIndustry/>
             <IndustriesServed/>
             <IndustryCTA/>
-            <ProductToIndustry/>
             <Faqs faqs={industriesFaqs}/>
 
         </>

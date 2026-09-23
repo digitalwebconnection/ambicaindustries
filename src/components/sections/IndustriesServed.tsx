@@ -1,6 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { industries } from '../../data/industries';
-import { Shirt, Home, Hexagon, Package, Printer, Droplet, Layers, Sparkles } from 'lucide-react';
+import { Shirt, Home, Hexagon, Package, Printer, Droplet, Layers, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 
 const fadeUp: Variants = {
@@ -33,31 +33,57 @@ const getIcon = (name: string) => {
 
 export default function IndustriesServed() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (scrollRef.current) {
+      if (scrollRef.current && !pausedRef.current) {
         const container = scrollRef.current;
-        // Find the width of a single card + the gap (approx 24px)
+
+        // Find the width of a single card + the gap
         const firstCard = container.children[0] as HTMLElement;
         const cardWidth = firstCard ? firstCard.offsetWidth + 24 : 400;
-        
+
+        // Calculate the next scroll position
         let nextScroll = container.scrollLeft + cardWidth;
-        
-        // If we reach the end of the scroll area, rewind smoothly to the start
-        if (nextScroll >= container.scrollWidth - container.clientWidth - 10) {
+
+        // If we reach the end, go back to the beginning  
+        if (
+          nextScroll >=
+          container.scrollWidth - container.clientWidth - 10
+        ) {
           nextScroll = 0;
         }
-        
+
+        // Smoothly scroll to the next card
         container.scrollTo({
           left: nextScroll,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }
-    }, 3000); // 3 seconds interval
+    }, 3000);
 
+    // Clear the interval when component is removed
     return () => clearInterval(interval);
   }, []);
+
+  const scrollByCard = (direction: 'left' | 'right') => { 
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const firstCard = container.children[0] as HTMLElement;
+    const cardWidth = firstCard ? firstCard.offsetWidth + 24 : 400;
+
+    container.scrollBy({
+      left: direction === 'left' ? -cardWidth : cardWidth,
+      behavior: 'smooth'
+    })
+
+    pausedRef.current = true;
+    setTimeout(() => {
+      pausedRef.current = false;
+    }, 4000)
+  }
 
   return (
     <section className="py-8 md:py-8 bg-white relative overflow-hidden">
@@ -66,7 +92,7 @@ export default function IndustriesServed() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(217, 23, 156, 0.05) 0%, transparent 70%)' }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header Section */}
         <motion.div
           initial="hidden"
@@ -81,17 +107,17 @@ export default function IndustriesServed() {
               Global Reach
             </span>
           </motion.div>
-          <motion.h2 
-            variants={fadeUp} 
+          <motion.h2
+            variants={fadeUp}
             className="text-3xl md:text-5xl font-extrabold text-primary-dark leading-[1.1] mb-2"
           >
             Industries We {""}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-red to-accent-red-dark">
-               Empower
+              Empower
             </span>
           </motion.h2>
-          <motion.p 
-            variants={fadeUp} 
+          <motion.p
+            variants={fadeUp}
             className="mt-4 text-slate-600 max-w-7xl mx-auto text-lg"
           >
             Delivering precision, performance, and unparalleled color consistency across a diverse range of global sectors.
@@ -103,8 +129,10 @@ export default function IndustriesServed() {
           {/* Gradient Edges for smooth fade-in/out effect */}
           <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none" />
-          
-          <div 
+
+
+
+          <div
             ref={scrollRef}
             className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pt-2 pb-6 -mt-5 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -136,7 +164,7 @@ export default function IndustriesServed() {
                       {industry.name}
                     </h3>
                   </div>
-                  
+
                   {/* Hover Reveal Text */}
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                     <div className="overflow-hidden">
@@ -146,11 +174,17 @@ export default function IndustriesServed() {
                     </div>
                   </div>
                 </div>
-                
                 {/* Hover Frame Effect */}
                 <div className="absolute inset-4 rounded-xl border border-white/0 group-hover:border-white/20 transition-all duration-700 pointer-events-none z-20 scale-95 group-hover:scale-100" />
               </div>
             ))}
+          </div>
+
+          <div className=' flex justify-center gap-2 mt-2'>
+            <button onClick={() => scrollByCard('left')}
+              aria-label='Previous Industry' className='w-7 h-7 text-accent-red/70 bg-accent-red/2 border border-accent-red flex justify-center items-center rounded-lg cursor-pointer hover:bg-accent-red hover:text-white duration-200 transition-colors'><ChevronLeft className='w-5 h-5' /></button>
+            <button onClick={() => scrollByCard('right')}
+              aria-label='Previous Industry' className='w-7 h- text-accent-red/70 bg-accent-red/2 border border-accent-red flex justify-center items-center rounded-lg cursor-pointer hover:bg-accent-red hover:text-white duration-200 transition-colors'><ChevronRight className='w-5 h-5' /></button>
           </div>
         </div>
       </div>

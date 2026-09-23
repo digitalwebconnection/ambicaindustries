@@ -1,0 +1,65 @@
+<svg width="1800" height="900" viewBox="0 0 1800 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#23040C"/>
+      <stop offset="0.48" stop-color="#8D0B2D"/>
+      <stop offset="1" stop-color="#071C38"/>
+    </linearGradient>
+    <linearGradient id="redFlow" x1="280" y1="180" x2="1380" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FF7182"/>
+      <stop offset="0.3" stop-color="#E31837"/>
+      <stop offset="0.72" stop-color="#A00028"/>
+      <stop offset="1" stop-color="#4A071C"/>
+    </linearGradient>
+    <linearGradient id="blueFlow" x1="1320" y1="60" x2="1650" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55D9E7"/>
+      <stop offset="1" stop-color="#0876A8"/>
+    </linearGradient>
+    <linearGradient id="goldFlow" x1="150" y1="780" x2="820" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC95C"/>
+      <stop offset="1" stop-color="#E47C25"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="8" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="grayNoise"/>
+      <feComponentTransfer in="grayNoise" result="softNoise">
+        <feFuncA type="table" tableValues="0 0.13"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="softNoise" mode="screen"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="900" fill="url(#base)"/>
+  <path d="M-80 690C190 470 330 550 510 690C690 830 860 820 1000 610C1140 400 1320 350 1900 560V980H-80V690Z" fill="#4D061D" opacity="0.65"/>
+
+  <g opacity="0.5" filter="url(#softGlow)">
+    <path d="M170 270C470 60 700 230 850 430C1020 655 1170 735 1500 510" stroke="#FF234D" stroke-width="85" stroke-linecap="round"/>
+    <path d="M1220 120C1400 270 1435 495 1640 720" stroke="#1AC4D3" stroke-width="58" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#grain)">
+    <path d="M40 190C280 55 455 112 610 315C760 510 910 610 1135 486C1310 390 1425 230 1770 290" stroke="url(#redFlow)" stroke-width="122" stroke-linecap="round"/>
+    <path d="M40 190C280 55 455 112 610 315C760 510 910 610 1135 486C1310 390 1425 230 1770 290" stroke="#FF9AA4" stroke-opacity="0.34" stroke-width="18" stroke-linecap="round"/>
+    <path d="M-50 470C170 330 360 380 500 540C640 700 780 770 920 710C1090 638 1130 510 1260 365" stroke="#9B0B33" stroke-width="155" stroke-linecap="round" opacity="0.9"/>
+    <path d="M-50 470C170 330 360 380 500 540C640 700 780 770 920 710C1090 638 1130 510 1260 365" stroke="url(#redFlow)" stroke-width="100" stroke-linecap="round"/>
+    <path d="M1220 30C1310 185 1310 330 1425 480C1515 600 1605 650 1820 650" stroke="url(#blueFlow)" stroke-width="72" stroke-linecap="round" opacity="0.85"/>
+    <path d="M-40 795C220 670 370 670 560 770C720 855 885 860 1050 750" stroke="url(#goldFlow)" stroke-width="45" stroke-linecap="round" opacity="0.86"/>
+    <path d="M1160 850C1300 750 1350 650 1350 530C1350 410 1420 345 1530 340" stroke="#D22A82" stroke-width="31" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <g fill="none" stroke="#FFB9C1" stroke-opacity="0.25" stroke-width="2">
+    <ellipse cx="340" cy="230" rx="180" ry="44" transform="rotate(22 340 230)"/>
+    <ellipse cx="340" cy="230" rx="230" ry="64" transform="rotate(22 340 230)"/>
+    <ellipse cx="920" cy="500" rx="210" ry="52" transform="rotate(-26 920 500)"/>
+    <ellipse cx="920" cy="500" rx="270" ry="72" transform="rotate(-26 920 500)"/>
+  </g>
+
+  <g opacity="0.42" stroke="#F5E8E8" stroke-width="3">
+    <path d="M100 70V230M100 70H250"/>
+    <path d="M1580 730V850M1580 850H1730"/>
+    <path d="M1210 90H1390M1300 0V180"/>
+  </g>
+</svg>

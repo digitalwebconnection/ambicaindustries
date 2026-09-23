@@ -56,8 +56,7 @@ export default function WhyUsNumbers() {
           </p>
         </motion.div>
 
-
-        <div className="flex flex-wrap">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -65,23 +64,17 @@ export default function WhyUsNumbers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.06 }}
-              className={`w-1/2 sm:w-1/3 lg:w-1/6 text-center px-5 py-5 ${
-                index !== 0 ? "border-l border-white/10" : ""
-              } `}
+              className={`text-center px-5 py-5 `}
             >
-              <p className="text-4xl rounded-sm bg-white/80 inline-flex px-2 py-1 font-black text-accent-red tracking-wide leading-none mb-2">
+              <p className="text-4xl rounded-sm inline-flex px-2 py-1 font-black text-white tracking-wide leading-none mb-2">
                 {stat.value}
               </p>
               <h3 className="text-base font-bold text-white mb-2 leading-snug">
                 {stat.label}
               </h3>
-              <p className="text-xs text-white/60 leading-relaxed">
-                {stat.description}
-              </p>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

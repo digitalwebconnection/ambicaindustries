@@ -12,7 +12,7 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
   };
 
   return (
-    <section className="py-8 md:py-14 max-w-7xl px-8 bg-white relative overflow-hidden">
+    <section className="py-6 md:py-10 max-w-7xl px-8 bg-white relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

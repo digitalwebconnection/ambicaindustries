@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, CodeXml } from 'lucide-react';
 import { FiFacebook, FiInstagram } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { siteConfig } from '../../data/siteConfig';
@@ -218,11 +218,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/80 font-medium">
+        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/80 ">
           <p>© {new Date().getFullYear()} Ambica Industry. All rights reserved.</p>
+
+          <p className='capitalize text-base inline-flex gap-1 items-center'><CodeXml className='text-accent-red'/>developed by<span className='font-semibold text-accent-red'> digital web connection</span></p>
+
           <div className="flex items-center gap-8">
-            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="font-medium hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/termsof-service" className="font-medium hover:text-white transition-colors">Terms of Service</Link>
           </div>
         </div>
 

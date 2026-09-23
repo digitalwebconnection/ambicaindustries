@@ -62,12 +62,12 @@ export default function HeroWhyUs() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="absolute bottom-0 left-0 w-80 h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-white group  duration-500 transition-transform"
+              className="absolute bottom-0 left-0 w-80 h-72 rounded-2xl  overflow-hidden shadow-2xl shadow-black/50  group  duration-500 transition-transform"
             >
               <img
                 src={whyUs2}
                 alt="Technical team formulating dye solutions at Ambica Industry"
-                className="w-full h-full group-hover:-rotate-3 group-hover:scale-107 duration-500 object-cover"
+                className="w-full h-full group-hover:rotate-3 group-hover:scale-107 duration-500 object-cover"
               />
             </motion.div>
 
