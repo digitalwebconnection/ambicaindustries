@@ -291,7 +291,7 @@ export default function ProductCategory() {
               
               <Link
                 to="/contact"
-                className="relative z-10 shrink-0 bg-white text-primary-dark font-bold px-8 py-4 rounded-full hover:bg-gray-50 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 group"
+                className="relative z-10 shrink-0 bg-white text-primary-dark font-bold  rounded-full hover:bg-gray-50 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 group"
               >
                 Contact Our Experts
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -348,14 +348,14 @@ export default function ProductCategory() {
                 <a 
                   href="#sub-products" 
                   onClick={(e) => { e.preventDefault(); window.scrollBy({ top: 600, behavior: 'smooth' }); }}
-                  className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-[0_8px_20px_rgba(6,64,140,0.2)] hover:shadow-[0_12px_25px_rgba(6,64,140,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group"
+                  className="bg-primary text-white px-7 py-2.5 rounded-full font-bold shadow-[0_8px_20px_rgba(6,64,140,0.2)] hover:shadow-[0_12px_25px_rgba(6,64,140,0.3)] hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 group"
                 >
                   View Product Lines
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </a>
                 <Link 
                   to="/contact" 
-                  className="bg-white text-primary border border-primary/20 px-8 py-4 rounded-full font-bold hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 flex items-center gap-2"
+                  className="bg-white text-primary border border-primary/20 px-7 py-2.5 rounded-full font-bold hover:bg-primary/5 hover:border-primary/40 transition-all duration-300 flex items-center gap-2"
                 >
                   Request Sample
                 </Link>
