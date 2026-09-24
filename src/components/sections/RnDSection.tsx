@@ -71,6 +71,10 @@ export default function RnDSection() {
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+  const handleOpenQuote = () => {
+    window.dispatchEvent(new Event("openQuoteModal"));
+  };
+
   // Auto-cycle with ref-based timer management
   useEffect(() => {
     if (isPaused) {
@@ -232,7 +236,7 @@ export default function RnDSection() {
               {features.map((feature, idx) => (
                 <div
                   key={`node-${idx}`}
-                  className={`absolute w-24 h-24 flex items-center justify-center cursor-pointer transition-all duration-500 ${nodePositions[idx]} ${
+                  className={`absolute w-24 h-24 flex items-center justify-center  transition-all duration-500 ${nodePositions[idx]} ${
                     activeIdx === idx
                       ? "scale-125 z-30"
                       : "hover:scale-110 z-10"
@@ -313,6 +317,10 @@ export default function RnDSection() {
           <div className="shrink-0">
             <Link
               to="/#quote"
+              onClick={(event) => {
+                event.preventDefault();
+                handleOpenQuote();
+              }}
               className="group inline-flex items-center gap-3 px-8 py-2.5 bg-white text-primary-dark rounded-full font-bold text-[15px] hover:bg-accent-red hover:text-white transition-all duration-300 shadow-xl hover:shadow-accent-red/30 hover:-translate-y-1"
             >
               Request a Quote

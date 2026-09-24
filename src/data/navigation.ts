@@ -22,7 +22,6 @@ export const mainNavItems: NavItem[] = [
     })),
   },
   { label: 'Contact Us', href: '/contact' },
-  { label: 'Enquiry', href: '/enquiry' },
 ];
 
 export const quickNavItems = [
@@ -30,8 +29,7 @@ export const quickNavItems = [
   { label: 'About', href: '/about' },
   { label: 'Products', href: '/products' },
   { label: 'Industry', href: '/industry' },
-  { label: 'R&D', href: '/rnd' },
+  { label: 'R&D', href: '/r&d' },
   { label: 'Why Us', href: '/why-choose-us' },
   { label: 'Contact Us', href: '/contact' },
-  // { label: 'Get a Free Sample', href: '/#quote' },
 ];

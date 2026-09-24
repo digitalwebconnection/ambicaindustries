@@ -57,7 +57,7 @@ export default function IndustryCTA() {
             formulation right — not just ship product.
           </p>
 
-          <Link to="/#quote" className="  group  inline-flex items-center gap-3  px-8 py-2.5  bg-white  text-primary-dark  rounded-full font-bold text-[15px] shadow-xl  hover:bg-accent-red  hover:text-white hover:-translate-y-1 transition-all duration-300  " >Talk to an expert now
+          <Link to="/contact" className="  group  inline-flex items-center gap-3  px-8 py-2.5  bg-white  text-primary-dark  rounded-full font-bold text-[15px] shadow-xl  hover:bg-accent-red  hover:text-white hover:-translate-y-1 transition-all duration-300  " >Talk to an expert now
             <ArrowRight className="w-5 h-5  group-hover:translate-x-1  transition-transform duration-300 "  />
           </Link>
         </div>

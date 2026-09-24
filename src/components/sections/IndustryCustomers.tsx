@@ -33,7 +33,7 @@ export default function IndustryCustomers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: customer.id * 0.10 }}
-              key={customer.id} className=" group relative overflow-hidden rounded-xl flex-1 hover:flex-[2.5] transition-[flex] duration-700 ease-in-out bg-white shadow-xl shadow-black/30" >
+              key={customer.id} className=" group relative overflow-hidden rounded-xl flex-1 hover:flex-[2.5] transition-[flex] duration-700 ease-in-out bg-white shadow-xl shadow-black/30  ">
               <img src={customer.image} alt={customer.title}
                 className=" absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 " />
 
@@ -54,14 +54,6 @@ export default function IndustryCustomers() {
             </motion.div>
           ))}
         </div>
-        {/* <div className="mt-10 flex justify-center">
-          <p className="text-center text-lg md:text-base  text-slate-700">
-            From a single requirement to large-scale production —
-            <span className="ml-1 font-medium text-primary-dark">
-              we deliver with consistency.
-            </span>
-          </p>
-        </div> */}
 
       </div>
     </section>

@@ -180,11 +180,11 @@ export default function IndustriesServed() {
             ))}
           </div>
 
-          <div className=' flex justify-center gap-2 mt-2'>
+          <div className=' flex justify-center gap-1 mt-2'>
             <button onClick={() => scrollByCard('left')}
-              aria-label='Previous Industry' className='w-7 h-7 text-accent-red/70 bg-accent-red/2 border border-accent-red flex justify-center items-center rounded-lg cursor-pointer hover:bg-accent-red hover:text-white duration-200 transition-colors'><ChevronLeft className='w-5 h-5' /></button>
+              aria-label='Previous Industry' className='w-7 h-7 text-slate-700 rounded-full bg-accent-red/2 border border-slate-800/80 flex justify-center items-center  cursor-pointer hover:bg-black/20 hover:text-black duration-200 transition-colors'><ChevronLeft className='w-4 h-4' /></button>
             <button onClick={() => scrollByCard('right')}
-              aria-label='Previous Industry' className='w-7 h- text-accent-red/70 bg-accent-red/2 border border-accent-red flex justify-center items-center rounded-lg cursor-pointer hover:bg-accent-red hover:text-white duration-200 transition-colors'><ChevronRight className='w-5 h-5' /></button>
+              aria-label='Previous Industry' className='w-7 h- text-slate-700 rounded-full bg-accent-red/2 border border-slate-800/80 flex justify-center items-center  cursor-pointer hover:bg-black/20 hover:text-black duration-200 transition-colors'><ChevronRight className='w-4 h-4' /></button>
           </div>
         </div>
       </div>

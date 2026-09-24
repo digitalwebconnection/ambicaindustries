@@ -28,7 +28,7 @@ export default function AboutHero() {
           <div className="max-w-xl flex flex-col justify-center">
             {/* Tag/Kicker */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="w-10 h-[3px] bg-accent-red rounded-full"></span>
+              <span className="w-10 h-[3px] bg-primary rounded-full"></span>
               <span className="text-primary font-bold tracking-widest uppercase text-sm">Since 1998</span>
             </div>
 

@@ -1,5 +1,6 @@
 import { motion, type Variants } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { productCategories } from '../../data/products';
 
 const fadeUp: Variants = {
@@ -61,13 +62,13 @@ export default function ProductsGrid() {
           </div>
           
           <motion.div variants={fadeUp} className="hidden md:block pb-2">
-            <button
-              type="button"
+            <Link
+              to="/products"
               className="group inline-flex items-center gap-3 px-8 py-2.5 bg-primary text-white rounded-full font-semibold text-[15px] hover:bg-accent-red transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-accent-red/30 cursor-default"
             >
               Explore Catalog
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
 
@@ -99,9 +100,13 @@ export default function ProductsGrid() {
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/95 via-primary-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
                 
                 {/* Hover Glass Element (Top Right) */}
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 border border-white/30 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-20">
+                <Link
+                  to={`/products/${product.slug}`}
+                  aria-label={`View ${product.name}`}
+                  className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/20 border border-white/30 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30"
+                >
                   <ArrowUpRight className="w-6 h-6 text-white" />
-                </div>
+                </Link>
 
                 {/* Content (Bottom) */}
                 <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end z-20">
@@ -132,13 +137,13 @@ export default function ProductsGrid() {
           variants={fadeUp}
           className="mt-10 flex justify-center md:hidden"
         >
-          <button
-            type="button"
+          <Link
+            to="/products"
             className="group flex items-center justify-center gap-2 w-full py-4 bg-primary text-white rounded-full font-semibold text-[15px] hover:bg-accent-red transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-accent-red/30 cursor-default"
           >
             Explore Catalog
             <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </button>
+          </Link>
         </motion.div>
       </div>
     </section>

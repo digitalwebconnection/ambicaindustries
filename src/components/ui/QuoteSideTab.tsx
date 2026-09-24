@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import QuoteModal from './QuoteModal';
 
-export default function QuoteSideTab() {
+export default function  QuoteSideTab() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

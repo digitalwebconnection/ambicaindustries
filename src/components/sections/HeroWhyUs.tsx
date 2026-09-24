@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 import whyUs1 from "../../assets/images/products/different-bright-dry-colors-containers.jpg";
 import whyUs2 from "../../assets/images/industries/stained-brush-with-paint.jpg";
 
@@ -33,13 +34,13 @@ export default function HeroWhyUs() {
               reliable coloration at every stage.
             </p>
 
-            <button
-              type="button"
+            <Link
+              to="/contact"
               className="group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-primary hover:bg-primary-dark text-white cursor-pointer text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               <span>Talk to an expert</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-            </button>
+            </Link>
           </motion.div>
 
           <motion.div

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const images = [
   {
@@ -32,6 +33,10 @@ const images = [
 ];
 
 export default function HeroSection() {
+  const handleOpenQuote = () => {
+    window.dispatchEvent(new Event("openQuoteModal"));
+  };
+
   return (
     <section className="relative overflow-hidden bg-white py-12 lg:py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,19 +64,20 @@ export default function HeroSection() {
 
             <div className="flex gap-5">
               <button
+                onClick={handleOpenQuote}
                 type="button"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-2.5 rounded-full bg-accent-red hover:bg-accent-red-dark text-white text-base font-bold shadow-md hover:shadow-lg hover:shadow-accent-red/50 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
-                <span>Talk to an expert</span>
+                <span>Request a Quote</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
-              <button
-                type="button"
+              <Link
+                to="/r&d"
                 className="group inline-flex text-accent-red items-center justify-center gap-3 px-8 py-2.5 rounded-full border-2 border-accent-red/70 bg-white hover:bg-accent-red/5 hover:text-accent-red text-base font-bold shadow-md shadow-accent-red/20 hover:shadow-lg hover:shadow-accent-red/35 hover:-translate-y-1 transition-all duration-300 cursor-pointer"
               >
                 <span>Explore Our R&D</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+              </Link>
             </div>
           </motion.div>
 

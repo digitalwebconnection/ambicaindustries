@@ -13,7 +13,6 @@ const RnD = lazy(() => import('./pages/RnD'))
 const WhyUs = lazy(() => import('./pages/WhyUs'))
 const Products = lazy(() => import('./pages/Products'));
 const Contact = lazy(() => import('./pages/Contact'));
-const Enquiry = lazy(() => import('./pages/Enquiry'));
 const ProductCategory = lazy(() => import('./pages/ProductCategory'));
 
 function PageLoader() {
@@ -34,11 +33,10 @@ export default function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/industry" element={<Industry/>} />
           <Route path="/why-choose-us" element={<WhyUs/>} />
-          <Route path="/rnd" element={<RnD/>} />
+          <Route path="/r&d" element={<RnD/>} />
           <Route path="/products/:category" element={<ProductCategory />} />
           <Route path="/products/:category/:slug" element={<ProductCategory />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/enquiry" element={<Enquiry />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/termsof-service" element={<TermsOfService />} />
         </Routes>

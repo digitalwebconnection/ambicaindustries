@@ -58,7 +58,7 @@ export default function Footer() {
                 { name: 'About', path: '/about' },
                 { name: 'Products', path: '/products' },
                 { name: 'Contact', path: '/contact' },
-                { name: 'Enquiry', path: '/enquiry' },
+                { name: 'R&D', path: '/r&d' },
               ].map((item) => (
                 <li key={item.name}>
                   <Link to={item.path} className="text-white/60 hover:text-white transition-colors flex items-center group">
@@ -78,12 +78,13 @@ export default function Footer() {
             <ul className="space-y-4">
               {productCategories.map((cat) => (
                 <li key={cat.slug}>
-                  <span
-                    className="text-white/60 hover:text-white transition-colors flex items-center group cursor-default"
+                  <Link
+                    to={`/products/${cat.slug}`}
+                    className="text-white/60 hover:text-white transition-colors flex items-center group"
                   >
                     <ArrowRight size={14} className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all text-accent-red" />
                     {cat.name}
-                  </span>
+                  </Link>
                 </li>
               ))}
             </ul>

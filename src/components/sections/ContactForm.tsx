@@ -21,8 +21,8 @@ const labelClasses =
 
 export default function Contactform() {
   return (
-    <section className="relative overflow-hidden bg-white py-12 md:py-14">
-      <div className="relative z-10 mx-auto max-w-5xl ">
+    <section id="contact-form" className="relative overflow-hidden bg-white py-14 md:py-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-10">
         <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[0.65fr_1fr] lg:gap-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -74,7 +74,7 @@ export default function Contactform() {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
-            className="mx-10 w-full rounded-xl border border-slate-200 bg-white p-2 shadow-sm md:p-4"
+            className="mx-10 w-full  shadow-2xl shadow-primary/60 p-4 md:p-6"
           >
             <h3 className="mt-2 mb-5 text-2xl font-extrabold text-primary">Tell us what you need</h3>
             <form action="" onSubmit={(e) => e.preventDefault()} className="space-y-4">
