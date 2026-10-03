@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useLenis } from "lenis/react";
 import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
@@ -8,20 +9,29 @@ import QuoteSideTab from "../ui/QuoteSideTab";
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
+  const lenis = useLenis();
   
   useEffect(() => {
     if (hash) {
       setTimeout(() => {
         const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
+        if (lenis) {
+          lenis.scrollTo(`#${id}`, { offset: -80, duration: 1.2 });
+        } else {
+          const element = document.getElementById(id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }
-      }, 0);
+      }, 50);
     } else {
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+      }
     }
-  }, [pathname, hash]);
+  }, [pathname, hash, lenis]);
   
   return null;
 }

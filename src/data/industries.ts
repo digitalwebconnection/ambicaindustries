@@ -6,7 +6,6 @@ import imgPrinting from '../assets/images/hero/close-up-white-paper.jpg';
 import imgTissue from '../assets/images/hero/full-frame-shot-multi-colored-paper.jpg';
 import imgNonWoven from '../assets/images/hero/colorful-yarn-bins-textile-factory.jpg';
 import imgSpecialty from '../assets/images/hero/close-up-row-paint-cans-with-different-colors.jpg';
-import IndustryCustomers from '../components/sections/IndustryCustomers';
 
 export interface Industry {
   name: string;

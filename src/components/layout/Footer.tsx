@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className="bg-black/95 relative text-white font-sans border-t border-white/20">
       
       {/* --- Main Footer Content --- */}
-      <div className="max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative z-10">
+      <div className="max-w-325 mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
           
           {/* Brand Column */}

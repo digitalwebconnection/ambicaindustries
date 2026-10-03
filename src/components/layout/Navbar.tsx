@@ -76,7 +76,7 @@ export default function Navbar() {
         className={`w-full z-40 ${
           scrolled 
             ? 'fixed top-0 sm:top-4 left-0 right-0' 
-            : 'relative bg-white border-t-[1px] border-accent-red shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)]'
+            : 'relative bg-white border-t border-accent-red shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)]'
         }`}
       >
         <nav
@@ -89,7 +89,7 @@ export default function Navbar() {
         >
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/#home" onClick={() => handleLinkClick('/#home')} className="shrink-0 flex items-center group relative z-10">
+            <Link to="/" onClick={() => handleLinkClick('/#home')} className="shrink-0 flex items-center group relative z-10">
               <img 
                 src={LOGO} 
                 alt="Ambica Industry" 
@@ -153,7 +153,7 @@ export default function Navbar() {
                   >
                     <span className="relative z-10">{item.label}</span>
                     <span 
-                      className={`absolute bottom-0 left-4 right-4 h-[2px] bg-accent-red origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+                      className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent-red origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
                         ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
                       `} 
                     />
@@ -175,7 +175,7 @@ export default function Navbar() {
       </div>
 
       {/* Spacer when navbar is fixed */}
-      {scrolled && <div className="h-[70px] lg:h-[95px]" />}
+      {scrolled && <div className="h-17.5 lg:h-23.75" />}
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -194,7 +194,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 bottom-0 w-[85%] max-w-[360px] bg-white overflow-y-auto shadow-2xl rounded-l-3xl border-l border-white/20"
+              className="absolute right-0 top-0 bottom-0 w-[85%] max-w-90 bg-white overflow-y-auto shadow-2xl rounded-l-3xl border-l border-white/20"
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-6 border-b border-slate-100/50">

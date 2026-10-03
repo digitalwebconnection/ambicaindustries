@@ -34,7 +34,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
+      <div className="fixed inset-0 z-100 flex items-center justify-center p-3 sm:p-4 md:p-6 overflow-y-auto">
         {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -63,13 +63,13 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           </button>
 
           {/* Left - Branding / Visual (Hidden on mobile to keep form compact and immediately accessible) */}
-          <div className="hidden md:flex md:w-2/5 relative p-6 lg:p-10 flex-col justify-between overflow-hidden min-h-[440px] lg:min-h-[500px]">
+          <div className="hidden md:flex md:w-2/5 relative p-6 lg:p-10 flex-col justify-between overflow-hidden min-h-110 lg:min-h-125">
             {/* Background Image with Overlay */}
             <div 
               className="absolute inset-0 bg-cover bg-center z-0" 
               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=1000&auto=format&fit=crop')" }}
             />
-            <div className="absolute inset-0 bg-slate-200/90 z-0 backdrop-blur-[4px]" />
+            <div className="absolute inset-0 bg-slate-200/90 z-0 backdrop-blur-xs" />
             
             <div className="relative z-10">
               <img src={LOGO} alt="Ambica Industry" className="h-14 lg:h-16 mb-6 object-contain" />
