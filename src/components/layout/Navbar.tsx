@@ -72,35 +72,32 @@ export default function Navbar() {
 
   return (
     <>
-      <div 
-        className={`w-full z-40 ${
-          scrolled 
-            ? 'fixed top-0 sm:top-4 left-0 right-0' 
-            : 'relative bg-white border-t border-accent-red shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)]'
-        }`}
+      <div
+        className={`w-full z-40 ${scrolled
+          ? 'fixed top-0 sm:top-4 left-0 right-0'
+          : 'relative bg-white border-t border-accent-red shadow-[0_4px_20px_-10px_rgba(0,0,0,0.08)]'
+          }`}
       >
         <nav
-          className={`mx-auto transition-all duration-500 ease-out ${
-            scrolled 
-              ? 'w-[98%] max-w-7xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-2xl sm:rounded-full px-6 md:px-8 py-2 sm:py-3' 
-              : 'max-w-7xl border border-transparent px-4 lg:px-8 py-3 lg:py-4'
-          }`}
+          className={`mx-auto transition-all duration-500 ease-out ${scrolled
+            ? 'w-[98%] max-w-7xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-[0_8px_30px_rgba(0,0,0,0.08)] rounded-2xl sm:rounded-full px-6 md:px-8 py-2 sm:py-3'
+            : 'max-w-7xl border border-transparent px-4 lg:px-8 py-3 lg:py-4'
+            }`}
           style={{ willChange: scrolled ? 'auto' : 'transform' }}
         >
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" onClick={() => handleLinkClick('/#home')} className="shrink-0 flex items-center group relative z-10">
-              <img 
-                src={LOGO} 
-                alt="Ambica Industry" 
-                className={`w-auto relative z-10 transition-all duration-300 ${scrolled ? 'h-10 lg:h-12' : 'h-12 lg:h-16'}`} 
+              <img
+                src={LOGO}
+                alt="Ambica Industry"
+                className={`w-auto relative z-10 transition-all duration-300 ${scrolled ? 'h-10 lg:h-12' : 'h-12 lg:h-16'}`}
               />
             </Link>
 
             {/* Desktop Nav */}
-            <div className={`hidden lg:flex items-center transition-all duration-300 ${
-              scrolled ? 'gap-1' : 'gap-2'
-            }`}>
+            <div className={`hidden lg:flex items-center transition-all duration-300 ${scrolled ? 'gap-1' : 'gap-2'
+              }`}>
               {quickNavItems.map((item) => {
                 if (item.label === 'Contact Us') {
                   return (
@@ -127,15 +124,14 @@ export default function Navbar() {
                       key={item.href}
                       to={item.href}
                       onClick={() => handleLinkClick(item.href)}
-                      className={`relative px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${
-                        isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
-                      }`}
+                      className={`relative px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
+                        }`}
                     >
                       <span className="relative z-10">{item.label}</span>
-                      <span 
+                      <span
                         className={`absolute inset-0 bg-accent-red/5 rounded-full scale-50 opacity-0 transition-all duration-300 ease-out
                           ${isActive ? 'scale-100 opacity-100' : 'group-hover:scale-100 group-hover:opacity-100'}
-                        `} 
+                        `}
                       />
                     </Link>
                   );
@@ -147,15 +143,14 @@ export default function Navbar() {
                     key={item.href}
                     to={item.href}
                     onClick={() => handleLinkClick(item.href)}
-                    className={`relative px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${
-                      isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
-                    }`}
+                    className={`relative px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
+                      }`}
                   >
                     <span className="relative z-10">{item.label}</span>
-                    <span 
+                    <span
                       className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent-red origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
                         ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}
-                      `} 
+                      `}
                     />
                   </Link>
                 );
@@ -201,29 +196,28 @@ export default function Navbar() {
                   <Link to="/#home" onClick={() => handleLinkClick('/#home')}>
                     <img src={LOGO} alt="Ambica Industry" className="h-12" />
                   </Link>
-                  <button 
-                    onClick={() => setMobileOpen(false)} 
+                  <button
+                    onClick={() => setMobileOpen(false)}
                     className="p-2.5 bg-slate-50 text-slate-500 hover:text-accent-red hover:bg-red-50 rounded-full transition-colors"
                   >
                     <X size={20} />
                   </button>
                 </div>
-                
+
                 <div className="flex-1 py-6 px-4 flex flex-col gap-2">
                   {quickNavItems.map((item) => {
                     if (item.label === 'Get a Free Sample') return null;
                     const isActive = checkIsActive(item.href);
-                    
+
                     return (
                       <Link
                         key={item.href}
                         to={item.href}
                         onClick={() => handleLinkClick(item.href)}
-                        className={`flex items-center justify-between px-6 py-4 rounded-2xl text-[16px] font-semibold transition-all duration-300 ${
-                          isActive 
-                            ? 'bg-accent-red/10 text-accent-red' 
-                            : 'text-slate-700 hover:bg-slate-50 hover:text-accent-red'
-                        }`}
+                        className={`flex items-center justify-between px-6 py-4 rounded-2xl text-[16px] font-semibold transition-all duration-300 ${isActive
+                          ? 'bg-accent-red/10 text-accent-red'
+                          : 'text-slate-700 hover:bg-slate-50 hover:text-accent-red'
+                          }`}
                       >
                         {item.label}
                         {isActive && <div className="w-1.5 h-1.5 rounded-full bg-accent-red" />}

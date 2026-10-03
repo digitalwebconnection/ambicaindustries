@@ -1,12 +1,32 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  useCallback
+} from 'react';
+import type { KeyboardEvent, HTMLAttributes, CSSProperties } from 'react';
 import { Renderer, Triangle, Program, Mesh, Texture } from 'ogl';
+import type { OGLRenderingContext } from 'ogl';
 import { gsap } from 'gsap';
 
 import './MorphSlider.css';
 
-const TRANSITIONS = { melt: 0, ripple: 1, shear: 2, swirl: 3 };
+export type MorphTransition = 'melt' | 'ripple' | 'shear' | 'swirl';
 
-const DEFAULT_ITEMS = [
+const TRANSITIONS: Record<MorphTransition, number> = {
+  melt: 0,
+  ripple: 1,
+  shear: 2,
+  swirl: 3
+};
+
+export interface MorphSliderItem {
+  image: string;
+  caption?: string;
+  [key: string]: unknown;
+}
+
+const DEFAULT_ITEMS: MorphSliderItem[] = [
   {
     image: 'https://images.unsplash.com/photo-1782977389500-dd7adad33ebe?q=80&w=1600&auto=format&fit=crop',
     caption: 'One'
@@ -188,7 +208,7 @@ void main() {
 }
 `;
 
-function makeFallbackTexture(gl) {
+function makeFallbackTexture(gl: OGLRenderingContext): Texture {
   const size = 4;
   const data = new Uint8Array(size * size * 4);
   for (let i = 0; i < size * size; i++) {
@@ -200,7 +220,7 @@ function makeFallbackTexture(gl) {
   return new Texture(gl, { image: data, width: size, height: size, generateMipmaps: false });
 }
 
-function hexToRgb(hex) {
+function hexToRgb(hex: string): [number, number, number] {
   let h = (hex || '#000000').replace('#', '');
   if (h.length === 3) {
     h = h
@@ -212,8 +232,61 @@ function hexToRgb(hex) {
   return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255];
 }
 
+interface MorphEngineActiveOptions {
+  transition: MorphTransition;
+  duration: number;
+  ease: string;
+  intensity: number;
+  scale: number;
+  aberration: number;
+  drift: number;
+  overlayColor: string;
+  loop: boolean;
+}
+
+interface MorphEngineConfig {
+  items: MorphSliderItem[];
+  startIndex: number;
+  reducedMotion: boolean;
+  getOptions: () => MorphEngineActiveOptions;
+  onIndexChange?: (index: number) => void;
+  dprCap: number;
+}
+
 class MorphEngine {
-  constructor(container, { items, startIndex, reducedMotion, getOptions, onIndexChange, dprCap }) {
+  container: HTMLElement;
+  items: MorphSliderItem[];
+  getOptions: () => MorphEngineActiveOptions;
+  onIndexChange?: (index: number) => void;
+  reducedMotion: boolean;
+
+  current: number;
+  animating: boolean;
+  dragging: boolean;
+  dragDir: number;
+  shownIndex: number;
+  tween: gsap.core.Tween | null;
+
+  renderer: Renderer;
+  gl: OGLRenderingContext;
+  canvas: HTMLCanvasElement;
+  geometry: Triangle;
+  textures: Texture[];
+  sizes: [number, number][];
+  program: Program;
+  mesh: Mesh;
+
+  boundContextLost: (e: Event) => void;
+  resizeObserver: ResizeObserver;
+  boundLoop: (t: number) => void;
+  isVisible: boolean;
+  visibilityObserver: IntersectionObserver;
+  raf: number | null = null;
+
+  constructor(
+    container: HTMLElement,
+    { items, startIndex, reducedMotion, getOptions, onIndexChange, dprCap }: MorphEngineConfig
+  ) {
     this.container = container;
     this.items = items;
     this.getOptions = getOptions;
@@ -280,10 +353,10 @@ class MorphEngine {
     this.loadTextures();
 
     this.boundLoop = this.loop.bind(this);
-    
+
     // Add Intersection Observer to pause loop when not in view
     this.isVisible = false;
-    this.visibilityObserver = new IntersectionObserver((entries) => {
+    this.visibilityObserver = new IntersectionObserver(entries => {
       this.isVisible = entries[0].isIntersecting;
       if (this.isVisible && !this.raf) {
         this.raf = requestAnimationFrame(this.boundLoop);
@@ -332,7 +405,7 @@ class MorphEngine {
     this.program.uniforms.uOverlay.value = hexToRgb(opts.overlayColor);
   }
 
-  loop(t) {
+  loop(t: number) {
     if (!this.isVisible) return;
     this.program.uniforms.uTime.value = t * 0.001;
     if (!this.dragging && !this.animating) this.syncOptions();
@@ -340,12 +413,12 @@ class MorphEngine {
     this.raf = requestAnimationFrame(this.boundLoop);
   }
 
-  wrap(i) {
+  wrap(i: number): number {
     const n = this.items.length;
     return ((i % n) + n) % n;
   }
 
-  prepareNext(dir) {
+  prepareNext(dir: number): number {
     const target = this.wrap(this.current + dir);
     this.program.uniforms.tCurrent.value = this.textures[this.current];
     this.program.uniforms.uCurrentSize.value = this.sizes[this.current];
@@ -355,7 +428,7 @@ class MorphEngine {
     return target;
   }
 
-  goTo(dir) {
+  goTo(dir: number) {
     if (this.animating || this.dragging || this.items.length < 2) return;
     const opts = this.getOptions();
     if (!opts.loop) {
@@ -379,13 +452,13 @@ class MorphEngine {
     );
   }
 
-  announce(index) {
+  announce(index: number) {
     if (index === this.shownIndex) return;
     this.shownIndex = index;
     if (this.onIndexChange) this.onIndexChange(index);
   }
 
-  commit(target) {
+  commit(target: number) {
     this.current = target;
     this.program.uniforms.tCurrent.value = this.textures[target];
     this.program.uniforms.uCurrentSize.value = this.sizes[target];
@@ -403,11 +476,11 @@ class MorphEngine {
     this.goTo(-1);
   }
 
-  setPointer(x, y) {
+  setPointer(x: number, y: number) {
     this.program.uniforms.uPointer.value = [x, y];
   }
 
-  beginDrag() {
+  beginDrag(): boolean {
     if (this.animating || this.items.length < 2) return false;
     this.dragging = true;
     this.dragDir = 0;
@@ -415,7 +488,7 @@ class MorphEngine {
     return true;
   }
 
-  drag(ndx) {
+  drag(ndx: number) {
     if (!this.dragging) return;
     const opts = this.getOptions();
     const dir = ndx < 0 ? 1 : -1;
@@ -465,25 +538,48 @@ class MorphEngine {
     }
   }
 
-  onContextLost(e) {
+  onContextLost(e: Event) {
     e.preventDefault();
-    cancelAnimationFrame(this.raf);
+    if (this.raf !== null) {
+      cancelAnimationFrame(this.raf);
+      this.raf = null;
+    }
   }
 
   destroy() {
-    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.raf !== null) cancelAnimationFrame(this.raf);
     if (this.visibilityObserver) this.visibilityObserver.disconnect();
     if (this.tween) this.tween.kill();
     this.resizeObserver.disconnect();
     this.canvas.removeEventListener('webglcontextlost', this.boundContextLost);
     this.textures.forEach(tex => {
-      if (tex && tex.texture) this.gl.deleteTexture(tex.texture);
+      if (tex && (tex as any).texture) this.gl.deleteTexture((tex as any).texture);
     });
-    if (this.program && this.program.program) this.gl.deleteProgram(this.program.program);
+    if (this.program && (this.program as any).program) this.gl.deleteProgram((this.program as any).program);
     const ext = this.gl.getExtension('WEBGL_lose_context');
     if (ext) ext.loseContext();
     if (this.canvas.parentNode) this.canvas.parentNode.removeChild(this.canvas);
   }
+}
+
+export interface MorphSliderProps extends HTMLAttributes<HTMLDivElement> {
+  items?: MorphSliderItem[];
+  startIndex?: number;
+  transition?: MorphTransition;
+  duration?: number;
+  ease?: string;
+  intensity?: number;
+  scale?: number;
+  aberration?: number;
+  drift?: number;
+  autoplay?: boolean;
+  autoplayDelay?: number;
+  loop?: boolean;
+  radius?: number;
+  overlayColor?: string;
+  showCaptions?: boolean;
+  showControls?: boolean;
+  showIndicators?: boolean;
 }
 
 export default function MorphSlider({
@@ -505,14 +601,25 @@ export default function MorphSlider({
   showControls = true,
   showIndicators = true,
   className = '',
+  style,
   ...props
-}) {
-  const containerRef = useRef(null);
-  const engineRef = useRef(null);
+}: MorphSliderProps) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const engineRef = useRef<MorphEngine | null>(null);
   const [index, setIndex] = useState(startIndex);
   const [hovering, setHovering] = useState(false);
 
-  const optsRef = useRef();
+  const optsRef = useRef({
+    transition,
+    duration,
+    ease,
+    intensity,
+    scale,
+    aberration,
+    drift,
+    overlayColor,
+    loop
+  });
   optsRef.current = { transition, duration, ease, intensity, scale, aberration, drift, overlayColor, loop };
 
   useEffect(() => {
@@ -541,10 +648,10 @@ export default function MorphSlider({
   const handlePrev = useCallback(() => engineRef.current?.prev(), []);
 
   useEffect(() => {
-    if (!autoplay) return undefined;
+    if (!autoplay || hovering) return undefined;
     const id = setTimeout(() => engineRef.current?.next(), Math.max(autoplayDelay, 1) * 1000);
     return () => clearTimeout(id);
-  }, [autoplay, autoplayDelay, index]);
+  }, [autoplay, autoplayDelay, index, hovering]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -553,7 +660,7 @@ export default function MorphSlider({
     let width = 1;
     let active = false;
 
-    const onDown = e => {
+    const onDown = (e: PointerEvent) => {
       const rect = el.getBoundingClientRect();
       width = rect.width || 1;
       startX = e.clientX;
@@ -567,7 +674,7 @@ export default function MorphSlider({
         } catch {}
       }
     };
-    const onMove = e => {
+    const onMove = (e: PointerEvent) => {
       if (!active) return;
       const ndx = (e.clientX - startX) / width;
       engineRef.current?.drag(ndx);
@@ -592,7 +699,7 @@ export default function MorphSlider({
   }, []);
 
   const onKeyDown = useCallback(
-    e => {
+    (e: KeyboardEvent<HTMLDivElement>) => {
       if (e.key === 'ArrowRight') {
         e.preventDefault();
         handleNext();
@@ -612,8 +719,9 @@ export default function MorphSlider({
       style={{
         borderRadius: `${radius}px`,
         '--ms-swap': `${(duration * 0.66).toFixed(3)}s`,
-        '--ms-dot': `${(duration * 0.45).toFixed(3)}s`
-      }}
+        '--ms-dot': `${(duration * 0.45).toFixed(3)}s`,
+        ...style
+      } as CSSProperties}
       onMouseEnter={() => setHovering(true)}
       onMouseLeave={() => setHovering(false)}
       {...props}
@@ -675,7 +783,7 @@ export default function MorphSlider({
 
       {showIndicators && (
         <div className="morph-slider-indicators" role="tablist" aria-label="Slides">
-          {items.map((item, i) => (
+          {items.map((_, i) => (
             <button
               key={i}
               type="button"
