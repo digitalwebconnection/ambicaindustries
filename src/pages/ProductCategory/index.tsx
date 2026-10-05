@@ -1,11 +1,17 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Breadcrumb from '../../components/ui/Breadcrumb';
-import { productCategories } from '../../data/products';
+import { productCategories, getLegacyProductRedirect } from '../../data/products';
 import { ArrowRight, ChevronRight, CheckCircle2, Package, Target, Layers } from 'lucide-react';
 
 export default function ProductCategory() {
   const { category, slug } = useParams<{ category: string; slug?: string }>();
+
+  // Check for legacy/deprecated category or sub-product deep links (e.g., food-lake-colors)
+  const legacyRedirect = getLegacyProductRedirect(category, slug);
+  if (legacyRedirect) {
+    return <Navigate to={legacyRedirect} replace />;
+  }
 
   const cat = productCategories.find((c) => c.slug === category);
 

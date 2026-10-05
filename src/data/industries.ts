@@ -175,6 +175,10 @@ export const productMapping: ProductApplication[] = [
     description:
       "Color solutions that enhance wood surfaces while preserving their character.",
   },
+  
+];
+
+export const legacyProductMapping: ProductApplication[] = [
   {
     name: "Food & Lake Colors",
     material: "Food · Pharmaceutical · Cosmetics",
@@ -183,3 +187,4 @@ export const productMapping: ProductApplication[] = [
       "Controlled color solutions developed for specific non-textile applications.",
   },
 ];
+

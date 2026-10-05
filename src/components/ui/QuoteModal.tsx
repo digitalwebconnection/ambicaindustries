@@ -1,6 +1,8 @@
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, useRef, type FormEvent, type ChangeEvent, type FocusEvent } from 'react';
 import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import FieldError from './FieldError';
+import { validateStandardField } from '../../utils/validation';
 
 const LOGO = '/logo2.png';
 
@@ -9,8 +11,20 @@ interface QuoteModalProps {
 }
 
 export default function QuoteModal({ onClose }: QuoteModalProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    city: '',
+    phone: '',
+    message: '',
+  });
+  const [honeypot, setHoneypot] = useState('');
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const formRef = useRef<HTMLFormElement>(null);
 
   // Prevent background scroll when modal is open on mobile
   useEffect(() => {
@@ -21,16 +35,109 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
     };
   }, []);
 
+  const validateField = (name: string, value: string): string | null => {
+    return validateStandardField(name, value);
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (touched[name] || errors[name]) {
+      const err = validateField(name, value);
+      setErrors((prev) => {
+        const next = { ...prev };
+        if (err) next[name] = err;
+        else delete next[name];
+        return next;
+      });
+    }
+  };
+
+  const handleBlur = (e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const err = validateField(name, value);
+    setErrors((prev) => {
+      const next = { ...prev };
+      if (err) next[name] = err;
+      else delete next[name];
+      return next;
+    });
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    // ARCHITECTURE NOTE:
+    // Client-side validation is strictly for immediate user experience (UX) and accessibility.
+    // Authoritative validation, honeypot verification, rate limiting, and spam filtering
+    // MUST be executed on the backend server endpoint (e.g., POST /api/quote).
+    // See server_validation_and_spam_protection_plan.md for the complete multi-layer plan.
+
+    // Honeypot bot protection: if filled, drop silently (fake success to mislead automated scrapers)
+    if (honeypot.trim() !== '') {
+      setIsSubmitting(true);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setTimeout(onClose, 1200);
+      }, 500);
+      return;
+    }
+
+    const fieldsToValidate = ['name', 'email', 'city', 'phone', 'message'] as const;
+    const nextErrors: Record<string, string> = {};
+
+    fieldsToValidate.forEach((f) => {
+      const err = validateField(f, formData[f]);
+      if (err) nextErrors[f] = err;
+    });
+
+    setTouched({
+      name: true,
+      email: true,
+      city: true,
+      phone: true,
+      message: true,
+    });
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      const firstInvalid = fieldsToValidate.find((f) => nextErrors[f]);
+      if (firstInvalid && formRef.current) {
+        const el = formRef.current.querySelector<HTMLElement>(`[name="${firstInvalid}"]`);
+        el?.focus();
+      }
+      return;
+    }
+
+    setErrors({});
     setIsSubmitting(true);
-    // Simulate network request
+
+    // Simulate network request (Will be replaced with fetch('/api/quote') when backend is attached)
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        city: '',
+        phone: '',
+        message: '',
+      });
+      setHoneypot('');
+      setTouched({});
       setTimeout(onClose, 2500);
-    }, 1500);
+    }, 1200);
   };
+
+  const getInputClass = (fieldName: string) =>
+    `w-full pl-9 pr-3.5 py-2.5 sm:py-3 rounded-xl outline-none transition-all text-sm ${
+      errors[fieldName]
+        ? 'border border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-red-200'
+        : 'bg-slate-100 border border-slate-200 text-slate-700 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red'
+    }`;
 
   return (
     <AnimatePresence>
@@ -62,9 +169,8 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
             <X size={18} />
           </button>
 
-          {/* Left - Branding / Visual (Hidden on mobile to keep form compact and immediately accessible) */}
+          {/* Left - Branding / Visual */}
           <div className="hidden md:flex md:w-2/5 relative p-6 lg:p-10 flex-col justify-between overflow-hidden min-h-110 lg:min-h-125">
-            {/* Background Image with Overlay */}
             <div 
               className="absolute inset-0 bg-cover bg-center z-0" 
               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=1000&auto=format&fit=crop')" }}
@@ -122,64 +228,116 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                        <User size={16} />
-                      </div>
-                      <input
-                        type="text"
-                        placeholder="Your Name"
-                        required
-                        className="w-full pl-9 pr-3.5 py-2.5 sm:py-3 bg-slate-100 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red outline-none transition-all text-sm text-slate-700 placeholder:text-slate-400"
-                      />
-                    </div>
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                        <Mail size={16} />
-                      </div>
-                      <input
-                        type="email"
-                        placeholder="Email Address"
-                        required
-                        className="w-full pl-9 pr-3.5 py-2.5 sm:py-3 bg-slate-100 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red outline-none transition-all text-sm text-slate-700 placeholder:text-slate-400"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                        <MapPin size={16} />
-                      </div>
-                      <input
-                        type="text"
-                        placeholder="City"
-                        className="w-full pl-9 pr-3.5 py-2.5 sm:py-3 bg-slate-100 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red outline-none transition-all text-sm text-slate-700 placeholder:text-slate-400"
-                      />
-                    </div>
-                    <div className="relative group">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                        <Phone size={16} />
-                      </div>
-                      <input
-                        type="tel"
-                        placeholder="Phone Number"
-                        className="w-full pl-9 pr-3.5 py-2.5 sm:py-3 bg-slate-100 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red outline-none transition-all text-sm text-slate-700 placeholder:text-slate-400"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="relative group">
-                    <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                      <MessageSquare size={16} />
-                    </div>
-                    <textarea
-                      placeholder="Tell us about your requirements..."
-                      rows={3}
-                      className="w-full pl-9 pr-3.5 py-2.5 sm:py-3 bg-slate-100 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red outline-none transition-all text-sm text-slate-700 placeholder:text-slate-400 resize-none"
+                <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-3 sm:space-y-4">
+                  {/* Honeypot field for bot/spam protection (hidden from humans) */}
+                  <div className="hidden" aria-hidden="true">
+                    <input
+                      type="text"
+                      name="_gotcha"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
                     />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                      <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                          <User size={16} />
+                        </div>
+                        <input
+                          type="text"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Your Name *"
+                          aria-invalid={!!errors.name}
+                          className={getInputClass('name')}
+                        />
+                      </div>
+                      <FieldError error={errors.name} />
+                    </div>
+
+                    <div>
+                      <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                          <Mail size={16} />
+                        </div>
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Email Address *"
+                          aria-invalid={!!errors.email}
+                          className={getInputClass('email')}
+                        />
+                      </div>
+                      <FieldError error={errors.email} />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div>
+                      <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                          <MapPin size={16} />
+                        </div>
+                        <input
+                          type="text"
+                          name="city"
+                          value={formData.city}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="City"
+                          aria-invalid={!!errors.city}
+                          className={getInputClass('city')}
+                        />
+                      </div>
+                      <FieldError error={errors.city} />
+                    </div>
+
+                    <div>
+                      <div className="relative group">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                          <Phone size={16} />
+                        </div>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          placeholder="Phone Number *"
+                          aria-invalid={!!errors.phone}
+                          className={getInputClass('phone')}
+                        />
+                      </div>
+                      <FieldError error={errors.phone} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="relative group">
+                      <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                        <MessageSquare size={16} />
+                      </div>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        placeholder="Tell us about your requirements... *"
+                        rows={3}
+                        aria-invalid={!!errors.message}
+                        className={`${getInputClass('message')} resize-none`}
+                      />
+                    </div>
+                    <FieldError error={errors.message} />
                   </div>
 
                   <button
@@ -207,3 +365,4 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
     </AnimatePresence>
   );
 }
+

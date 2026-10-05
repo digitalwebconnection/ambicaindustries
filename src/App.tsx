@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -14,6 +14,7 @@ const WhyUs = lazy(() => import('./pages/WhyUs'))
 const Products = lazy(() => import('./pages/Products'));
 const Contact = lazy(() => import('./pages/Contact'));
 const ProductCategory = lazy(() => import('./pages/ProductCategory'));
+const Enquiry = lazy(() => import('./pages/Enquiry'));
 
 function PageLoader() {
   return (
@@ -35,9 +36,13 @@ export default function App() {
             <Route path="/industry" element={<Industry/>} />
             <Route path="/why-choose-us" element={<WhyUs/>} />
             <Route path="/r&d" element={<RnD/>} />
+            {/* Legacy redirects for removed categories to prevent broken deep links */}
+            <Route path="/products/food-lake-colors" element={<Navigate to="/products" replace />} />
+            <Route path="/products/food-lake-colors/:slug" element={<Navigate to="/products" replace />} />
             <Route path="/products/:category" element={<ProductCategory />} />
             <Route path="/products/:category/:slug" element={<ProductCategory />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/termsof-service" element={<TermsOfService />} />
           </Routes>
