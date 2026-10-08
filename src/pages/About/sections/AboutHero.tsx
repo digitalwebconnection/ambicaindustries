@@ -1,6 +1,6 @@
 import { ArrowRight, FileText } from 'lucide-react';
 
-import heroImg from '../../../assets/images/hero/dyeing-fabrics-colorful-vats.webp';
+import heroImg from '@/assets/images/hero/dyeing-fabrics-colorful-vats.webp';
 
 export default function AboutHero() {
   const handleScrollToStory = () => {

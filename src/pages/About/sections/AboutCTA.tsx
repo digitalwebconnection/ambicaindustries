@@ -1,10 +1,10 @@
 import { Plus } from "lucide-react";
-import avatar11 from "../../../assets/images/avatars/avatar-11.webp";
-import avatar33 from "../../../assets/images/avatars/avatar-33.webp";
-import avatar14 from "../../../assets/images/avatars/avatar-14.webp";
-import avatar53 from "../../../assets/images/avatars/avatar-53.webp";
-import avatar32 from "../../../assets/images/avatars/avatar-32.webp";
-import avatar44 from "../../../assets/images/avatars/avatar-44.webp";
+import avatar11 from '@/assets/images/avatars/avatar-11.webp';
+import avatar33 from '@/assets/images/avatars/avatar-33.webp';
+import avatar14 from '@/assets/images/avatars/avatar-14.webp';
+import avatar53 from '@/assets/images/avatars/avatar-53.webp';
+import avatar32 from '@/assets/images/avatars/avatar-32.webp';
+import avatar44 from '@/assets/images/avatars/avatar-44.webp';
 
 export default function AboutCTA() {
   const teamAvatars = [

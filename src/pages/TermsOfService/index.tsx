@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import SEO from "../../components/common/SEO";
-import { seoConfig } from "../../data/seoData";
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
 
 export default function TermsOfService() {
     const termsOfService = {

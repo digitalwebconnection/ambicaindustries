@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import heroBg from "../../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp";
+import heroBg from '@/assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp';
 
 export default function HeroContactUs() {
   return (

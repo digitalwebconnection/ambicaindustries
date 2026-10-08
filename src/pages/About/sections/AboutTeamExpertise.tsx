@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Users2 } from "lucide-react";
-import imgTeamFounder from "../../../assets/images/about/team-founder.webp";
-import imgTeamShailesh from "../../../assets/images/about/team-shailesh.webp";
-import imgTeamSamir from "../../../assets/images/about/team-samir.webp";
+import imgTeamFounder from '@/assets/images/about/team-founder.webp';
+import imgTeamShailesh from '@/assets/images/about/team-shailesh.webp';
+import imgTeamSamir from '@/assets/images/about/team-samir.webp';
 
 interface Partner {
   number: string;

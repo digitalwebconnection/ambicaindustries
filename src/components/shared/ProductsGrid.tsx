@@ -1,7 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { productCategories } from '../../data/products';
+import { productCategories } from '@/data/products';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },

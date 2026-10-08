@@ -58,31 +58,37 @@ export const seoConfig: Record<string, PageSEOConfig> = {
   contact: {
     title: 'Contact Us | Get in Touch with Our Technical Dye Experts - Ambica Industry',
     description:
-      'Contact Ambica Industry for product inquiries, shade cards, custom orders, or sample requests. Visit our facility at Phase-I, G.I.D.C., Naroda, Ahmedabad, or speak with our technical team today.',
+      'Contact Ambica Industry for industrial dye inquiries, technical datasheets (TDS), safety datasheets (MSDS), free lab samples, and custom shade development.',
     keywords:
-      'Contact Ambica Industry, Naroda GIDC dye factory address, dye manufacturer phone number, request dye samples, Ambica Industry email',
+      'Contact Ambica Industry, chemical dye inquiry, buy dyes Naroda Ahmedabad, dye quotation, chemical exporters India contact',
     canonical: '/contact',
   },
   enquiry: {
-    title: 'Request a Quote & Product Samples | Ambica Industry',
+    title: 'Request a Quote & Technical Enquiry - Ambica Industry',
     description:
-      'Submit your detailed product requirements, target shades, specifications, and volume for custom quotation, technical data sheets (TDS), and sample dispatches from Ambica Industry.',
+      'Submit your technical specifications, required dye series, target quantities, and delivery location. Our chemical engineers will provide custom formulations and quotations within 24 hours.',
     keywords:
-      'Request dye quote, bulk dye inquiry, chemical sample request, dye price quotation India, Ambica Industry enquiry',
+      'Dye enquiry form, request a quote dyes, bulk dye supply inquiry, Ambica Industry quotation',
     canonical: '/enquiry',
   },
   privacyPolicy: {
-    title: 'Privacy Policy | Ambica Industry',
+    title: 'Privacy Policy - Ambica Industry',
     description:
-      'Read the official privacy policy of Ambica Industry regarding how we collect, protect, and handle client information, business communications, and website inquiries.',
-    keywords: 'Privacy policy, data protection, Ambica Industry privacy',
+      'Learn how Ambica Industry collects, protects, and handles your personal data, customer inquiries, and browsing privacy.',
+    keywords: 'Privacy policy Ambica Industry, data protection, privacy terms',
     canonical: '/privacy-policy',
   },
   termsOfService: {
-    title: 'Terms of Service | Ambica Industry',
+    title: 'Terms of Service - Ambica Industry',
     description:
-      'Read the terms and conditions governing the use of the Ambica Industry website, product documentation, commercial terms, and customer engagements.',
-    keywords: 'Terms of service, terms and conditions, Ambica Industry terms',
+      'Review the commercial terms, product warranty disclaimers, Intellectual Property rights, and governing law for using the Ambica Industry platform.',
+    keywords: 'Terms of service Ambica Industry, commercial terms, legal notice',
     canonical: '/termsof-service',
+  },
+  notFound: {
+    title: 'Page Not Found (404) - Ambica Industry',
+    description: 'The requested page could not be found. Please navigate back to Ambica Industry homepage or browse our industrial dye catalog.',
+    keywords: '404 not found, page missing',
+    canonical: '/404',
   },
 };

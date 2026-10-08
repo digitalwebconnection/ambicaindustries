@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Search, FlaskConical, TestTube2, SlidersHorizontal, Factory, Lightbulb } from "lucide-react";
-import dyeProcessImage from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.webp";
+import dyeProcessImage from '@/assets/images/hero/dyeing-textiles-factory-colorful-process.webp';
 
 export default function RnDProcess() {
   const processSteps = [

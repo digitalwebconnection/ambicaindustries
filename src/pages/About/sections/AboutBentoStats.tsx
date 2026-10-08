@@ -1,4 +1,4 @@
-import bentoImg from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp";
+import bentoImg from '@/assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
 
 interface BentoCardProps {
   number: string;

@@ -1,13 +1,13 @@
-import SEO from "../../components/common/SEO";
-import { seoConfig } from "../../data/seoData";
-import { createBreadcrumbSchema } from "../../utils/seoSchemas";
-import Faqs from "../../components/shared/Faqs";
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
+import Faqs from '@/components/shared/Faqs';
 import HeroIndustry from "./sections/HeroIndustry";
-import IndustriesServed from "../../components/shared/IndustriesServed";
+import IndustriesServed from '@/components/shared/IndustriesServed';
 import IndustryCTA from "./sections/IndustryCTA";
 import IndustryCustomers from "./sections/IndustryCustomers";
-import ProductToIndustry from "./sections/ProductToIndustry";
-import { industriesFaqs } from "../../data/faq";
+import ProductToIndustry from "@/components/shared/ProductToIndustry";
+import { industriesFaqs } from '@/data/faq';
 
 export default function Industry() {
   return (

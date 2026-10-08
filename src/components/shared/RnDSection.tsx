@@ -9,7 +9,7 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import ctaBackground from "../../assets/images/hero/dyeing-fabrics-colorful-vats.webp";
+import ctaBackground from '@/assets/images/hero/dyeing-fabrics-colorful-vats.webp';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },

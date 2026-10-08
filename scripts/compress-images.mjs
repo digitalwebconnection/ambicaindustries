@@ -1,6 +1,6 @@
 /**
  * Image compression and WebP optimization script using sharp.
- * Run: node compress-images.mjs
+ * Run: npm run compress-images (or node scripts/compress-images.mjs)
  * 
  * Scans all asset image directories and optimizes WebP images to max 1920px width.
  */

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import type { FAQ } from "../../data/faq";
+import type { FAQ } from '@/data/faq';
 
 export default function Faqs({ faqs }: { faqs: FAQ[] }) {
 

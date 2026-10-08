@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Award, ShieldCheck, Gauge, Users, Headset, Handshake } from "lucide-react";
-import imgQuality from "../../../assets/images/whyus/whyus-quality.webp";
-import imgPerformance from "../../../assets/images/whyus/whyus-performance.webp";
-import imgPartnerships from "../../../assets/images/whyus/whyus-partnerships.webp";
+import imgQuality from '@/assets/images/whyus/whyus-quality.webp';
+import imgPerformance from '@/assets/images/whyus/whyus-performance.webp';
+import imgPartnerships from '@/assets/images/whyus/whyus-partnerships.webp';
 
 export default function WhyUsDifference() {
   const points = [

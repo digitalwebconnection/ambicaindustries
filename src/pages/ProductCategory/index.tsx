@@ -1,8 +1,8 @@
 import { useParams, Link, Navigate } from 'react-router-dom';
-import Breadcrumb from '../../components/ui/Breadcrumb';
-import SEO from '../../components/common/SEO';
-import { productCategories, getLegacyProductRedirect } from '../../data/products';
-import { createBreadcrumbSchema, createProductSchema } from '../../utils/seoSchemas';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import SEO from '@/components/seo/SEO';
+import { productCategories, getLegacyProductRedirect } from '@/data/products';
+import { createBreadcrumbSchema, createProductSchema } from '@/components/seo/seoSchemas';
 import CategoryHero from './sections/CategoryHero';
 import CategoryOverview from './sections/CategoryOverview';
 import CategorySubProducts from './sections/CategorySubProducts';

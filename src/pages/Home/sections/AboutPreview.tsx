@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, Award, Gem, Factory } from 'lucide-react';
 
-import mainImg from '../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
-import secondaryImg from '../../../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory (1).webp';
+import mainImg from '@/assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
+import secondaryImg from '@/assets/images/hero/vibrant-dyeing-fabric-factory.webp';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },

@@ -4,9 +4,9 @@ import { useLenis } from "lenis/react";
 import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import WhatsAppButton from "../ui/WhatsAppButton";
-import QuoteSideTab from "../ui/QuoteSideTab";
-import CookieConsent from "../common/CookieConsent";
+import WhatsAppButton from "@/components/global/WhatsAppButton";
+import QuoteSideTab from "@/components/global/QuoteSideTab";
+import CookieConsent from "@/components/global/CookieConsent";
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { customerTypes } from "../../../data/industries";
+import { customerTypes } from '@/data/industries';
 
 export default function IndustryCustomers() {
 

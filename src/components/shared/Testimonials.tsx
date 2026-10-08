@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { motion } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import { testimonials } from "../../../data/testimonials";
+import { testimonials } from "@/data/testimonials";
 
 export default function Testimonials() {
   const [emblaRef, emblaApi] = useEmblaCarousel({

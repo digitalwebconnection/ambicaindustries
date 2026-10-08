@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import type { ProductCategory } from '../../../data/products';
+import type { ProductCategory } from '@/data/products';
 
 interface CategorySubProductsProps {
   cat: ProductCategory;

@@ -1,7 +1,7 @@
-import SEO from "../../components/common/SEO";
-import { seoConfig } from "../../data/seoData";
-import { organizationSchema, createBreadcrumbSchema } from "../../utils/seoSchemas";
-import ContactForm from "./sections/ContactForm";
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { organizationSchema, createBreadcrumbSchema } from '@/components/seo/seoSchemas';
+import ContactForm from "@/components/shared/ContactForm";
 import HeroContactUs from "./sections/HeroContactUs";
 
 export default function Contact() {

@@ -1,5 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
-import { industries } from '../../data/industries';
+import { industries } from '@/data/industries';
 import { Shirt, Home, Hexagon, Package, Printer, Droplet, Layers, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 

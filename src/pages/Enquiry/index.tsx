@@ -1,11 +1,11 @@
 import { useState, useRef, type FormEvent, type ChangeEvent, type FocusEvent } from 'react';
 import { motion } from 'framer-motion';
-import Breadcrumb from '../../components/ui/Breadcrumb';
-import FieldError from '../../components/ui/FieldError';
-import SEO from '../../components/common/SEO';
-import { seoConfig } from '../../data/seoData';
-import { createBreadcrumbSchema } from '../../utils/seoSchemas';
-import { validateStandardField } from '../../utils/validation';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import FieldError from '@/components/ui/FieldError';
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
+import { validateStandardField } from '@/utils/validation';
 
 const countries = [
   'India', 'United States', 'United Kingdom', 'Canada', 'Australia',

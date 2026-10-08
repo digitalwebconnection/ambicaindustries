@@ -1,4 +1,4 @@
-import { productMapping } from "../../../data/industries";
+import { productMapping } from "@/data/industries";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 

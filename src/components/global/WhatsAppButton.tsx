@@ -1,4 +1,4 @@
-import { siteConfig } from '../../data/siteConfig';
+import { siteConfig } from '@/data/siteConfig';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function WhatsAppButton() {

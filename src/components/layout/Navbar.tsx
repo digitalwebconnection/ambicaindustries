@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronRight, ChevronDown, Phone, Mail, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { quickNavItems } from '../../data/navigation';
-import { productCategories } from '../../data/products';
-import { siteConfig } from '../../data/siteConfig';
+import { quickNavItems } from '@/data/navigation';
+import { productCategories } from '@/data/products';
+import { siteConfig } from '@/data/siteConfig';
 
 const LOGO = '/logo2.png';
 

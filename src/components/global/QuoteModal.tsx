@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef, type FormEvent, type ChangeEvent, type FocusEvent } from 'react';
 import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import FieldError from './FieldError';
-import { validateStandardField } from '../../utils/validation';
-import quoteBg from '../../assets/images/quote/quote-bg.webp';
-import avatar1 from '../../assets/images/avatars/avatar-1.webp';
-import avatar2 from '../../assets/images/avatars/avatar-2.webp';
-import avatar3 from '../../assets/images/avatars/avatar-3.webp';
+import FieldError from '@/components/ui/FieldError';
+import { validateStandardField } from '@/utils/validation';
+import quoteBg from '@/assets/images/quote/quote-bg.webp';
+import avatar1 from '@/assets/images/avatars/avatar-1.webp';
+import avatar2 from '@/assets/images/avatars/avatar-2.webp';
+import avatar3 from '@/assets/images/avatars/avatar-3.webp';
 
 const LOGO = '/logo2.png';
 

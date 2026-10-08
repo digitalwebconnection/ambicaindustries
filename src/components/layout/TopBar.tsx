@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
-import { siteConfig } from '../../data/siteConfig';
+import { siteConfig } from '@/data/siteConfig';
 
 export default function TopBar() {
   return (

@@ -1,11 +1,11 @@
-import SEO from "../../components/common/SEO";
-import { seoConfig } from "../../data/seoData";
-import { createBreadcrumbSchema } from "../../utils/seoSchemas";
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
 import RnDHero from "./sections/RnDHero";
-import RnDSection from "../../components/shared/RnDSection";
+import RnDSection from '@/components/shared/RnDSection';
 import RnDProcess from "./sections/RnDProcess";
-import Faqs from "../../components/shared/Faqs";
-import { rndFaqs } from "../../data/faq";
+import Faqs from '@/components/shared/Faqs';
+import { rndFaqs } from '@/data/faq';
 import RnDQuality from "./sections/RnDQuality";
 import RnDExpertise from "./sections/RnDExpertise";
 

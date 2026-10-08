@@ -1,16 +1,15 @@
-import SEO from '../../components/common/SEO';
-import { seoConfig } from '../../data/seoData';
-import { organizationSchema, websiteSchema } from '../../utils/seoSchemas';
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { organizationSchema, websiteSchema } from '@/components/seo/seoSchemas';
 import HeroBanner from './sections/HeroBanner';
 import AboutPreview from './sections/AboutPreview';
-import ProductsGrid from './sections/ProductsGrid';
-import IndustriesServed from './sections/IndustriesServed';
-import RnDSection from './sections/RnDSection';
+import ProductsGrid from '@/components/shared/ProductsGrid';
+import IndustriesServed from '@/components/shared/IndustriesServed';
+import RnDSection from '@/components/shared/RnDSection';
 import NewsSection from './sections/NewsSection';
-import WhyChooseUs from './sections/WhyChooseUs';
-// import HomeContactSection from './sections/HomeContactSection';
-import Faqs from '../../components/shared/Faqs';
-import { homeFaqs } from '../../data/faq';
+import WhyChooseUs from '@/components/shared/WhyChooseUs';
+import Faqs from '@/components/shared/Faqs';
+import { homeFaqs } from '@/data/faq';
 
 export default function Home() {
   return (
@@ -23,13 +22,12 @@ export default function Home() {
         schema={[organizationSchema, websiteSchema]}
       />
       <div><HeroBanner /></div>
-      <div ><AboutPreview /></div>
-      <div ><ProductsGrid /></div>
-      <div ><IndustriesServed /></div>
-      <div ><RnDSection /></div>
-      <div ><NewsSection /></div>
+      <div><AboutPreview /></div>
+      <div><ProductsGrid /></div>
+      <div><IndustriesServed /></div>
+      <div><RnDSection /></div>
+      <div><NewsSection /></div>
       <div ><WhyChooseUs /></div>
-      {/* <HomeContactSection /> */}
       <div ><Faqs faqs={homeFaqs} /></div>
     </>
   );

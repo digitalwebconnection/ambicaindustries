@@ -1,23 +1,19 @@
-import imgApparel from '../assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.webp';
-import imgHome from '../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory.webp';
-import imgTech from '../assets/images/hero/dyeing-textiles-factory-colorful-process.webp';
-import imgPaperPkg from '../assets/images/hero/generative-ai-huge-paper-rolls-placed-warehouse-waiting-use.webp';
-import imgPrinting from '../assets/images/hero/close-up-white-paper.webp';
-import imgTissue from '../assets/images/hero/full-frame-shot-multi-colored-paper.webp';
-import imgNonWoven from '../assets/images/hero/colorful-yarn-bins-textile-factory.webp';
-import imgSpecialty from '../assets/images/hero/close-up-row-paint-cans-with-different-colors.webp';
-import imgCustomerCustomOrders from '../assets/images/industries/customer-custom-orders.webp';
-import imgCustomerDesignersBrands from '../assets/images/industries/customer-designers-brands.webp';
-import imgCustomerTextileMills from '../assets/images/industries/customer-textile-mills.webp';
-import imgCustomerPaperProducers from '../assets/images/industries/customer-paper-producers.webp';
-import imgCustomerChemicalDistributors from '../assets/images/industries/customer-chemical-distributors.webp';
-import imgCustomerBulkBuyers from '../assets/images/industries/customer-bulk-buyers.webp';
-
-export interface Industry {
-  name: string;
-  description: string;
-  image: string;
-}
+import imgApparel from '@/assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.webp';
+import imgHome from '@/assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory.webp';
+import imgTech from '@/assets/images/hero/dyeing-textiles-factory-colorful-process.webp';
+import imgPaperPkg from '@/assets/images/hero/generative-ai-huge-paper-rolls-placed-warehouse-waiting-use.webp';
+import imgPrinting from '@/assets/images/hero/close-up-white-paper.webp';
+import imgTissue from '@/assets/images/hero/full-frame-shot-multi-colored-paper.webp';
+import imgNonWoven from '@/assets/images/hero/colorful-yarn-bins-textile-factory.webp';
+import imgSpecialty from '@/assets/images/hero/close-up-row-paint-cans-with-different-colors.webp';
+import imgCustomerCustomOrders from '@/assets/images/industries/customer-custom-orders.webp';
+import imgCustomerDesignersBrands from '@/assets/images/industries/customer-designers-brands.webp';
+import imgCustomerTextileMills from '@/assets/images/industries/customer-textile-mills.webp';
+import imgCustomerPaperProducers from '@/assets/images/industries/customer-paper-producers.webp';
+import imgCustomerChemicalDistributors from '@/assets/images/industries/customer-chemical-distributors.webp';
+import imgCustomerBulkBuyers from '@/assets/images/industries/customer-bulk-buyers.webp';
+import type { Industry, IndustryCustomers, ProductApplication } from '../types';
+export type { Industry, IndustryCustomers, ProductApplication };
 
 export const industries: Industry[] = [
   {
@@ -71,12 +67,6 @@ export const industries: Industry[] = [
 ];
 
 
-export interface IndustryCustomers {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-}
 
 export const customerTypes: IndustryCustomers[] = [
   {
@@ -125,12 +115,6 @@ export const customerTypes: IndustryCustomers[] = [
 
 
 
-export interface ProductApplication {
-  name: string;
-  material: string;
-  applications: string;
-  description: string;
-}
 
 export const productMapping: ProductApplication[] = [
   {

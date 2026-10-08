@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { quickNavItems } from '../../data/navigation';
+import { quickNavItems } from '@/data/navigation';
 
 const LOGO = '/logo.png';
 

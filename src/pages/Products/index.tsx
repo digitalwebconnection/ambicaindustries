@@ -1,10 +1,10 @@
-import SEO from '../../components/common/SEO';
-import { seoConfig } from '../../data/seoData';
-import { createBreadcrumbSchema } from '../../utils/seoSchemas';
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
 import ProductsHero from './sections/ProductsHero';
 import ProductsList from './sections/ProductsList';
-import Faqs from '../../components/shared/Faqs';
-import { productsFaqs } from '../../data/faq';
+import Faqs from '@/components/shared/Faqs';
+import { productsFaqs } from '@/data/faq';
 
 export default function Products() {
   return (

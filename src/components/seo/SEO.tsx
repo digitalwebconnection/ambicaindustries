@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { siteConfig } from '../../data/siteConfig';
+import { siteConfig } from '@/data/siteConfig';
 
 export interface SEOProps {
   title?: string;
@@ -29,59 +29,55 @@ export default function SEO({
   schema,
   noindex = false,
 }: SEOProps) {
-  const pageTitle = title
-    ? title.includes('Ambica Industry')
-      ? title
-      : `${title} | Ambica Industry`
+  const fullTitle = title
+    ? `${title} | ${siteConfig.name}`
     : DEFAULT_TITLE;
 
-  const fullCanonical = canonical
-    ? canonical.startsWith('http')
-      ? canonical
-      : `${SITE_URL}${canonical.startsWith('/') ? canonical : `/${canonical}`}`
-    : SITE_URL;
+  const canonicalUrl = canonical
+    ? `${SITE_URL}${canonical.startsWith('/') ? canonical : `/${canonical}`}`
+    : undefined;
 
   const fullOgImage = ogImage.startsWith('http')
     ? ogImage
     : `${SITE_URL}${ogImage.startsWith('/') ? ogImage : `/${ogImage}`}`;
 
+  const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
   return (
     <Helmet>
       {/* Primary Meta Tags */}
-      <title>{pageTitle}</title>
-      <meta name="title" content={pageTitle} />
+      <title>{fullTitle}</title>
+      <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content={siteConfig.name} />
-      <meta
-        name="robots"
-        content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}
-      />
+      {keywords && <meta name="keywords" content={keywords} />}
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
+      {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
-      {/* Canonical */}
-      <link rel="canonical" href={fullCanonical} />
+      {/* Canonical URL */}
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={ogType} />
-      <meta property="og:site_name" content={siteConfig.name} />
-      <meta property="og:title" content={pageTitle} />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={fullCanonical} />
       <meta property="og:image" content={fullOgImage} />
-      <meta property="og:locale" content="en_IN" />
+      <meta property="og:site_name" content={siteConfig.name} />
+      <meta property="og:locale" content="en_US" />
 
-      {/* Twitter */}
+      {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={pageTitle} />
+      {canonicalUrl && <meta name="twitter:url" content={canonicalUrl} />}
+      <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={fullOgImage} />
 
-      {/* Structured Data (JSON-LD) */}
-      {schema && (
-        <script type="application/ld+json">
-          {JSON.stringify(schema)}
+      {/* Structured Data / JSON-LD */}
+      {schemas.map((s, idx) => (
+        <script key={idx} type="application/ld+json">
+          {JSON.stringify(s)}
         </script>
-      )}
+      ))}
     </Helmet>
   );
 }

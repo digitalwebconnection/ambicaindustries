@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ArrowRight, CodeXml } from 'lucide-react';
 import { FiFacebook, FiInstagram } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
-import { siteConfig } from '../../data/siteConfig';
-import { productCategories } from '../../data/products';
+import { siteConfig } from '@/data/siteConfig';
+import { productCategories } from '@/data/products';
 
 const LOGO = '/logo2.png';
 

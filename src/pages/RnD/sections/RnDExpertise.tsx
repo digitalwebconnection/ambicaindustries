@@ -6,11 +6,11 @@ import {
     Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import imgFormulation from "../../../assets/images/rnd/rnd-formulation.webp";
-import imgColorScience from "../../../assets/images/rnd/rnd-color-science.webp";
-import imgApplication from "../../../assets/images/rnd/rnd-application.webp";
-import imgProduction from "../../../assets/images/rnd/rnd-production.webp";
-import imgCollaboration from "../../../assets/images/rnd/rnd-collaboration.webp";
+import imgFormulation from '@/assets/images/rnd/rnd-formulation.webp';
+import imgColorScience from '@/assets/images/rnd/rnd-color-science.webp';
+import imgApplication from '@/assets/images/rnd/rnd-application.webp';
+import imgProduction from '@/assets/images/rnd/rnd-production.webp';
+import imgCollaboration from '@/assets/images/rnd/rnd-collaboration.webp';
 
 export default function RnDExpertise() {
     const content = [

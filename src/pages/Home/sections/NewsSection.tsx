@@ -1,5 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
-import { newsItems } from '../../../data/news';
+import { newsItems } from '@/data/news';
 import { ArrowRight } from 'lucide-react';
 
 const fadeUp: Variants = {

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
-import { productCategories } from '../../../data/products';
+import { productCategories } from '@/data/products';
 
 export default function ProductsHero() {
   // Mobile slider state

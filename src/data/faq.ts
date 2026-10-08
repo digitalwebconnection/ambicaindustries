@@ -1,7 +1,5 @@
-export interface FAQ {
-  question: string;
-  answer: string;
-}
+import type { FAQ } from '../types';
+export type { FAQ };
 
 export const homeFaqs: FAQ[] = [
   {

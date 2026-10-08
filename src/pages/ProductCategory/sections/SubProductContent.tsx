@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, ArrowRight, CheckCircle2, Package, Target, Layers } from 'lucide-react';
-import type { ProductCategory, SubProduct } from '../../../data/products';
+import type { ProductCategory, SubProduct } from '@/data/products';
 
 interface SubProductContentProps {
   cat: ProductCategory;

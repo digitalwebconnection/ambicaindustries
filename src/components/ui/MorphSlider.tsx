@@ -9,11 +9,10 @@ import { Renderer, Triangle, Program, Mesh, Texture } from 'ogl';
 import type { OGLRenderingContext } from 'ogl';
 import { gsap } from 'gsap';
 
-import './MorphSlider.css';
-import sliderImg1 from '../../assets/images/slider/slider-1.webp';
-import sliderImg2 from '../../assets/images/slider/slider-2.webp';
-import sliderImg3 from '../../assets/images/slider/slider-3.webp';
-import sliderImg4 from '../../assets/images/slider/slider-4.webp';
+import sliderImg1 from '@/assets/images/slider/slider-1.webp';
+import sliderImg2 from '@/assets/images/slider/slider-2.webp';
+import sliderImg3 from '@/assets/images/slider/slider-3.webp';
+import sliderImg4 from '@/assets/images/slider/slider-4.webp';
 
 export type MorphTransition = 'melt' | 'ripple' | 'shear' | 'swirl';
 

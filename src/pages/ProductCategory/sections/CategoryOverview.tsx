@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { ProductCategory } from '../../../data/products';
+import type { ProductCategory } from '@/data/products';
 
 interface CategoryOverviewProps {
   cat: ProductCategory;

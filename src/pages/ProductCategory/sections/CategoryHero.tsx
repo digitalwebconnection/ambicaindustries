@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import type { ProductCategory } from '../../../data/products';
+import type { ProductCategory } from '@/data/products';
 
 interface CategoryHeroProps {
   cat: ProductCategory;

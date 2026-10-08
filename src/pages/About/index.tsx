@@ -1,14 +1,14 @@
-import SEO from "../../components/common/SEO";
-import { seoConfig } from "../../data/seoData";
-import { createBreadcrumbSchema } from "../../utils/seoSchemas";
+import SEO from '@/components/seo/SEO';
+import { seoConfig } from '@/components/seo/seoData';
+import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
 import AboutHero from "./sections/AboutHero";
 import AboutQuote from "./sections/AboutQuote";
 import AboutBentoStats from "./sections/AboutBentoStats";
 import AboutStory from "./sections/AboutStory";
 import AboutCTA from "./sections/AboutCTA";
 import AboutTeamExpertise from "./sections/AboutTeamExpertise";
-import Faqs from "../../components/shared/Faqs";
-import { aboutFaqs } from "../../data/faq";
+import Faqs from '@/components/shared/Faqs';
+import { aboutFaqs } from '@/data/faq';
 
 export default function About() {
   return (

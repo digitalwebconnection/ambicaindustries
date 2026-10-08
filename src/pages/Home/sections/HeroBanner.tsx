@@ -1,21 +1,21 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import img1 from "../../../assets/images/hero/close-up-row-paint-cans-with-different-colors.webp";
-import img2 from "../../../assets/images/hero/close-up-white-paper.webp";
-import img3 from "../../../assets/images/hero/closeup-colorful-paint-cans-conveyor-belt.webp";
-import img4 from "../../../assets/images/hero/colorful-curtain-is-hanging-room-with-other-colors.webp";
-import img5 from "../../../assets/images/hero/colorful-yarn-bins-textile-factory.webp";
-import img6 from "../../../assets/images/hero/dyeing-fabrics-colorful-vats.webp";
-import img7 from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.webp";
-import img8 from "../../../assets/images/hero/full-frame-shot-multi-colored-paper.webp";
-import img9 from "../../../assets/images/hero/generative-ai-huge-paper-rolls-placed-warehouse-waiting-use.webp";
-import img10 from "../../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp";
-import img11 from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp";
-import img12 from "../../../assets/images/hero/top-view-different-kind-chips-texture-horizontal.webp";
-import img13 from "../../../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory (1).webp";
-import img14 from "../../../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory.webp";
-import img15 from "../../../assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.webp";
+import img1 from '@/assets/images/hero/close-up-row-paint-cans-with-different-colors.webp';
+import img2 from '@/assets/images/hero/close-up-white-paper.webp';
+import img3 from '@/assets/images/hero/closeup-colorful-paint-cans-conveyor-belt.webp';
+import img4 from '@/assets/images/hero/colorful-curtain-is-hanging-room-with-other-colors.webp';
+import img5 from '@/assets/images/hero/colorful-yarn-bins-textile-factory.webp';
+import img6 from '@/assets/images/hero/dyeing-fabrics-colorful-vats.webp';
+import img7 from '@/assets/images/hero/dyeing-textiles-factory-colorful-process.webp';
+import img8 from '@/assets/images/hero/full-frame-shot-multi-colored-paper.webp';
+import img9 from '@/assets/images/hero/generative-ai-huge-paper-rolls-placed-warehouse-waiting-use.webp';
+import img10 from '@/assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp';
+import img11 from '@/assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
+import img12 from '@/assets/images/hero/top-view-different-kind-chips-texture-horizontal.webp';
+import img13 from "@/assets/images/hero/vibrant-dyeing-fabric-factory.webp";
+import img14 from '@/assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory.webp';
+import img15 from '@/assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.webp';
 
 const images = [
   img2, img3, img4, img1, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15
