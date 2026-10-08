@@ -15,7 +15,7 @@ export default function ProductIndustryMapping() {
                 Across Industries
               </span>
             </h2>
-            <p className="mt-6 text-base md:text-lg leading-relaxed text-slate-600">
+            <p className="mt-6 text-base md:text-lg text-justify leading-relaxed text-slate-600">
               Different materials demand different approaches to coloration.
               Our dye solutions are developed to meet the specific needs of
               textiles, leather, wood and specialized industries.

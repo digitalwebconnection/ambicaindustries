@@ -3,6 +3,10 @@ import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle } 
 import { motion, AnimatePresence } from 'framer-motion';
 import FieldError from './FieldError';
 import { validateStandardField } from '../../utils/validation';
+import quoteBg from '../../assets/images/quote/quote-bg.jpg';
+import avatar1 from '../../assets/images/avatars/avatar-1.jpg';
+import avatar2 from '../../assets/images/avatars/avatar-2.jpg';
+import avatar3 from '../../assets/images/avatars/avatar-3.jpg';
 
 const LOGO = '/logo2.png';
 
@@ -133,7 +137,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
   };
 
   const getInputClass = (fieldName: string) =>
-    `w-full pl-9 pr-3.5 py-2.5 sm:py-3 rounded-xl outline-none transition-all text-sm ${
+    `w-full pl-9 pr-3.5 py-2.5 sm:py-3 rounded-xl outline-none transition-all text-[16px] sm:text-sm ${
       errors[fieldName]
         ? 'border border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-red-200'
         : 'bg-slate-100 border border-slate-200 text-slate-700 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red'
@@ -158,12 +162,12 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl max-h-[92vh] sm:max-h-[88vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row z-10 my-auto"
+          className="relative w-full max-w-4xl max-h-[90vh] sm:max-h-[88vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row z-10 my-auto"
         >
-          {/* Close Button */}
+          {/* Desktop Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer shadow-sm"
+            className="hidden md:flex absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-500 hover:text-slate-800 items-center justify-center transition-all cursor-pointer shadow-xs"
             aria-label="Close modal"
           >
             <X size={18} />
@@ -173,7 +177,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           <div className="hidden md:flex md:w-2/5 relative p-6 lg:p-10 flex-col justify-between overflow-hidden min-h-110 lg:min-h-125">
             <div 
               className="absolute inset-0 bg-cover bg-center z-0" 
-              style={{ backgroundImage: "url('https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=1000&auto=format&fit=crop')" }}
+              style={{ backgroundImage: `url(${quoteBg})` }}
             />
             <div className="absolute inset-0 bg-slate-200/90 z-0 backdrop-blur-xs" />
             
@@ -190,9 +194,9 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
             <div className="relative z-10">
               <div className="flex items-center gap-3 text-slate-700 text-xs font-semibold">
                 <div className="flex -space-x-2">
-                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://i.pravatar.cc/100?img=1" alt="Avatar" />
-                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://i.pravatar.cc/100?img=2" alt="Avatar" />
-                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src="https://i.pravatar.cc/100?img=3" alt="Avatar" />
+                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src={avatar1} alt="Avatar" />
+                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src={avatar2} alt="Avatar" />
+                  <img className="w-7 h-7 rounded-full border-2 border-white object-cover" src={avatar3} alt="Avatar" />
                 </div>
                 <span>Trusted by 500+ clients</span>
               </div>
@@ -200,7 +204,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           </div>
 
           {/* Right - Form */}
-          <div className="w-full md:w-3/5 p-5 sm:p-7 lg:p-10 bg-white relative overflow-y-auto max-h-[92vh] md:max-h-none flex flex-col justify-center">
+          <div className="w-full md:w-3/5 p-4 sm:p-7 lg:p-10 bg-white relative overflow-y-auto overscroll-contain max-h-[90vh] md:max-h-none flex flex-col justify-start md:justify-center">
             {submitted ? (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -216,19 +220,33 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                 </p>
               </motion.div>
             ) : (
-              <div className="h-full flex flex-col justify-center">
-                <div className="mb-4 sm:mb-6 pr-8">
-                  {/* Mobile Logo */}
-                  <div className="mb-2 md:hidden">
-                    <img src={LOGO} alt="Ambica Industry" className="h-9 object-contain" />
+              <div className="h-full flex flex-col justify-start md:justify-center pb-2 sm:pb-0">
+                {/* Header (with mobile close button inline) */}
+                <div className="flex items-start justify-between gap-3 mb-3 sm:mb-5 pb-2.5 sm:pb-0 border-b sm:border-b-0 border-slate-100">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1 md:hidden">
+                      <div className="w-7 h-7 rounded-lg bg-slate-50 border border-slate-200/80 flex items-center justify-center p-1 shrink-0">
+                        <img src={LOGO} alt="Ambica Industry" className="w-full h-full object-contain" />
+                      </div>
+                      <span className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">Ambica Industry</span>
+                    </div>
+                    <h3 className="text-lg sm:text-2xl font-bold text-slate-800 leading-tight">Request A Quote</h3>
+                    <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+                      Get a custom quote within 24 hours.
+                    </p>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800">Request A Quote</h3>
-                  <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
-                    Fill out the form below and we'll get right back to you.
-                  </p>
+
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="md:hidden w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all cursor-pointer shrink-0 mt-0.5"
+                    aria-label="Close modal"
+                  >
+                    <X size={16} />
+                  </button>
                 </div>
 
-                <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-3 sm:space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-2.5 sm:space-y-4">
                   {/* Honeypot field for bot/spam protection (hidden from humans) */}
                   <div className="hidden" aria-hidden="true">
                     <input
@@ -241,11 +259,11 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
                     <div>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                          <User size={16} />
+                          <User size={15} />
                         </div>
                         <input
                           type="text"
@@ -264,7 +282,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                     <div>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                          <Mail size={16} />
+                          <Mail size={15} />
                         </div>
                         <input
                           type="email"
@@ -281,11 +299,11 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-4">
                     <div>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                          <MapPin size={16} />
+                          <MapPin size={15} />
                         </div>
                         <input
                           type="text"
@@ -304,7 +322,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                     <div>
                       <div className="relative group">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                          <Phone size={16} />
+                          <Phone size={15} />
                         </div>
                         <input
                           type="tel"
@@ -323,8 +341,8 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
 
                   <div>
                     <div className="relative group">
-                      <div className="absolute top-3 left-0 pl-3 flex items-start pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
-                        <MessageSquare size={16} />
+                      <div className="absolute top-2.5 sm:top-3 left-0 pl-3 flex items-start pointer-events-none text-slate-400 group-focus-within:text-accent-red transition-colors">
+                        <MessageSquare size={15} />
                       </div>
                       <textarea
                         name="message"
@@ -332,30 +350,32 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                         onChange={handleChange}
                         onBlur={handleBlur}
                         placeholder="Tell us about your requirements... *"
-                        rows={3}
+                        rows={2}
                         aria-invalid={!!errors.message}
-                        className={`${getInputClass('message')} resize-none`}
+                        className={`${getInputClass('message')} resize-none min-h-14.5 sm:min-h-18.75`}
                       />
                     </div>
                     <FieldError error={errors.message} />
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full relative group overflow-hidden rounded-xl bg-accent-red hover:bg-accent-red-dark text-white font-semibold py-3 sm:py-3.5 text-sm transition-all hover:shadow-[0_4px_20px_rgba(211,2,2,0.35)] active:scale-[0.99] disabled:opacity-70 disabled:hover:shadow-none cursor-pointer"
-                  >
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      {isSubmitting ? (
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      ) : (
-                        <>
-                          Send Request
-                          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </>
-                      )}
-                    </span>
-                  </button>
+                  <div className="pt-0.5 sm:pt-1">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full relative group overflow-hidden rounded-xl bg-accent-red hover:bg-accent-red-dark text-white font-semibold py-2.5 sm:py-3.5 text-sm transition-all hover:shadow-[0_4px_20px_rgba(211,2,2,0.35)] active:scale-[0.99] disabled:opacity-70 disabled:hover:shadow-none cursor-pointer"
+                    >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        {isSubmitting ? (
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        ) : (
+                          <>
+                            Send Request
+                            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                          </>
+                        )}
+                      </span>
+                    </button>
+                  </div>
                 </form>
               </div>
             )}

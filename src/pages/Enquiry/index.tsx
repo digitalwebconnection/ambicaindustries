@@ -2,6 +2,9 @@ import { useState, useRef, type FormEvent, type ChangeEvent, type FocusEvent } f
 import { motion } from 'framer-motion';
 import Breadcrumb from '../../components/ui/Breadcrumb';
 import FieldError from '../../components/ui/FieldError';
+import SEO from '../../components/common/SEO';
+import { seoConfig } from '../../data/seoData';
+import { createBreadcrumbSchema } from '../../utils/seoSchemas';
 import { validateStandardField } from '../../utils/validation';
 
 const countries = [
@@ -136,6 +139,16 @@ export default function Enquiry() {
 
   return (
     <>
+      <SEO
+        title={seoConfig.enquiry.title}
+        description={seoConfig.enquiry.description}
+        keywords={seoConfig.enquiry.keywords}
+        canonical={seoConfig.enquiry.canonical}
+        schema={createBreadcrumbSchema([
+          { name: 'Home', url: '/' },
+          { name: 'Enquiry', url: '/enquiry' },
+        ])}
+      />
       <Breadcrumb title="Enquiry" items={[{ label: 'Enquiry' }]} />
 
       <section className="py-16 md:py-24 bg-gray-50">

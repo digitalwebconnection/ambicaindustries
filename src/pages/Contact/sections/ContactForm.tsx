@@ -122,93 +122,112 @@ export default function ContactForm() {
   };
 
   const getFieldClasses = (fieldName: string) =>
-    `w-full rounded-lg border px-3.5 py-2.5 text-sm transition-all outline-none ${
+    `w-full rounded-lg border px-3.5 py-2.5 text-base sm:text-sm transition-all outline-none ${
       errors[fieldName]
         ? "border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
         : "border-slate-200 bg-primary/4 text-slate-700 placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20"
     }`;
 
   return (
-    <section id="contact-form" className="relative overflow-hidden bg-white py-14 md:py-20">
+    <section id="contact-form" className="relative overflow-hidden bg-white py-10 sm:py-14 md:py-20">
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[0.65fr_1fr] lg:gap-8">
+        <div className="grid grid-cols-1 items-stretch gap-6 sm:gap-8 lg:grid-cols-[0.65fr_1fr] lg:gap-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="p-2 md:p-3 lg:mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="p-1 sm:p-2 md:p-3 lg:mt-16"
           >
             <h3 className="mb-2 text-2xl font-extrabold tracking-wide text-accent-red md:text-3xl">
               {siteConfig.name}
             </h3>
-            <p className="mb-5 text-sm font-medium text-slate-600">
+            <p className="mb-5 text-sm font-medium text-slate-600 leading-relaxed">
               {siteConfig.tagline}
             </p>
 
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-2.5">
-                <div className="ml-1 text-accent-red">
+              <div className="flex items-start gap-3 p-2.5 rounded-xl transition-colors hover:bg-slate-50">
+                <div className="mt-0.5 text-accent-red shrink-0">
                   <Phone className="h-4 w-4" />
                 </div>
                 <div>
                   <p className="text-xs font-normal uppercase tracking-widest text-slate-500">Phone</p>
-                  <p className="mt-1 text-sm font-semibold text-primary-dark">{siteConfig.phone.landline}</p>
+                  <a
+                    href={`tel:${siteConfig.phone.landline}`}
+                    className="mt-1 text-sm font-semibold text-primary-dark hover:text-accent-red transition-colors block wrap-break-word"
+                  >
+                    {siteConfig.phone.landline}
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 p-2.5">
-                <div className="ml-1 text-accent-red">
+              <div className="flex items-start gap-3 p-2.5 rounded-xl transition-colors hover:bg-slate-50">
+                <div className="mt-0.5 text-accent-red shrink-0">
                   <Mail className="h-4 w-4" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs font-normal uppercase tracking-widest text-slate-500">Email</p>
-                  <p className="mt-1 text-sm font-semibold text-primary-dark">{siteConfig.email}</p>
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="mt-1 text-sm font-semibold text-primary-dark hover:text-accent-red transition-colors block break-all sm:break-normal"
+                  >
+                    {siteConfig.email}
+                  </a>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 rounded-xl p-2.5">
-                <div className="ml-1 text-accent-red">
+              <div className="flex items-start gap-3 p-2.5 rounded-xl transition-colors hover:bg-slate-50">
+                <div className="mt-0.5 text-accent-red shrink-0">
                   <MapPin className="h-4 w-4" />
                 </div>
                 <div>
                   <p className="text-xs font-normal uppercase tracking-widest text-slate-500">Location</p>
-                  <p className="mt-1 text-sm font-semibold text-primary-dark">{siteConfig.addresses.office.text}</p>
+                  <a
+                    href={siteConfig.addresses.office.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 text-sm font-semibold text-primary-dark hover:text-accent-red transition-colors block leading-relaxed"
+                  >
+                    {siteConfig.addresses.office.text}
+                  </a>
                 </div>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="w-full bg-white rounded-2xl border border-slate-100 shadow-2xl shadow-primary/20 p-6 md:p-8"
+            className="w-full bg-white rounded-2xl border border-slate-100 shadow-xl sm:shadow-2xl sm:shadow-primary/20 p-5 sm:p-6 md:p-8"
           >
             {status === "success" ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="py-10 text-center flex flex-col items-center justify-center"
+                className="py-8 sm:py-10 text-center flex flex-col items-center justify-center px-2"
               >
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-5">
-                  <CheckCircle2 size={36} />
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4 sm:mb-5">
+                  <CheckCircle2 size={34} />
                 </div>
-                <h3 className="text-2xl font-bold text-primary-dark mb-2">Enquiry Received!</h3>
-                <p className="text-slate-600 text-sm max-w-md mx-auto mb-6 leading-relaxed">
+                <h3 className="text-xl sm:text-2xl font-bold text-primary-dark mb-2">Enquiry Received!</h3>
+                <p className="text-slate-600 text-xs sm:text-sm max-w-md mx-auto mb-6 leading-relaxed">
                   Thank you for contacting Ambica Industry. Our technical and sales experts will review your request and get in touch with you within 24 hours.
                 </p>
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-dark text-white text-sm font-semibold rounded-lg hover:bg-[#002855] transition-all cursor-pointer shadow-md hover:shadow-lg"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary-dark text-white text-sm font-semibold rounded-lg hover:bg-[#002855] transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95"
                 >
                   <RotateCcw size={16} /> Send Another Enquiry
                 </button>
               </motion.div>
             ) : (
               <>
-                <h3 className="mt-1 mb-1 text-2xl font-extrabold text-primary">Tell us what you need</h3>
-                <p className="text-xs text-slate-500 mb-6">
+                <h3 className="mt-1 mb-1 text-xl sm:text-2xl font-extrabold text-primary">Tell us what you need</h3>
+                <p className="text-xs text-slate-500 mb-5 sm:mb-6 leading-relaxed">
                   Fill in the details below and our team will get back to you with custom pricing and technical specifications.
                 </p>
 

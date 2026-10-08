@@ -338,7 +338,7 @@ export default function AboutStory() {
               Excellence in Color
             </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-800 max-w-6xl font-normal leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-slate-800  max-w-6xl font-normal leading-relaxed">
             Scroll down to explore the milestones and innovation that shaped Ambica Industry from a family-founded business in 1986 into an international dye manufacturer.
           </p>
         </div>

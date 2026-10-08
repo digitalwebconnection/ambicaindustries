@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import SEO from "../../components/common/SEO";
+import { seoConfig } from "../../data/seoData";
 
 export default function TermsOfService() {
     const termsOfService = {
@@ -101,6 +103,12 @@ export default function TermsOfService() {
 
     return (
         <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-16 md:py-20">
+            <SEO
+                title={seoConfig.termsOfService.title}
+                description={seoConfig.termsOfService.description}
+                keywords={seoConfig.termsOfService.keywords}
+                canonical={seoConfig.termsOfService.canonical}
+            />
             <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
                 <motion.div

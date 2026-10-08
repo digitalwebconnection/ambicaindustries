@@ -1,14 +1,19 @@
 import { Plus } from "lucide-react";
+import avatar11 from "../../../assets/images/avatars/avatar-11.jpg";
+import avatar33 from "../../../assets/images/avatars/avatar-33.jpg";
+import avatar14 from "../../../assets/images/avatars/avatar-14.jpg";
+import avatar53 from "../../../assets/images/avatars/avatar-53.jpg";
+import avatar32 from "../../../assets/images/avatars/avatar-32.jpg";
+import avatar44 from "../../../assets/images/avatars/avatar-44.jpg";
 
 export default function AboutCTA() {
-  // Placeholder realistic avatars for the team representation
   const teamAvatars = [
-    "https://i.pravatar.cc/100?img=11",
-    "https://i.pravatar.cc/100?img=33",
-    "https://i.pravatar.cc/100?img=14",
-    "https://i.pravatar.cc/100?img=53",
-    "https://i.pravatar.cc/100?img=32",
-    "https://i.pravatar.cc/100?img=44",
+    avatar11,
+    avatar33,
+    avatar14,
+    avatar53,
+    avatar32,
+    avatar44,
   ];
 
   return (
@@ -57,7 +62,7 @@ export default function AboutCTA() {
             </div>
             
             {/* Sub-copy */}
-            <p className="text-lg sm:text-xl text-white/90 max-w-sm leading-snug">
+            <p className="text-lg sm:text-xl text-white/90 text-justify max-w-sm leading-snug">
               Work with a <span className="font-bold text-accent-red">25+ year</span> team of the industry's top <span className="font-bold text-accent-red">chemical formulation</span> talent.
             </p>
           </div>

@@ -22,12 +22,12 @@ export default function AboutQuote() {
                 Good color
               </span>{" "}
               turns heads.
-              <br />
+              <br className=" hidden md:block" />
               <span className="text-accent-red">Great chemistry</span> turns
               minds.
             </h2>
 
-            <p className="text-lg sm:text-xl text-white/70 leading-relaxed font-medium mb-10">
+            <p className="text-lg sm:text-xl text-white/70 text-justify leading-relaxed font-medium mb-10">
               The dyes we formulate aren't just meant to pass a quality check.
               They're meant to shape how people{" "}
               <span className="text-white font-semibold">perceive</span>,{" "}

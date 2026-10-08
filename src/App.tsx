@@ -2,19 +2,19 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { ReactLenis } from 'lenis/react';
 import Layout from './components/layout/Layout';
-import Home from './pages/Home';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
-
-// Lazy load non-critical pages for faster initial load
+// Lazy load pages for fast initial bundle and clean code-splitting
+const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
-const Industry = lazy(() => import('./pages/Industry'))
-const RnD = lazy(() => import('./pages/RnD'))
-const WhyUs = lazy(() => import('./pages/WhyUs'))
+const Industry = lazy(() => import('./pages/Industry'));
+const RnD = lazy(() => import('./pages/RnD'));
+const WhyUs = lazy(() => import('./pages/WhyUs'));
 const Products = lazy(() => import('./pages/Products'));
 const Contact = lazy(() => import('./pages/Contact'));
 const ProductCategory = lazy(() => import('./pages/ProductCategory'));
 const Enquiry = lazy(() => import('./pages/Enquiry'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function PageLoader() {
   return (
@@ -45,6 +45,7 @@ export default function App() {
             <Route path="/enquiry" element={<Enquiry />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/termsof-service" element={<TermsOfService />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </Layout>

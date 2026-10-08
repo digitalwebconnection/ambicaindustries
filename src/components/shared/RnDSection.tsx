@@ -155,7 +155,7 @@ export default function RnDSection() {
 
             <motion.p
               variants={fadeUp}
-              className="mt-4 text-slate-600 text-lg leading-relaxed mb-10"
+              className="mt-4 text-slate-600 text-lg text-justify leading-relaxed mb-10"
             >
               Research and development are conducted in our industry to achieve
               success at various levels. We continually push the boundaries of

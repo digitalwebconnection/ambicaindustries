@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Award, ShieldCheck, Gauge, Users, Headset, Handshake } from "lucide-react";
+import imgQuality from "../../../assets/images/whyus/whyus-quality.jpg";
+import imgPerformance from "../../../assets/images/whyus/whyus-performance.jpg";
+import imgPartnerships from "../../../assets/images/whyus/whyus-partnerships.jpg";
 
 export default function WhyUsDifference() {
   const points = [
@@ -15,14 +18,14 @@ export default function WhyUsDifference() {
       description:
         "Quality is considered throughout our process — from raw materials and formulation to manufacturing, testing, packaging, and final dispatch.",
       icon: ShieldCheck,
-      img: "https://images.unsplash.com/photo-1589061935832-c4de192a2e8e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTI3fHxkeWUlMjBxdWFsaXR5fGVufDB8fDB8fHww",
+      img: imgQuality,
     },
     {
       title: "Reliable Product Performance",
       description:
         "Our products are developed with industrial applications in mind, helping customers maintain dependable color results during regular production.",
       icon: Gauge,
-      img: "https://plus.unsplash.com/premium_photo-1726826693849-208029303ce0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE2fHx8ZW58MHx8fHx8",
+      img: imgPerformance,
     },
     {
       title: "Understanding Your Requirements",
@@ -43,7 +46,7 @@ export default function WhyUsDifference() {
       description:
         "We focus on building lasting relationships rather than one-time transactions. Consistent products and dependable service form the foundation of our customer partnerships.",
       icon: Handshake,
-      img: "https://images.unsplash.com/photo-1677126788485-b1748717c430?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjIyfHxkeWUlMjBxdWFsaXR5fGVufDB8fDB8fHww",
+      img: imgPartnerships,
     },
   ];
 

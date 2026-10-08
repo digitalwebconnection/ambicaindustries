@@ -1,0 +1,9 @@
+# Robots.txt for Ambica Industry
+# https://www.ambicaindustry.com/
+
+User-agent: *
+Allow: /
+
+# Host & Sitemap
+Host: https://www.ambicaindustry.com
+Sitemap: https://www.ambicaindustry.com/sitemap.xml

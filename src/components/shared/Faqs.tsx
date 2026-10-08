@@ -12,7 +12,7 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
   };
 
   return (
-    <section className="py-6 md:py-10 max-w-7xl px-8 bg-white relative overflow-hidden">
+    <section className="py-6 sm:py-8 md:py-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 bg-white relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,7 +20,7 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
         transition={{ duration: 0.5 }}
         className="text-center"
       >
-        <h2 className="text-3xl md:text-4xl font-extrabold text-primary-dark capitalize leading-[1.1] mb-2">
+        <h2 className="text-3xl sm:text-3xl md:text-4xl font-extrabold text-primary-dark capitalize leading-[1.15] md:leading-[1.1] mb-2">
           Frequently Asked{" "}
           <span className="text-accent-red">
             Questions
@@ -28,7 +28,7 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
         </h2>
       </motion.div>
 
-      <div className="flex flex-col gap-3 bg-white px-6 py-5 rounded-xl max-w-3xl mx-auto mt-8">
+      <div className="flex flex-col gap-2.5 sm:gap-3 bg-white px-0 sm:px-4 md:px-6 py-2 sm:py-4 md:py-5 rounded-xl max-w-3xl mx-auto mt-6 sm:mt-8">
         {faqs.map((item, index) => {
           const isOpen = openIndex === index;
           return (
@@ -38,16 +38,19 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: index * 0.03 }}
-              className={`border rounded-xl  transition-all duration-300 
-                ${isOpen  ? "border-accent-red/50 bg-accent-red/1  shadow-lg shadow-accent-red/10"
-                  : "border-slate-300 shadow-sm"
+              className={`border rounded-xl transition-all duration-300 
+                ${isOpen ? "border-accent-red/50 bg-accent-red/1 shadow-lg shadow-accent-red/10"
+                  : "border-slate-200 sm:border-slate-300 shadow-xs sm:shadow-sm"
                 }`}
             >
-              <motion.button onClick={() => handleToggle(index)}
-                className="w-full cursor-pointer flex items-center justify-between gap-4 px-5 py-5 text-left group"
+              <button
+                type="button"
+                onClick={() => handleToggle(index)}
+                aria-expanded={isOpen}
+                className="w-full cursor-pointer flex items-center justify-between gap-3 sm:gap-4 px-4 py-3.5 sm:px-5 sm:py-5 text-left group"
               >
                 <span
-                  className={`font-semibold transition-colors    tracking-tight text-md  ${isOpen ? "text-accent-red-dark" : "text-slate-800"
+                  className={`font-semibold transition-colors tracking-tight text-[15px] sm:text-base ${isOpen ? "text-accent-red-dark" : "text-slate-800"
                     }`}
                 >
                   {item.question}
@@ -58,12 +61,12 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
                   className="shrink-0"
                 >
                   <ChevronDown
-                    size={20}
-                    className={`transition-colors duration-300 group-hover:text-accent-red-dark ${isOpen ? "text-accent-red-dark" : "text-slate-500"
+                    size={18}
+                    className={`sm:w-5 sm:h-5 transition-colors duration-300 group-hover:text-accent-red-dark ${isOpen ? "text-accent-red-dark" : "text-slate-500"
                       }`}
                   />
                 </motion.div>
-              </motion.button>
+              </button>
 
               <AnimatePresence>
                 {isOpen && (
@@ -77,7 +80,7 @@ export default function Faqs({ faqs }: { faqs: FAQ[] }) {
                     }}
                     className="overflow-hidden"
                   >
-                    <p className="px-5 pb-5 text-slate-600 text-sm tracking-wide leading-relaxed">
+                    <p className="px-4 pb-4 sm:px-5 sm:pb-5 text-slate-600 text-xs sm:text-sm tracking-normal sm:tracking-wide leading-relaxed">
                       {item.answer}
                     </p>
                   </motion.div>

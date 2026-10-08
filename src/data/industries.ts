@@ -6,6 +6,12 @@ import imgPrinting from '../assets/images/hero/close-up-white-paper.jpg';
 import imgTissue from '../assets/images/hero/full-frame-shot-multi-colored-paper.jpg';
 import imgNonWoven from '../assets/images/hero/colorful-yarn-bins-textile-factory.jpg';
 import imgSpecialty from '../assets/images/hero/close-up-row-paint-cans-with-different-colors.jpg';
+import imgCustomerCustomOrders from '../assets/images/industries/customer-custom-orders.jpg';
+import imgCustomerDesignersBrands from '../assets/images/industries/customer-designers-brands.jpg';
+import imgCustomerTextileMills from '../assets/images/industries/customer-textile-mills.jpg';
+import imgCustomerPaperProducers from '../assets/images/industries/customer-paper-producers.jpg';
+import imgCustomerChemicalDistributors from '../assets/images/industries/customer-chemical-distributors.jpg';
+import imgCustomerBulkBuyers from '../assets/images/industries/customer-bulk-buyers.jpg';
 
 export interface Industry {
   name: string;
@@ -78,58 +84,45 @@ export const customerTypes: IndustryCustomers[] = [
     title: "Small & Custom Orders",
     description:
       "Flexible solutions for smaller quantities, specialized requirements, and unique color applications.",
-    image: "https://images.unsplash.com/photo-1729848549787-a5a5368e3967?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHJlYWN0aXZlJTIwZHllc3xlbnwwfHwwfHx8MA%3D%3D",
+    image: imgCustomerCustomOrders,
   },
   {
     id: 2,
     title: "Designers & Brands",
     description:
       "Reliable dyes and color solutions for designers, fashion brands, and product developers seeking consistent results.",
-    image: "https://images.unsplash.com/photo-1515175367045-db823c97512b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fGR5ZXxlbnwwfHwwfHx8MA%3D%3D",
+    image: imgCustomerDesignersBrands,
   },
   {
     id: 3,
     title: "Textile Mills",
     description:
       "Consistent, scalable dye solutions designed to support the production needs of textile mills and manufacturers.",
-    image: "https://images.unsplash.com/photo-1569909115134-a0426936c879?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHRleHRpbGUlMjBkeWV8ZW58MHx8MHx8fDA%3D",
+    image: imgCustomerTextileMills,
   },
   {
     id: 4,
     title: "Paper Producers",
     description:
       "Precision color solutions for paper and pulp manufacturers requiring uniform shades and dependable performance.",
-    image: "https://plus.unsplash.com/premium_photo-1776768157535-1b6c85962090?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDF8fGR5ZSUyMHBhcGVyc3xlbnwwfHwwfHx8MA%3D%3D",
+    image: imgCustomerPaperProducers,
   },
   {
     id: 5,
     title: "Chemical Distributors",
     description:
       "Reliable product supply and consistent quality for distributors serving diverse industrial customers.",
-    image: "https://plus.unsplash.com/premium_photo-1758830869110-501866b2f18b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fGNoZW1pY2FsJTIwZHllfGVufDB8fDB8fHww",
+    image: imgCustomerChemicalDistributors,
   },
   {
     id: 6,
     title: "Large Bulk Buyers",
     description:
       "Efficient supply support for high-volume requirements, helping businesses maintain continuity across production cycles.",
-    image: "https://images.unsplash.com/photo-1777929746858-45bbe0134e88?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fGR5ZXxlbnwwfHwwfHx8MA%3D%3D",
+    image: imgCustomerBulkBuyers,
   },
-  // {
-  //   id: 7,
-  //   title: "R&D & Testing Labs",
-  //   description:
-  //     "Custom formulations and small-batch samples for research, product development, and quality-testing environments.",
-  //   image: "https://images.unsplash.com/photo-1645387492451-f086e8cee6d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fGNoZW1pY2FsJTIwZHllfGVufDB8fDB8fHww",
-  // },
-  // {
-  //   id: 8,
-  //   title: "Export & International Buyers",
-  //   description:
-  //     "Consistent quality and documentation support for overseas buyers sourcing dyes across global markets.",
-  //   image: "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c2hpcHBpbmclMjBjb250YWluZXJzfGVufDB8fDB8fHww",
-  // },
 ];
+
 
 
 export interface ProductApplication {

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Main Pages -->
+  <url>
+    <loc>https://www.ambicaindustry.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/industry</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/why-choose-us</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/r&amp;d</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/enquiry</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Product Categories -->
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/direct-dyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/leather-dyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/wood-dyes</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Acid Dyes Sub-Products -->
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-black-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-violet-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-blue-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-brown-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-red-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/acid-dyes/acid-yellow-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Direct Dyes Sub-Products -->
+  <url>
+    <loc>https://www.ambicaindustry.com/products/direct-dyes/sunfast-non-benzidine-direct-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/direct-dyes/non-benzidine-direct-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Reactive Dyes Sub-Products -->
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes/reactive-cold-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes/reactive-he-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes/reactive-hot-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes/reactive-me-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/reactive-dyes/reactive-vinyl-sulphone-base-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Leather & Wood Dyes Sub-Products -->
+  <url>
+    <loc>https://www.ambicaindustry.com/products/leather-dyes/leather-applicable-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/products/wood-dyes/wood-stain-dyes</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://www.ambicaindustry.com/privacy-policy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.ambicaindustry.com/termsof-service</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

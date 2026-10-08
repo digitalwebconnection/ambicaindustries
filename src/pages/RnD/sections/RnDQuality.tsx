@@ -96,7 +96,7 @@ export default function RnDQuality() {
                 </span>
               </h3>
 
-              <p className="mt-5 leading-7 text-slate-600">
+              <p className="mt-5 leading-7 text-justify text-slate-600">
                 Every formulation is evaluated with practical application and
                 manufacturing requirements in mind. This helps us develop dye
                 solutions that deliver reliable and repeatable performance.

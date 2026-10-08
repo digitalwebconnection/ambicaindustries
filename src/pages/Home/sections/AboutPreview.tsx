@@ -41,7 +41,7 @@ export default function AboutPreview() {
               </span>
             </h2>
 
-            <p className="text-slate-600 text-lg leading-relaxed mb-10">
+            <p className="text-slate-600 text-lg text-justify leading-relaxed mb-10">
               Since 1986, Ambica Industry has been a trusted leader in manufacturing high-quality, reliable, and innovative dye solutions specifically tailored for the textile and paper sectors. Founded by our father, we proudly carry forward a second-generation legacy of excellence. Today, we specialize in developing vibrant, deep-penetrating, and long-lasting colors that meet the strict performance demands of fashion, home textiles, industrial fabrics, and diverse paper manufacturing processes worldwide.
             </p>
 

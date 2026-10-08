@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import SEO from "../../components/common/SEO";
+import { seoConfig } from "../../data/seoData";
 
 export default function PrivacyPolicy() {
     
@@ -68,6 +70,12 @@ export default function PrivacyPolicy() {
 
   return (
     <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-16 md:py-20">
+      <SEO
+        title={seoConfig.privacyPolicy.title}
+        description={seoConfig.privacyPolicy.description}
+        keywords={seoConfig.privacyPolicy.keywords}
+        canonical={seoConfig.privacyPolicy.canonical}
+      />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,3 +1,6 @@
+import SEO from "../../components/common/SEO";
+import { seoConfig } from "../../data/seoData";
+import { createBreadcrumbSchema } from "../../utils/seoSchemas";
 import AboutHero from "./sections/AboutHero";
 import AboutQuote from "./sections/AboutQuote";
 import AboutBentoStats from "./sections/AboutBentoStats";
@@ -10,6 +13,16 @@ import { aboutFaqs } from "../../data/faq";
 export default function About() {
   return (
     <>
+      <SEO
+        title={seoConfig.about.title}
+        description={seoConfig.about.description}
+        keywords={seoConfig.about.keywords}
+        canonical={seoConfig.about.canonical}
+        schema={createBreadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "About Us", url: "/about" },
+        ])}
+      />
       {/* Hero Section */}
       <AboutHero />
 

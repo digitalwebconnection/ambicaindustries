@@ -10,6 +10,10 @@ import type { OGLRenderingContext } from 'ogl';
 import { gsap } from 'gsap';
 
 import './MorphSlider.css';
+import sliderImg1 from '../../assets/images/slider/slider-1.jpg';
+import sliderImg2 from '../../assets/images/slider/slider-2.jpg';
+import sliderImg3 from '../../assets/images/slider/slider-3.jpg';
+import sliderImg4 from '../../assets/images/slider/slider-4.jpg';
 
 export type MorphTransition = 'melt' | 'ripple' | 'shear' | 'swirl';
 
@@ -28,19 +32,19 @@ export interface MorphSliderItem {
 
 const DEFAULT_ITEMS: MorphSliderItem[] = [
   {
-    image: 'https://images.unsplash.com/photo-1782977389500-dd7adad33ebe?q=80&w=1600&auto=format&fit=crop',
+    image: sliderImg1,
     caption: 'One'
   },
   {
-    image: 'https://images.unsplash.com/photo-1781499455083-6ccc3beb20cd?q=80&w=1600&auto=format&fit=crop',
+    image: sliderImg2,
     caption: 'Two'
   },
   {
-    image: 'https://images.unsplash.com/photo-1776394254711-4a0d7345269a?q=80&w=1600&auto=format&fit=crop',
+    image: sliderImg3,
     caption: 'Three'
   },
   {
-    image: 'https://images.unsplash.com/photo-1781242629922-6f39cc3671cd?q=80&w=1600&auto=format&fit=crop',
+    image: sliderImg4,
     caption: 'Four'
   }
 ];

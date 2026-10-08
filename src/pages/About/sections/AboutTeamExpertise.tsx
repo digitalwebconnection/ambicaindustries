@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { Users2 } from "lucide-react";
+import imgTeamFounder from "../../../assets/images/about/team-founder.jpg";
+import imgTeamShailesh from "../../../assets/images/about/team-shailesh.jpg";
+import imgTeamSamir from "../../../assets/images/about/team-samir.jpg";
 
 interface Partner {
   number: string;
@@ -16,8 +19,7 @@ const partners: Partner[] = [
     role: "Founding Partner (1986 Heritage)",
     description:
       "Founded Ambica Industry in 1986 with a commitment to pure dye chemistry, uncompromising production ethics, and enduring relationships with leading fabric mills.",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80",
+    image: imgTeamFounder,
   },
   {
     number: "02",
@@ -25,8 +27,7 @@ const partners: Partner[] = [
     role: "Managing Partner — Commercial & Global Trade",
     description:
       "Directs international business expansion, institutional client relationships, and worldwide container dispatches across 20+ countries with direct accountability.",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80",
+    image: imgTeamShailesh,
   },
   {
     number: "03",
@@ -34,8 +35,7 @@ const partners: Partner[] = [
     role: "Partner — Technical Operations & R&D",
     description:
       "Directs laboratory formulation, spectrophotometer shade matching, and eco-friendly dye synthesis to ensure strict batch-to-batch consistency for all industrial buyers.",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80",
+    image: imgTeamSamir,
   },
 ];
 

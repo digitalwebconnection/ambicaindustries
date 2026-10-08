@@ -6,6 +6,11 @@ import {
     Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import imgFormulation from "../../../assets/images/rnd/rnd-formulation.jpg";
+import imgColorScience from "../../../assets/images/rnd/rnd-color-science.jpg";
+import imgApplication from "../../../assets/images/rnd/rnd-application.jpg";
+import imgProduction from "../../../assets/images/rnd/rnd-production.jpg";
+import imgCollaboration from "../../../assets/images/rnd/rnd-collaboration.jpg";
 
 export default function RnDExpertise() {
     const content = [
@@ -15,8 +20,7 @@ export default function RnDExpertise() {
                 "Developing and refining dye formulations for different applications and performance requirements.",
             icon: FlaskConical,
             iconColor: "text-accent-red",
-            image:
-                "https://images.unsplash.com/photo-1591610217257-b3e8b1e99f98?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D",
+            image: imgFormulation,
         },
         {
             title: "Color Science",
@@ -24,8 +28,7 @@ export default function RnDExpertise() {
                 "Understanding shade development, color strength, consistency, and application requirements.",
             icon: Palette,
             iconColor: "text-accent-red",
-            image:
-                "https://images.unsplash.com/photo-1585751092218-cea84c1ecf01?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZHllJTIwdXNlc3xlbnwwfHwwfHx8MA%3D%3D",
+            image: imgColorScience,
         },
         {
             title: "Application Knowledge",
@@ -33,8 +36,7 @@ export default function RnDExpertise() {
                 "Using experience across textile, paper, leather, wood, and other sectors to develop practical solutions.",
             icon: Layers3,
             iconColor: "text-accent-red",
-            image:
-                "https://images.unsplash.com/photo-1589061935832-c4de192a2e8e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTU4fHxkeWUlMjB1c2VzfGVufDB8fDB8fHww",
+            image: imgApplication,
         },
         {
             title: "Production Integration",
@@ -42,8 +44,7 @@ export default function RnDExpertise() {
                 "Considering manufacturing requirements so successful formulations can transition smoothly into production.",
             icon: Factory,
             iconColor: "text-accent-red",
-            image:
-                "https://images.unsplash.com/photo-1569909115134-a0426936c879?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            image: imgProduction,
         },
         {
             title: "Customer Collaboration",
@@ -51,8 +52,7 @@ export default function RnDExpertise() {
                 "Working directly with customers to understand requirements and improve product solutions.",
             icon: Users,
             iconColor: "text-accent-red",
-            image:
-                "https://images.unsplash.com/photo-1648805700124-933fe337255e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y3VzdG9tZXIlMjBjb2xsYWJyYXRpb24lMjBjb2xvcmZ1bHxlbnwwfHwwfHx8MA%3D%3D",
+            image: imgCollaboration,
         },
     ];
 
