@@ -1,10 +1,12 @@
 import { useState, useRef, type FormEvent, type ChangeEvent, type FocusEvent } from 'react';
 import { motion } from 'framer-motion';
+import { AlertCircle } from 'lucide-react';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import FieldError from '@/components/ui/FieldError';
 import SEO from '@/components/seo/SEO';
 import { seoConfig } from '@/components/seo/seoData';
 import { createBreadcrumbSchema } from '@/components/seo/seoSchemas';
+import { siteConfig } from '@/data/siteConfig';
 import { validateStandardField } from '@/utils/validation';
 
 const countries = [
@@ -30,6 +32,7 @@ export default function Enquiry() {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -64,7 +67,7 @@ export default function Enquiry() {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     const fieldsToValidate = ['name', 'company', 'email', 'phone', 'city', 'country', 'message'] as const;
@@ -97,21 +100,55 @@ export default function Enquiry() {
 
     setErrors({});
     setIsSubmitting(true);
+    setSubmitError('');
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        company: '',
-        email: '',
-        phone: '',
-        city: '',
-        country: '',
-        message: '',
+    try {
+      const payload = new FormData();
+      payload.append('access_key', siteConfig.web3FormsAccessKey);
+      payload.append(
+        'subject',
+        `New B2B Export Enquiry from ${formData.name} (${formData.country || 'International'}) - Ambica Industry`
+      );
+      payload.append('from_name', 'Ambica Industry Website');
+      payload.append('name', formData.name);
+      payload.append('company', formData.company || 'Not specified');
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      payload.append('city', formData.city || 'Not specified');
+      payload.append('country', formData.country || 'Not specified');
+      payload.append('message', formData.message);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: payload,
       });
-      setTouched({});
-    }, 1200);
+
+      const data = await response.json();
+      if (data.success) {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          company: '',
+          email: '',
+          phone: '',
+          city: '',
+          country: '',
+          message: '',
+        });
+        setTouched({});
+      } else {
+        setIsSubmitting(false);
+        setSubmitError(data.message || 'Failed to submit enquiry. Please try again or contact us directly.');
+      }
+    } catch (err) {
+      console.error('Enquiry submission error:', err);
+      setIsSubmitting(false);
+      setSubmitError('Failed to submit enquiry. Please check your internet connection and try again.');
+    }
   };
 
   const handleReset = () => {
@@ -128,6 +165,7 @@ export default function Enquiry() {
     setTouched({});
     setIsSubmitting(false);
     setSubmitted(false);
+    setSubmitError('');
   };
 
   const getInputClass = (fieldName: string) =>
@@ -326,6 +364,13 @@ export default function Enquiry() {
                     />
                     <FieldError error={errors.message} />
                   </div>
+
+                  {submitError && (
+                    <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-700">
+                      <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
+                      <span className="leading-relaxed">{submitError}</span>
+                    </div>
+                  )}
 
                   <div className="flex gap-4 pt-2">
                     <button

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, Phone, CheckCircle2, RotateCcw } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone, CheckCircle2, RotateCcw, AlertCircle } from "lucide-react";
 import { siteConfig } from "@/data/siteConfig";
 import FieldError from "@/components/ui/FieldError";
 import { validateStandardField } from "@/utils/validation";
@@ -30,7 +30,8 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -133,7 +134,7 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const fieldsToValidate = ["name", "company", "email", "phone", "service", "message"] as const;
@@ -165,10 +166,40 @@ export default function ContactForm() {
 
     setErrors({});
     setStatus("submitting");
+    setErrorMessage("");
 
-    setTimeout(() => {
-      setStatus("success");
-    }, 1200);
+    try {
+      const payload = new FormData();
+      payload.append("access_key", siteConfig.web3FormsAccessKey);
+      payload.append("subject", `New Contact Enquiry from ${formData.name} - Ambica Industry`);
+      payload.append("from_name", "Ambica Industry Website");
+      payload.append("name", formData.name);
+      payload.append("company", formData.company || "Not specified");
+      payload.append("email", formData.email);
+      payload.append("phone", formData.phone);
+      payload.append("service", formData.service || "General Requirement");
+      payload.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: payload,
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Failed to submit enquiry. Please try again or reach out directly.");
+      }
+    } catch (err) {
+      console.error("Contact submission error:", err);
+      setStatus("error");
+      setErrorMessage("Something went wrong while sending your enquiry. Please check your network connection and try again.");
+    }
   };
 
   const handleReset = () => {
@@ -183,6 +214,7 @@ export default function ContactForm() {
     setErrors({});
     setTouched({});
     setStatus("idle");
+    setErrorMessage("");
   };
 
   const getFieldClasses = (fieldName: string) =>
@@ -447,6 +479,13 @@ export default function ContactForm() {
                     />
                     <FieldError error={errors.message} />
                   </div>
+
+                  {status === "error" && errorMessage && (
+                    <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-xs text-red-700">
+                      <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
+                      <span className="leading-relaxed">{errorMessage}</span>
+                    </div>
+                  )}
 
                   <button
                     type="submit"

@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, type FormEvent, type ChangeEvent, type FocusEvent } from 'react';
-import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle } from 'lucide-react';
+import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import FieldError from '@/components/ui/FieldError';
+import { siteConfig } from '@/data/siteConfig';
 import { validateStandardField } from '@/utils/validation';
 import quoteBg from '@/assets/images/quote/quote-bg.webp';
 import avatar1 from '@/assets/images/avatars/avatar-1.webp';
@@ -27,6 +28,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -70,7 +72,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
     });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     // ARCHITECTURE NOTE:
@@ -118,22 +120,53 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
 
     setErrors({});
     setIsSubmitting(true);
+    setSubmitError('');
 
-    // Simulate network request (Will be replaced with fetch('/api/quote') when backend is attached)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        city: '',
-        phone: '',
-        message: '',
+    try {
+      const payload = new FormData();
+      payload.append('access_key', siteConfig.web3FormsAccessKey);
+      payload.append(
+        'subject',
+        `New Instant Quote Request from ${formData.name} - Ambica Industry`
+      );
+      payload.append('from_name', 'Ambica Industry Website');
+      payload.append('name', formData.name);
+      payload.append('email', formData.email);
+      payload.append('city', formData.city || 'Not specified');
+      payload.append('phone', formData.phone);
+      payload.append('message', formData.message);
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: payload,
       });
-      setHoneypot('');
-      setTouched({});
-      setTimeout(onClose, 2500);
-    }, 1200);
+
+      const data = await response.json();
+      if (data.success) {
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          city: '',
+          phone: '',
+          message: '',
+        });
+        setHoneypot('');
+        setTouched({});
+        setTimeout(onClose, 2500);
+      } else {
+        setIsSubmitting(false);
+        setSubmitError(data.message || 'Failed to submit quote request. Please try again.');
+      }
+    } catch (err) {
+      console.error('Quote modal submission error:', err);
+      setIsSubmitting(false);
+      setSubmitError('Failed to send request. Please check your network connection.');
+    }
   };
 
   const getInputClass = (fieldName: string) =>
@@ -358,6 +391,13 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
                     </div>
                     <FieldError error={errors.message} />
                   </div>
+
+                  {submitError && (
+                    <div className="flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-2.5 text-xs text-red-700">
+                      <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-red-600" />
+                      <span className="leading-relaxed">{submitError}</span>
+                    </div>
+                  )}
 
                   <div className="pt-0.5 sm:pt-1">
                     <button

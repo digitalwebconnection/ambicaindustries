@@ -1,6 +1,7 @@
 export const siteConfig = {
   name: 'Ambica Industry',
   tagline: 'Food Color Manufacturers, Exporter & Suppliers in India',
+  web3FormsAccessKey: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '2d80f15e-698f-445b-a2fd-ff2d63bbe30d',
   description:
     'Ambica Industry is renowned Synthetic and Natural Food Colours Manufacturers in Ahmedabad, India. We provide lake color, acid dyes & direct dyes.',
   established: 1986,
