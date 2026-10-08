@@ -96,7 +96,7 @@ export default function RnDQuality() {
                 </span>
               </h3>
 
-              <p className="mt-5 leading-7 text-justify text-slate-600">
+              <p className="mt-5 leading-7 text-left sm:text-justify text-slate-600">
                 Every formulation is evaluated with practical application and
                 manufacturing requirements in mind. This helps us develop dye
                 solutions that deliver reliable and repeatable performance.
@@ -116,7 +116,7 @@ export default function RnDQuality() {
           </motion.div>
 
           <div className="lg:col-span-3 mt-5">
-            <div className="grid gap-9 sm:grid-cols-2">
+            <div className="grid gap-4 sm:gap-6 lg:gap-8 sm:grid-cols-2">
               {focusPoints.map((point, index) => {
                 const Icon = point.icon;
 

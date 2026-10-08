@@ -63,11 +63,11 @@ export const getLegacyProductRedirect = (category?: string, subSlug?: string): s
   return null;
 };
 
-import directDyesImg from '../assets/images/products/different-bright-dry-colors-containers.jpg';
-import acidDyesImg from '../assets/images/products/high-angle-pigmented-cloth-with-natural-colors.jpg';
-import reactiveDyesImg from '../assets/images/products/stained-brush-with-paint.jpg';
-import leatherDyesImg from '../assets/images/products/close-up-engraving-art-tools.jpg';
-import woodDyesImg from '../assets/images/products/person-varnishing-wood-with-big-brush.jpg';
+import directDyesImg from '../assets/images/products/different-bright-dry-colors-containers.webp';
+import acidDyesImg from '../assets/images/products/high-angle-pigmented-cloth-with-natural-colors.webp';
+import reactiveDyesImg from '../assets/images/products/stained-brush-with-paint.webp';
+import leatherDyesImg from '../assets/images/products/close-up-engraving-art-tools.webp';
+import woodDyesImg from '../assets/images/products/person-varnishing-wood-with-big-brush.webp';
 
 export const productCategories: ProductCategory[] = [
   {

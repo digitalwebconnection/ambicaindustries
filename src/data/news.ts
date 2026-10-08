@@ -1,6 +1,6 @@
-import imgNews1 from '../assets/images/hero/dyeing-fabrics-colorful-vats.jpg';
-import imgNews2 from '../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.jpg';
-import imgNews3 from '../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg';
+import imgNews1 from '../assets/images/hero/dyeing-fabrics-colorful-vats.webp';
+import imgNews2 from '../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp';
+import imgNews3 from '../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
 
 export interface NewsItem {
   date: string;

@@ -3,10 +3,10 @@ import { X, ArrowRight, User, Mail, MapPin, Phone, MessageSquare, CheckCircle } 
 import { motion, AnimatePresence } from 'framer-motion';
 import FieldError from './FieldError';
 import { validateStandardField } from '../../utils/validation';
-import quoteBg from '../../assets/images/quote/quote-bg.jpg';
-import avatar1 from '../../assets/images/avatars/avatar-1.jpg';
-import avatar2 from '../../assets/images/avatars/avatar-2.jpg';
-import avatar3 from '../../assets/images/avatars/avatar-3.jpg';
+import quoteBg from '../../assets/images/quote/quote-bg.webp';
+import avatar1 from '../../assets/images/avatars/avatar-1.webp';
+import avatar2 from '../../assets/images/avatars/avatar-2.webp';
+import avatar3 from '../../assets/images/avatars/avatar-3.webp';
 
 const LOGO = '/logo2.png';
 
@@ -163,6 +163,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           className="relative w-full max-w-4xl max-h-[90vh] sm:max-h-[88vh] bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row z-10 my-auto"
+          data-lenis-prevent
         >
           {/* Desktop Close Button */}
           <button

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import imgRndReactive from "../../../assets/images/rnd/rnd-hero-reactive.jpg";
-import imgRndLeather from "../../../assets/images/rnd/rnd-hero-leather.jpg";
-import imgRndMetalComplex from "../../../assets/images/rnd/rnd-hero-metal-complex.jpg";
+import imgRndReactive from "../../../assets/images/rnd/rnd-hero-reactive.webp";
+import imgRndLeather from "../../../assets/images/rnd/rnd-hero-leather.webp";
+import imgRndMetalComplex from "../../../assets/images/rnd/rnd-hero-metal-complex.webp";
 
 const images = [
   {

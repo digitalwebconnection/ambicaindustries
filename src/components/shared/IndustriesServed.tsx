@@ -99,17 +99,17 @@ export default function IndustriesServed() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           transition={{ staggerChildren: 0.08 }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-8 sm:mb-14 md:mb-20"
         >
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-4 mb-5">
-            <span className="h-0.5 w-10 bg-primary rounded-full" />
-            <span className="text-primary font-bold text-sm uppercase tracking-widest">
+          <motion.div variants={fadeUp} className="inline-flex items-center gap-3 sm:gap-4 mb-3 sm:mb-5">
+            <span className="h-0.5 w-8 sm:w-10 bg-primary rounded-full" />
+            <span className="text-primary font-bold text-xs sm:text-sm uppercase tracking-widest">
               Global Reach
             </span>
           </motion.div>
           <motion.h2
             variants={fadeUp}
-            className="text-3xl md:text-5xl font-extrabold text-primary-dark leading-[1.1] mb-2"
+            className="text-3xl md:text-5xl font-extrabold text-primary-dark leading-[1.15] md:leading-[1.1] mb-2"
           >
             Industries We {""}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-red to-accent-red-dark">
@@ -118,7 +118,7 @@ export default function IndustriesServed() {
           </motion.h2>
           <motion.p
             variants={fadeUp}
-            className="mt-4 text-slate-600 max-w-7xl mx-auto text-lg"
+            className="mt-2 sm:mt-4 text-slate-600 max-w-3xl mx-auto text-sm sm:text-base lg:text-lg"
           >
             Delivering precision, performance, and unparalleled color consistency across a diverse range of global sectors.
           </motion.p>
@@ -127,20 +127,18 @@ export default function IndustriesServed() {
         {/* Stepping Carousel Slider */}
         <div className="relative w-full ">
           {/* Gradient Edges for smooth fade-in/out effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-linear-to-r from-white to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-linear-to-l from-white to-transparent z-20 pointer-events-none" />
-
-
+          <div className="absolute left-0 top-0 bottom-0 w-6 md:w-12 bg-linear-to-r from-white to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-6 md:w-12 bg-linear-to-l from-white to-transparent z-20 pointer-events-none" />
 
           <div
             ref={scrollRef}
-            className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pt-2 pb-6 -mt-5 [&::-webkit-scrollbar]:hidden"
+            className="flex w-full overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pt-2 pb-6 -mt-2 sm:-mt-5 [&::-webkit-scrollbar]:hidden"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {[...industries, ...industries].map((industry, idx) => (
               <div
                 key={`${industry.name}-${idx}`}
-                className="snap-start group relative h-97 w-[90%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden  bg-white shadow-xl hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
+                className="snap-start group relative h-80 sm:h-97 w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(25%-18px)] shrink-0 rounded-xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1.5"
               >
                 {/* Background Image */}
                 <img
@@ -148,19 +146,19 @@ export default function IndustriesServed() {
                   alt={industry.name}
                   loading="lazy"
                   decoding="async"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110  "
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
 
                 {/* Advanced Gradient Overlay */}
                 <div className="absolute inset-0 bg-linear-to-t from-primary-dark/95 via-primary-dark/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
                 {/* Content Container */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
-                  <div className="flex items-center gap-4 mb-4 transform group-hover:-translate-y-1 transition-transform duration-500">
-                    <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-accent-red group-hover:border-accent-red transition-colors duration-500 shadow-lg shrink-0">
+                <div className="absolute inset-0 p-5 sm:p-8 flex flex-col justify-end z-10">
+                  <div className="flex items-center gap-3 sm:gap-4 mb-2 sm:mb-4 transform group-hover:-translate-y-1 transition-transform duration-500">
+                    <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white group-hover:bg-accent-red group-hover:border-accent-red transition-colors duration-500 shadow-lg shrink-0">
                       {getIcon(industry.name)}
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-white transition-colors duration-500 leading-tight">
+                    <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
                       {industry.name}
                     </h3>
                   </div>
@@ -168,7 +166,7 @@ export default function IndustriesServed() {
                   {/* Hover Reveal Text */}
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                     <div className="overflow-hidden">
-                      <p className="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pb-2">
+                      <p className="text-white/80 text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 pb-2">
                         Tailored color solutions meeting the highest global standards for {industry.name.toLowerCase()}.
                       </p>
                     </div>
@@ -180,11 +178,21 @@ export default function IndustriesServed() {
             ))}
           </div>
 
-          <div className=' flex justify-center gap-1 mt-2'>
-            <button onClick={() => scrollByCard('left')}
-              aria-label='Previous Industry' className='w-7 h-7 text-slate-700 rounded-full bg-accent-red/2 border border-slate-800/80 flex justify-center items-center  cursor-pointer hover:bg-black/20 hover:text-black duration-200 transition-colors'><ChevronLeft className='w-4 h-4' /></button>
-            <button onClick={() => scrollByCard('right')}
-              aria-label='Previous Industry' className='w-7 h- text-slate-700 rounded-full bg-accent-red/2 border border-slate-800/80 flex justify-center items-center  cursor-pointer hover:bg-black/20 hover:text-black duration-200 transition-colors'><ChevronRight className='w-4 h-4' /></button>
+          <div className='flex justify-center gap-2 mt-2'>
+            <button
+              onClick={() => scrollByCard('left')}
+              aria-label='Previous Industry'
+              className='w-9 h-9 sm:w-8 sm:h-8 text-slate-700 rounded-full bg-white border border-slate-300 shadow-sm flex justify-center items-center cursor-pointer hover:bg-accent-red hover:text-white hover:border-accent-red active:scale-90 duration-200 transition-all'
+            >
+              <ChevronLeft className='w-4 h-4' />
+            </button>
+            <button
+              onClick={() => scrollByCard('right')}
+              aria-label='Next Industry'
+              className='w-9 h-9 sm:w-8 sm:h-8 text-slate-700 rounded-full bg-white border border-slate-300 shadow-sm flex justify-center items-center cursor-pointer hover:bg-accent-red hover:text-white hover:border-accent-red active:scale-90 duration-200 transition-all'
+            >
+              <ChevronRight className='w-4 h-4' />
+            </button>
           </div>
         </div>
       </div>

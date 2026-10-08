@@ -9,7 +9,7 @@ import {
   Sparkles,
   ArrowRight,
 } from "lucide-react";
-import ctaBackground from "../../assets/images/hero/dyeing-fabrics-colorful-vats.jpg";
+import ctaBackground from "../../assets/images/hero/dyeing-fabrics-colorful-vats.webp";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -155,7 +155,7 @@ export default function RnDSection() {
 
             <motion.p
               variants={fadeUp}
-              className="mt-4 text-slate-600 text-lg text-justify leading-relaxed mb-10"
+              className="mt-4 text-slate-600 text-base sm:text-lg text-left sm:text-justify leading-relaxed mb-8 sm:mb-10"
             >
               Research and development are conducted in our industry to achieve
               success at various levels. We continually push the boundaries of
@@ -166,7 +166,7 @@ export default function RnDSection() {
             {/* Accent Elements */}
             <motion.div
               variants={fadeUp}
-              className="flex gap-8 border-t border-slate-200 pt-8"
+              className="flex gap-8 border-t border-slate-200 pt-6 sm:pt-8"
             >
               <div className="group cursor-default">
                 <div className="text-3xl font-black text-primary-dark mb-1 group-hover:text-primary transition-colors">
@@ -236,7 +236,7 @@ export default function RnDSection() {
               {features.map((feature, idx) => (
                 <div
                   key={`node-${idx}`}
-                  className={`absolute w-24 h-24 flex items-center justify-center  transition-all duration-500 ${nodePositions[idx]} ${
+                  className={`absolute w-24 h-24 flex items-center justify-center transition-all duration-500 ${nodePositions[idx]} ${
                     activeIdx === idx
                       ? "scale-125 z-30"
                       : "hover:scale-110 z-10"
@@ -295,33 +295,33 @@ export default function RnDSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-50px" }}
-        className="mt-20 md:mt-32 w-full relative overflow-hidden shadow-2xl bg-fixed bg-center bg-cover"
+        className="mt-14 sm:mt-20 md:mt-32 w-full relative overflow-hidden shadow-2xl bg-center bg-cover"
         style={{
           backgroundImage: `url(${ctaBackground})`,
         }}
       >
         {/* Dark Blue Overlay for text readability */}
-        <div className="absolute inset-0 bg-primary-dark/50 z-0" />
+        <div className="absolute inset-0 bg-primary-dark/60 z-0" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 relative z-10">
           <div className="max-w-2xl text-center md:text-left">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-3 sm:mb-4 leading-tight">
               Ready to elevate your manufacturing?
             </h3>
-            <p className="text-white/80 text-lg">
+            <p className="text-white/85 text-sm sm:text-base md:text-lg leading-relaxed">
               Partner with Ambica Industry for premium, rigorously tested dye
               solutions tailored to your exact requirements.
             </p>
           </div>
 
-          <div className="shrink-0">
+          <div className="shrink-0 w-full sm:w-auto text-center">
             <Link
               to="/#quote"
               onClick={(event) => {
                 event.preventDefault();
                 handleOpenQuote();
               }}
-              className="group inline-flex items-center gap-3 px-8 py-2.5 bg-white text-primary-dark rounded-full font-bold text-[15px] hover:bg-accent-red hover:text-white transition-all duration-300 shadow-xl hover:shadow-accent-red/30 hover:-translate-y-1"
+              className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-3 bg-white text-primary-dark rounded-full font-bold text-[15px] hover:bg-accent-red hover:text-white active:scale-95 transition-all duration-300 shadow-xl hover:shadow-accent-red/30 hover:-translate-y-1"
             >
               Request a Quote
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

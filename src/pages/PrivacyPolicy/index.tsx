@@ -69,7 +69,7 @@ export default function PrivacyPolicy() {
  
 
   return (
-    <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-16 md:py-20">
+    <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-10 sm:py-16 md:py-20">
       <SEO
         title={seoConfig.privacyPolicy.title}
         description={seoConfig.privacyPolicy.description}
@@ -81,15 +81,15 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-10   md:p-10"
+          className="mb-6 sm:mb-10 p-2 sm:p-6 md:p-10"
         >
-          <h1 className="text-3xl font-black tracking-tight text-accent-red md:text-5xl">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight text-accent-red">
             Privacy Policy
           </h1>
-          <p className="mt-3 text-sm text-slate-500 md:text-base">
+          <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-500 md:text-base">
             Last Revised: 22 sep' 2026
           </p>
-          <p className="mt-3 max-w-4xl  text-base leading-7 text-slate-600 md:text-lg tracking-wide">
+          <p className="mt-3 max-w-4xl text-sm sm:text-base leading-relaxed tracking-wide text-slate-600 md:text-lg">
             At Ambica Industry, we value the trust you place in us. This policy explains how we collect, use, and protect personal information when you interact with our website, request information, or work with us on product and business requirements.
           </p>
         </motion.div>
@@ -102,7 +102,7 @@ export default function PrivacyPolicy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.03 }}
-              className=" p-5  md:p-7 border-b border-slate-200 pb-3"
+              className="p-3 sm:p-5 md:p-7 border-b border-slate-200 pb-3"
             >
               <h2 className="mb-3 text-xl font-bold text-primary-dark md:text-2xl">
                 {section.title}

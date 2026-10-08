@@ -7,27 +7,27 @@ export default function AboutQuote() {
         {/* Main Layout Container */}
         <div className="max-w-4xl mx-auto relative">
           {/* Top Quote Icon */}
-          <div className="absolute -top-10 right-0 md:right-12 opacity-80">
+          <div className="absolute -top-6 sm:-top-10 right-2 sm:right-6 md:right-12 opacity-80 pointer-events-none">
             <Quote
-              size={80}
-              className="text-accent-red/20"
+              size={60}
+              className="text-accent-red/20 sm:w-20 sm:h-20"
               fill="currentColor"
               strokeWidth={0}
             />
           </div>
         
           <div className="pt-6">
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-bold leading-tight mb-6 text-white tracking-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold leading-tight mb-6 text-white tracking-tight">
               <span className="bg-white text-primary px-3 py-1 rounded-md inline-block transform -rotate-1 shadow-sm mb-2">
                 Good color
               </span>{" "}
               turns heads.
-              <br className=" hidden md:block" />
+              <br className="hidden md:block" />
               <span className="text-accent-red">Great chemistry</span> turns
               minds.
             </h2>
 
-            <p className="text-lg sm:text-xl text-white/70 text-justify leading-relaxed font-medium mb-10">
+            <p className="text-sm sm:text-lg lg:text-xl text-white/70 text-left sm:text-justify leading-relaxed font-medium mb-8 sm:mb-10">
               The dyes we formulate aren't just meant to pass a quality check.
               They're meant to shape how people{" "}
               <span className="text-white font-semibold">perceive</span>,{" "}

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import whyUs1 from "../../../assets/images/products/different-bright-dry-colors-containers.jpg";
-import whyUs2 from "../../../assets/images/industries/stained-brush-with-paint.jpg";
+import whyUs1 from "../../../assets/images/products/different-bright-dry-colors-containers.webp";
+import whyUs2 from "../../../assets/images/products/stained-brush-with-paint.webp";
 
 export default function HeroWhyUs() {
   return (

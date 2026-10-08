@@ -6,11 +6,11 @@ import {
     Users,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import imgFormulation from "../../../assets/images/rnd/rnd-formulation.jpg";
-import imgColorScience from "../../../assets/images/rnd/rnd-color-science.jpg";
-import imgApplication from "../../../assets/images/rnd/rnd-application.jpg";
-import imgProduction from "../../../assets/images/rnd/rnd-production.jpg";
-import imgCollaboration from "../../../assets/images/rnd/rnd-collaboration.jpg";
+import imgFormulation from "../../../assets/images/rnd/rnd-formulation.webp";
+import imgColorScience from "../../../assets/images/rnd/rnd-color-science.webp";
+import imgApplication from "../../../assets/images/rnd/rnd-application.webp";
+import imgProduction from "../../../assets/images/rnd/rnd-production.webp";
+import imgCollaboration from "../../../assets/images/rnd/rnd-collaboration.webp";
 
 export default function RnDExpertise() {
     const content = [
@@ -83,23 +83,25 @@ export default function RnDExpertise() {
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 gap-4 py-12 md:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr] md:grid-rows-[250px_270px]">
+                <div className="grid grid-cols-1 gap-4 py-8 sm:py-12 md:grid-cols-[1.3fr_1fr_1fr_1fr_1.3fr] md:grid-rows-[250px_270px]">
                     {content.map((item, index) => {
                         const Icon = item.icon;
                         if (index === 0) {
                             return (
                                 <div
                                     key={index}
-                                    className="group relative flex flex-col overflow-hidden rounded-xl  shadow-md transition-all duration-700 hover:-translate-y-1 hover:shadow-lg md:col-span-1 md:row-span-2 shadow-black/50 pb-5"
+                                    className="group relative flex flex-col justify-end min-h-72 sm:min-h-80 overflow-hidden rounded-xl shadow-md transition-all duration-700 hover:-translate-y-1 hover:shadow-lg md:col-span-1 md:row-span-2 shadow-black/50 pb-5"
                                 >
                                     <img
                                         src={item.image}
                                         alt={item.title}
                                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-107"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
-                                    <div className="relative mt-auto flex flex-col gap-4 p-5">
-                                        <span className="w-13 h-13 bg-white/5 backdrop-blur-sm border border-white/20   flex items-center justify-center rounded-full  "><Icon className="h-6 w-6 text-white " /></span>
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-transparent" />
+                                    <div className="relative mt-auto flex flex-col gap-3 p-5">
+                                        <span className="w-11 h-11 sm:w-13 sm:h-13 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center rounded-full">
+                                            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                                        </span>
                                         <h3 className="text-xl font-bold text-white">{item.title}</h3>
                                         <p className="text-sm leading-6 text-white/85">{item.description}</p>
                                     </div>
@@ -111,13 +113,13 @@ export default function RnDExpertise() {
                             return (
                                 <div
                                     key={index}
-                                    className="flex flex-row overflow-hidden rounded-xl  bg-white shadow-sm transition-all duration-700 hover:-translate-y-1 group hover:shadow-lg md:col-span-3 shadow-black/40"
+                                    className="flex flex-col sm:flex-row overflow-hidden rounded-xl bg-white shadow-sm transition-all duration-700 hover:-translate-y-1 group hover:shadow-lg md:col-span-3 shadow-black/40"
                                 >
-                                    <div className=" overflow-hidden md:h-full md:w-1/2">
+                                    <div className="overflow-hidden h-48 sm:h-auto sm:w-1/2">
                                         <img
                                             src={item.image}
                                             alt={item.title}
-                                            className=" object-cover transition-transform duration-700 group-hover:scale-107"
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-107"
                                         />
                                     </div>
                                     <div className="flex flex-1 flex-col justify-center gap-2 p-5">
@@ -133,17 +135,19 @@ export default function RnDExpertise() {
                             return (
                                 <div
                                     key={index}
-                                    className="group relative flex flex-col overflow-hidden rounded-xl shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg shadow-black/40 md:col-span-1"
+                                    className="group relative flex flex-col justify-end min-h-64 sm:min-h-72 overflow-hidden rounded-xl shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg shadow-black/40 md:col-span-1"
                                 >
                                     <img
                                         src={item.image}
                                         alt={item.title}
-                                        className="absolute h-full w-full object-cover transition-transform duration-700 group-hover:scale-107"
+                                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-107"
                                     />
-                                    <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/30 to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/40 to-transparent" />
 
                                     <div className="relative mt-auto flex flex-col gap-2 p-5">
-                                        <span className="w-13 h-13 bg-white/5 backdrop-blur-sm border border-white/20   flex items-center justify-center rounded-full  "><Icon className="h-6 w-6 text-white " /></span>
+                                        <span className="w-11 h-11 sm:w-13 sm:h-13 bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center rounded-full">
+                                            <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+                                        </span>
                                         <h3 className="text-lg font-bold text-white">{item.title}</h3>
                                         <p className="text-xs leading-5 text-white/85">{item.description}</p>
                                     </div>
@@ -154,9 +158,9 @@ export default function RnDExpertise() {
                         return (
                             <div
                                 key={index}
-                                className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg md:col-span-2 md:flex-row"
+                                className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg md:col-span-2 sm:flex-row"
                             >
-                                <div className=" overflow-hidden md:h-full md:w-3/7">
+                                <div className="overflow-hidden h-48 sm:h-auto sm:w-2/5 md:w-3/7">
                                     <img
                                         src={item.image}
                                         alt={item.title}

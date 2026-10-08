@@ -8,7 +8,7 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ title, items = [] }: BreadcrumbProps) {
   return (
-    <section className="relative h-[200px] md:h-[260px] overflow-hidden flex items-center justify-center bg-primary-dark">
+    <section className="relative h-37.5 sm:h-45 md:h-60 overflow-hidden flex items-center justify-center bg-primary-dark">
       {/* Background with zoom animation */}
       <div
         className="absolute inset-0 bg-cover bg-center animate-zoom"
@@ -19,8 +19,8 @@ export default function Breadcrumb({ title, items = [] }: BreadcrumbProps) {
       />
 
       {/* Content */}
-      <div className="relative z-10 text-center text-white">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
+      <div className="relative z-10 text-center text-white px-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4">{title}</h1>
         <nav className="flex items-center justify-center gap-2 text-sm text-white/80">
           <Link to="/" className="hover:text-accent-gold transition-colors flex items-center gap-1">
             <Home size={14} />

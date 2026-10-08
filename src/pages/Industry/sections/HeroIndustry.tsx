@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import hero1 from "../../../assets/images/industries/indushero1.jpg";
-import hero2 from "../../../assets/images/industries/indushero2.jpg";
+import hero1 from "../../../assets/images/industries/indushero1.webp";
+import hero2 from "../../../assets/images/industries/indushero2.webp";
 import { ArrowRight } from "lucide-react";
 
 export default function HeroIndustry() {

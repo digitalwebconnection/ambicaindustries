@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Award, ShieldCheck, Gauge, Users, Headset, Handshake } from "lucide-react";
-import imgQuality from "../../../assets/images/whyus/whyus-quality.jpg";
-import imgPerformance from "../../../assets/images/whyus/whyus-performance.jpg";
-import imgPartnerships from "../../../assets/images/whyus/whyus-partnerships.jpg";
+import imgQuality from "../../../assets/images/whyus/whyus-quality.webp";
+import imgPerformance from "../../../assets/images/whyus/whyus-performance.webp";
+import imgPartnerships from "../../../assets/images/whyus/whyus-partnerships.webp";
 
 export default function WhyUsDifference() {
   const points = [
@@ -65,7 +65,7 @@ export default function WhyUsDifference() {
             <span className="w-12 mr-2 h-0.5 bg-accent-red " />
             What Makes Us Different
           </div>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-wide text-primary-dark leading-13">
+          <h2 className="mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-wide text-primary-dark leading-tight sm:leading-snug lg:leading-13">
             A Better Approach to <span className="text-accent-red">Industrial Color</span>
           </h2>
         </motion.div>

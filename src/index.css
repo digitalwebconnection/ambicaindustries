@@ -85,6 +85,24 @@
   img {
     content-visibility: auto;
   }
+
+  /* Lenis smooth scrolling integration */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  html.lenis {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
 }
 
 @layer components {

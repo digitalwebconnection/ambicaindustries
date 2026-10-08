@@ -1,32 +1,92 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
+# ==============================================================================
+# Security Hardening & Server Configuration
+# Ambica Industry - Production Web Server Rules
+# ==============================================================================
 
-  # Serve existing files and directories directly
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
-  RewriteCond %{REQUEST_FILENAME} -d
-  RewriteRule ^ - [L]
+# 1. Disable Directory Browsing / Indexing
+Options -Indexes
 
-  # Redirect all other URLs to index.html for SPA routing
-  RewriteRule ^ index.html [L]
-</IfModule>
+# 2. Block Access to Hidden & Sensitive Files (.git, .env, .htaccess, etc.)
+<FilesMatch "^\.">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
 
-# Browser Caching & Performance
+# 3. Block Access to Sensitive File Extensions
+<FilesMatch "(^#.*#|\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist|env))$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# 4. HTTP Security Headers
 <IfModule mod_headers.c>
-  # Prevent caching of index.html so users always get the latest version
+  # Prevent MIME type sniffing
+  Header set X-Content-Type-Options "nosniff"
+
+  # Prevent Clickjacking (allow only framing by same origin)
+  Header set X-Frame-Options "SAMEORIGIN"
+
+  # Legacy XSS protection filter for older browsers
+  Header set X-XSS-Protection "1; mode=block"
+
+  # Strict Referrer policy for user privacy
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Restrict browser APIs and hardware permissions
+  Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=()"
+
+  # HTTP Strict Transport Security (HSTS) - 1 Year with subdomains
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" "expr=%{HTTPS} == 'on'"
+
+  # Prevent caching of index.html so users always receive latest app bundles
   <FilesMatch "index\.html">
     Header set Cache-Control "no-cache, no-store, must-revalidate"
     Header set Pragma "no-cache"
     Header set Expires 0
   </FilesMatch>
 
-  # Cache static assets with hashed filenames for 1 year
+  # Cache immutable static assets with hashed filenames for 1 year
   <FilesMatch "\.(js|css|webp|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
 </IfModule>
 
-# Gzip Compression
+# 5. URL Rewriting, Bot & Exploit Blocking, and SPA Routing
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Block Malicious HTTP Request Methods
+  RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+  RewriteRule .* - [F]
+
+  # Block Common Script Injection & Query String Exploits
+  RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} (base64_encode|localhost|loopback) [NC]
+  RewriteRule ^(.*)$ index.html [F,L]
+
+  # Serve existing files and directories directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Redirect all other URLs to index.html for SPA client-side routing
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# 6. Gzip Compression for Fast Loading
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 </IfModule>

@@ -35,6 +35,55 @@ export default function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   const validateField = (name: string, value: string): string | null => {
+    const trimmed = (value || "").trim();
+
+    if (name === "name") {
+      if (!trimmed) return "Full name is required";
+      if (trimmed.length < 2) return "Name must be at least 2 characters";
+      if (trimmed.length > 50) return "Name cannot exceed 50 characters";
+      if (!/^[a-zA-Z\s.'-]+$/.test(trimmed)) {
+        return "Name can only contain letters, spaces, and hyphens";
+      }
+      return null;
+    }
+
+    if (name === "company") {
+      if (trimmed && trimmed.length > 80) {
+        return "Company name cannot exceed 80 characters";
+      }
+      return null;
+    }
+
+    if (name === "email") {
+      if (!trimmed) return "Email address is required";
+      if (trimmed.length > 80) return "Email address cannot exceed 80 characters";
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(trimmed)) {
+        return "Please enter a valid email address (e.g. name@company.com)";
+      }
+      return null;
+    }
+
+    if (name === "phone") {
+      if (!trimmed) return "Phone / WhatsApp number is required";
+      const rawDigits = trimmed.replace(/\D/g, "");
+      // Extract core 10 digits (supports standard 10 digits or +91 / 0 prefix)
+      const coreDigits =
+        rawDigits.startsWith("91") && rawDigits.length === 12
+          ? rawDigits.slice(2)
+          : rawDigits.startsWith("0") && rawDigits.length === 11
+          ? rawDigits.slice(1)
+          : rawDigits;
+
+      if (coreDigits.length !== 10) {
+        return `Phone number must be exactly 10 digits (currently ${coreDigits.length} digits)`;
+      }
+      if (/^0{10}$/.test(coreDigits)) {
+        return "Please enter a valid 10-digit phone number";
+      }
+      return null;
+    }
+
     return validateStandardField(name, value);
   };
 
@@ -42,10 +91,25 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    let sanitized = value;
+
+    if (name === "phone") {
+      // Allow only digits, +, -, and spaces up to 15 characters
+      sanitized = value.replace(/[^\d\s+\-()]/g, "").slice(0, 16);
+    } else if (name === "name") {
+      sanitized = value.slice(0, 50);
+    } else if (name === "email") {
+      sanitized = value.slice(0, 80);
+    } else if (name === "company") {
+      sanitized = value.slice(0, 80);
+    } else if (name === "message") {
+      sanitized = value.slice(0, 2000);
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: sanitized }));
 
     if (touched[name] || errors[name]) {
-      const err = validateField(name, value);
+      const err = validateField(name, sanitized);
       setErrors((prev) => {
         const next = { ...prev };
         if (err) next[name] = err;
@@ -234,17 +298,24 @@ export default function ContactForm() {
                 <form ref={formRef} onSubmit={handleSubmit} noValidate className="space-y-4">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-1">
-                      <label htmlFor="contact-name" className={labelClasses}>
-                        Full Name <span className="text-accent-red">*</span>
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label htmlFor="contact-name" className={labelClasses}>
+                          Full Name <span className="text-accent-red">*</span>
+                        </label>
+                        <span className="text-[11px] text-slate-400 font-normal">
+                          {formData.name.length}/50
+                        </span>
+                      </div>
                       <input
                         id="contact-name"
                         name="name"
                         type="text"
+                        maxLength={50}
+                        autoComplete="name"
                         value={formData.name}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="Your name"
+                        placeholder="Your full name"
                         aria-invalid={!!errors.name}
                         className={getFieldClasses("name")}
                       />
@@ -252,17 +323,24 @@ export default function ContactForm() {
                     </div>
 
                     <div className="space-y-1">
-                      <label htmlFor="contact-company" className={labelClasses}>
-                        Company Name
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label htmlFor="contact-company" className={labelClasses}>
+                          Company Name
+                        </label>
+                        <span className="text-[11px] text-slate-400 font-normal">
+                          {formData.company.length}/80
+                        </span>
+                      </div>
                       <input
                         id="contact-company"
                         name="company"
                         type="text"
+                        maxLength={80}
+                        autoComplete="organization"
                         value={formData.company}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="Business name"
+                        placeholder="Business / Mill name"
                         aria-invalid={!!errors.company}
                         className={getFieldClasses("company")}
                       />
@@ -272,17 +350,24 @@ export default function ContactForm() {
 
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-1">
-                      <label htmlFor="contact-email" className={labelClasses}>
-                        Email Address <span className="text-accent-red">*</span>
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label htmlFor="contact-email" className={labelClasses}>
+                          Email Address <span className="text-accent-red">*</span>
+                        </label>
+                        <span className="text-[11px] text-slate-400 font-normal">
+                          {formData.email.length}/80
+                        </span>
+                      </div>
                       <input
                         id="contact-email"
                         name="email"
                         type="email"
+                        maxLength={80}
+                        autoComplete="email"
                         value={formData.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="you@example.com"
+                        placeholder="you@company.com"
                         aria-invalid={!!errors.email}
                         className={getFieldClasses("email")}
                       />
@@ -290,17 +375,25 @@ export default function ContactForm() {
                     </div>
 
                     <div className="space-y-1">
-                      <label htmlFor="contact-phone" className={labelClasses}>
-                        Phone / WhatsApp <span className="text-accent-red">*</span>
-                      </label>
+                      <div className="flex items-center justify-between">
+                        <label htmlFor="contact-phone" className={labelClasses}>
+                          Phone / WhatsApp <span className="text-accent-red">*</span>
+                        </label>
+                        <span className="text-[11px] text-slate-400 font-normal">
+                          {formData.phone.replace(/\D/g, "").slice(-10).length}/10 digits
+                        </span>
+                      </div>
                       <input
                         id="contact-phone"
                         name="phone"
                         type="tel"
+                        maxLength={15}
+                        inputMode="tel"
+                        autoComplete="tel"
                         value={formData.phone}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        placeholder="+91 90000 00000"
+                        placeholder="10-digit number (e.g. 98765 43210)"
                         aria-invalid={!!errors.phone}
                         className={getFieldClasses("phone")}
                       />
@@ -337,13 +430,14 @@ export default function ContactForm() {
                         Requirement Details <span className="text-accent-red">*</span>
                       </label>
                       <span className="text-[11px] text-slate-400">
-                        {formData.message.length} chars (min 10)
+                        {formData.message.length}/2000 chars (min 10)
                       </span>
                     </div>
                     <textarea
                       id="contact-message"
                       name="message"
                       rows={4}
+                      maxLength={2000}
                       value={formData.message}
                       onChange={handleChange}
                       onBlur={handleBlur}

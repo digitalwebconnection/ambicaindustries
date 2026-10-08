@@ -12,8 +12,8 @@ export default function Footer() {
     <footer className="bg-black/95 relative text-white font-sans border-t border-white/20">
       
       {/* --- Main Footer Content --- */}
-      <div className="max-w-325 mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-16">
+      <div className="max-w-325 mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-10 sm:pb-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pb-10 sm:pb-16">
           
           {/* Brand Column */}
           <div className="lg:col-span-4 pr-0 lg:pr-4">
@@ -219,12 +219,23 @@ export default function Footer() {
         </div>
 
         {/* Bottom Copyright Bar */}
-        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/80 ">
+        <div className="pt-6 sm:pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 text-xs sm:text-sm text-white/80 text-center md:text-left">
           <p>© {new Date().getFullYear()} Ambica Industry. All rights reserved.</p>
 
-          <p className='capitalize text-base inline-flex gap-1 items-center'><CodeXml className='text-accent-red'/>developed by<span className='font-semibold text-accent-red'> digital web connection</span></p>
+          <p className="capitalize text-xs sm:text-sm inline-flex gap-1.5 items-center justify-center">
+            <CodeXml size={16} className="text-accent-red" />
+            developed by
+            <a
+              href="https://digitalwebconnection.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent-red hover:underline hover:text-white transition-colors"
+            >
+              digital web connection
+            </a>
+          </p>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center gap-6 sm:gap-8">
             <Link to="/privacy-policy" className="font-medium hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/termsof-service" className="font-medium hover:text-white transition-colors">Terms of Service</Link>
           </div>

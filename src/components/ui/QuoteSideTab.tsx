@@ -15,7 +15,7 @@ export default function  QuoteSideTab() {
       {/* Side Tab — no entrance animation, just a static positioned element */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed cursor-pointer right-0 top-1/2 -translate-y-1/2 z-40 bg-accent-red hover:bg-accent-red-dark text-white text-xs font-bold py-6 px-3 rounded-l-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:pr-4"
+        className="fixed cursor-pointer right-0 top-1/2 -translate-y-1/2 z-40 bg-accent-red hover:bg-accent-red-dark text-white text-[11px] sm:text-xs font-bold py-4 px-2 sm:py-6 sm:px-3 rounded-l-lg shadow-xl hover:shadow-2xl transition-all duration-300 active:scale-95 hover:pr-3 sm:hover:pr-4"
         style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
         aria-label="Request A Quote"
       >

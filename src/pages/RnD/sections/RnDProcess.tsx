@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Search, FlaskConical, TestTube2, SlidersHorizontal, Factory, Lightbulb } from "lucide-react";
-import dyeProcessImage from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.jpg";
+import dyeProcessImage from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.webp";
 
 export default function RnDProcess() {
   const processSteps = [
@@ -50,8 +50,7 @@ export default function RnDProcess() {
           className="absolute inset-0 w-full h-full bg-center bg-cover"
           style={{
             backgroundImage: `url(${dyeProcessImage})`,
-            backgroundAttachment: "fixed",
-            backgroundPosition: "center ",
+            backgroundPosition: "center",
             backgroundSize: "cover",
           }}
         />
@@ -66,24 +65,24 @@ export default function RnDProcess() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto text-center mb-16"
+          className="max-w-4xl mx-auto text-center mb-12 sm:mb-16"
         >
           <div className="text-sm font-semibold uppercase flex gap-2 items-center justify-center tracking-wider text-white">
-            <span className="w-8  bg-white h-0.5" />
+            <span className="w-8 bg-white h-0.5" />
             Process
-            <span className="w-8  bg-white h-0.5" />
+            <span className="w-8 bg-white h-0.5" />
           </div>
 
-          <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-wide text-white">
+          <h2 className="mt-4 text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide text-white leading-tight">
             From Requirement to <span className="text-accent-red">Reliable Formulation</span>
           </h2>
 
-          <p className="mt-4 text-lg leading-relaxed text-white ">
+          <p className="mt-4 text-sm sm:text-base md:text-lg leading-relaxed text-white/90">
             Our development process brings together research, testing, application evaluation, and continuous improvement.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 lg:gap-x-12 lg:gap-y-12 place-items-center -mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 place-items-center -mt-2 sm:-mt-5">
           {processSteps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -94,8 +93,8 @@ export default function RnDProcess() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.06 }}
               >
-                <div className="group relative flex flex-col items-center justify-center text-center w-70 h-70 rounded-full border border-slate-200 bg-white/95 backdrop-blur-sm px-6 shadow-sm transition-all duration-500 hover:border-accent-red hover:bg-white/85 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-2">
-                  <span className="absolute top-6 text-sm font-bold tracking-widest text-accent-red">
+                <div className="group relative flex flex-col items-center justify-center text-center w-64 h-64 sm:w-70 sm:h-70 rounded-full border border-slate-200 bg-white/95 backdrop-blur-sm px-6 shadow-sm transition-all duration-500 hover:border-accent-red hover:bg-white/85 hover:shadow-xl hover:shadow-black/10 hover:-translate-y-2">
+                  <span className="absolute top-5 sm:top-6 text-sm font-bold tracking-widest text-accent-red">
                     {step.number}
                   </span>
 

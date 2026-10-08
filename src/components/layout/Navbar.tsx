@@ -401,7 +401,7 @@ export default function Navbar() {
               </div>
 
               {/* Drawer Scrollable Body */}
-              <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-4 space-y-1">
+              <div data-lenis-prevent className="flex-1 overflow-y-auto overscroll-contain px-4 py-4 space-y-1">
                 {quickNavItems.map((item) => {
                   const isActive = checkIsActive(item.href);
 

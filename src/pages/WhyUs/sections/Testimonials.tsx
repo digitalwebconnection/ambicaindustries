@@ -34,7 +34,7 @@ export default function Testimonials() {
             <span className="w-10 mr-2 bg-accent-red h-0.5" />
             What Our Customers Say
           </div>
-          <h2 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-extrabold capitalize text-primary-dark leading-14">
+          <h2 className="mt-4 text-2xl sm:text-4xl lg:text-5xl font-extrabold capitalize text-primary-dark leading-tight sm:leading-snug lg:leading-14">
             We love what we do, <br /><span className="text-accent-red">they love the results</span>
           </h2>
         </motion.div>
@@ -42,30 +42,30 @@ export default function Testimonials() {
   
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-6 -ml-6">
+            <div className="flex gap-4 sm:gap-6 -ml-4 sm:-ml-6">
               {testimonials.map((item, index) => (
                 <div
                   key={index}
-                  className="flex flex-nowrap pl-4"
+                  className="flex flex-nowrap pl-4 sm:pl-6"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.4, delay: index  * 0.06 }}
-                    className="flex flex-col w-100 h-80 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-accent-red/40"
+                    transition={{ duration: 0.4, delay: index * 0.06 }}
+                    className="flex flex-col w-[80vw] sm:w-85 md:w-96 max-w-sm h-80 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-accent-red/40"
                   >
                     <Quote className="w-8 h-8 text-accent-red/30 mb-3" strokeWidth={2} />
-                    <h3 className="text-lg font-bold text-primary-dark mb-3">
+                    <h3 className="text-base sm:text-lg font-bold text-primary-dark mb-2">
                       {item.title}
                     </h3>
-                    <p className="text-sm text-slate-600 leading-relaxed mb-2 flex-1">
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2 flex-1">
                       {item.description}
                     </p>
                     <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
-                        <div className="w-10 h-10 rounded-full bg-accent-red/10 flex items-center justify-center text-accent-red font-bold text-sm">
-                          {item.name.charAt(0)}
-                        </div>
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-accent-red/10 flex items-center justify-center text-accent-red font-bold text-sm">
+                        {item.name.charAt(0)}
+                      </div>
                       <p className="text-sm font-semibold text-primary-dark">{item.name}</p>
                     </div>
                   </motion.div>
@@ -77,13 +77,15 @@ export default function Testimonials() {
           <div className="flex justify-center gap-3 mt-8">
             <button
               onClick={scrollPrev}
-              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300 cursor-pointer"
+              aria-label="Previous testimonial"
+              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red active:scale-95 transition-all duration-300 cursor-pointer"
             >
               <ChevronLeft size={20} />
             </button>
             <button
               onClick={scrollNext}
-              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red transition-all duration-300 cursor-pointer"
+              aria-label="Next testimonial"
+              className="w-11 h-11 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:bg-accent-red hover:text-white hover:border-accent-red active:scale-95 transition-all duration-300 cursor-pointer"
             >
               <ChevronRight size={20} />
             </button>

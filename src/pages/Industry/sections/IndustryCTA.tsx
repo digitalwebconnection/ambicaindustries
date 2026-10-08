@@ -37,21 +37,22 @@ export default function IndustryCTA() {
         transition={{duration:1.30}}className="absolute -bottom-35 -right-80 w-120 h-120 border -rotate-45 z-0 border-white/70  "/>
         
 
-        <div className="relative z-10 max-w-3xl mx-auto  text-center">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
 
-          <h3 className=" text-2xl md:text-3xl lg:text-4xl font-extrabold  text-white mb-4 leading-tight  ">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">
             Tell us your sample.
             <span className="block text-white/75">We'll tell you the right chemistry.</span>
           </h3>
 
-          <p className="  max-w-2xl mx-auto  text-white/70 text-base mb-7 leading-7 ">
+          <p className="max-w-2xl mx-auto text-white/70 text-sm sm:text-base mb-7 leading-relaxed">
             From first sample to full production run, our team works with
             you directly to match the shade, fix the problem, and get the
             formulation right — not just ship product.
           </p>
 
-          <Link to="/contact" className="  group  inline-flex items-center gap-3  px-8 py-2.5  bg-white  text-primary-dark  rounded-full font-bold text-[15px] shadow-xl  hover:bg-accent-red  hover:text-white hover:-translate-y-1 transition-all duration-300  " >Talk to an expert now
-            <ArrowRight className="w-5 h-5  group-hover:translate-x-1  transition-transform duration-300 "  />
+          <Link to="/contact" className="group inline-flex items-center justify-center gap-3 px-8 py-3 bg-white text-primary-dark rounded-full font-bold text-[15px] shadow-xl hover:bg-accent-red hover:text-white active:scale-95 hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto">
+            Talk to an expert now
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
           </Link>
         </div>
       </motion.div>

@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import WhatsAppButton from "../ui/WhatsAppButton";
 import QuoteSideTab from "../ui/QuoteSideTab";
+import CookieConsent from "../common/CookieConsent";
 
 function ScrollHandler() {
   const { pathname, hash } = useLocation();
@@ -46,6 +47,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Footer />
       <WhatsAppButton />
       <QuoteSideTab />
+      <CookieConsent />
     </>
   );
 }

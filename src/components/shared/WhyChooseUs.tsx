@@ -2,10 +2,10 @@ import { motion, type Variants } from "framer-motion";
 import { Shield, Lightbulb, Leaf, Users, ArrowRight } from "lucide-react";
 
 // Import existing hero images for the cards
-import imgQuality from "../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg";
-import imgInnovation from "../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.jpg";
-import imgSustainability from "../../assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.jpg";
-import imgCustomer from "../../assets/images/hero/close-up-row-paint-cans-with-different-colors.jpg";
+import imgQuality from "../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp";
+import imgInnovation from "../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp";
+import imgSustainability from "../../assets/images/hero/vibrant-silk-textiles-colorful-heap-generated-by-ai.webp";
+import imgCustomer from "../../assets/images/hero/close-up-row-paint-cans-with-different-colors.webp";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },

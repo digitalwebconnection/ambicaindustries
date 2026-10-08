@@ -56,7 +56,7 @@ export default function WhyUsNumbers() {
           </p>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-4">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -64,12 +64,12 @@ export default function WhyUsNumbers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5, delay: index * 0.06 }}
-              className={`text-center px-5 py-5 `}
+              className="text-center px-2 sm:px-4 py-4 rounded-xl hover:bg-white/5 transition-colors"
             >
-              <p className="text-4xl rounded-sm inline-flex px-2 py-1 font-black text-white tracking-wide leading-none mb-2">
+              <p className="text-3xl sm:text-4xl rounded-sm inline-flex px-2 py-1 font-black text-white tracking-wide leading-none mb-2">
                 {stat.value}
               </p>
-              <h3 className="text-base font-bold text-white mb-2 leading-snug">
+              <h3 className="text-xs sm:text-sm lg:text-base font-bold text-white mb-1 leading-snug">
                 {stat.label}
               </h3>
             </motion.div>

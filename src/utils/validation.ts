@@ -8,6 +8,8 @@
  * See server_validation_and_spam_protection_plan.md for the complete backend specification.
  */
 
+import { containsSuspiciousPayload } from "./security";
+
 export interface ValidationResult {
   isValid: boolean;
   errors: Record<string, string>;
@@ -25,10 +27,10 @@ export interface ValidationResult {
  * - message: Required (min 10 chars, max 2000 chars)
  */
 export const FIELD_REQUIREMENTS = {
-  name: { required: true, minLength: 2, maxLength: 70 },
-  email: { required: true },
-  phone: { required: true, minDigits: 7, maxDigits: 15 },
-  company: { required: false, minLength: 2, maxLength: 100 },
+  name: { required: true, minLength: 2, maxLength: 50 },
+  email: { required: true, maxLength: 80 },
+  phone: { required: true, digits: 10 },
+  company: { required: false, minLength: 2, maxLength: 80 },
   city: { required: false, minLength: 2, maxLength: 80 },
   country: { required: true },
   service: { required: true },
@@ -47,7 +49,7 @@ const PHONE_CHAR_REGEX = /^[+]?[\d\s().-]{7,20}$/;
 /**
  * Validates full name or first/last name
  */
-export function validateName(name: string, fieldName = "Name", minLength = 2): string | null {
+export function validateName(name: string, fieldName = "Name", minLength = 2, maxLength = 50): string | null {
   const trimmed = (name || "").trim();
   if (!trimmed) {
     return `${fieldName} is required`;
@@ -55,8 +57,8 @@ export function validateName(name: string, fieldName = "Name", minLength = 2): s
   if (trimmed.length < minLength) {
     return `${fieldName} must be at least ${minLength} characters`;
   }
-  if (trimmed.length > 70) {
-    return `${fieldName} cannot exceed 70 characters`;
+  if (trimmed.length > maxLength) {
+    return `${fieldName} cannot exceed ${maxLength} characters`;
   }
   if (!NAME_REGEX.test(trimmed)) {
     return `${fieldName} can only contain letters, spaces, and hyphens`;
@@ -67,11 +69,14 @@ export function validateName(name: string, fieldName = "Name", minLength = 2): s
 /**
  * Validates optional name (only validates if user typed something)
  */
-export function validateOptionalName(name: string, fieldName = "Name"): string | null {
+export function validateOptionalName(name: string, fieldName = "Name", maxLength = 50): string | null {
   const trimmed = (name || "").trim();
   if (!trimmed) return null;
   if (trimmed.length < 2) {
     return `${fieldName} must be at least 2 characters`;
+  }
+  if (trimmed.length > maxLength) {
+    return `${fieldName} cannot exceed ${maxLength} characters`;
   }
   if (!NAME_REGEX.test(trimmed)) {
     return `${fieldName} can only contain letters, spaces, and hyphens`;
@@ -80,12 +85,15 @@ export function validateOptionalName(name: string, fieldName = "Name"): string |
 }
 
 /**
- * Validates email address format
+ * Validates email address format and length limit
  */
-export function validateEmail(email: string): string | null {
+export function validateEmail(email: string, maxLength = 80): string | null {
   const trimmed = (email || "").trim();
   if (!trimmed) {
     return "Email address is required";
+  }
+  if (trimmed.length > maxLength) {
+    return `Email address cannot exceed ${maxLength} characters`;
   }
   if (!EMAIL_REGEX.test(trimmed)) {
     return "Please enter a valid email address (e.g. name@company.com)";
@@ -94,9 +102,9 @@ export function validateEmail(email: string): string | null {
 }
 
 /**
- * Validates phone numbers (supports Indian & International formats)
+ * Validates phone numbers (enforces 10-digit mobile number)
  */
-export function validatePhone(phone: string, required = false): string | null {
+export function validatePhone(phone: string, required = false, exactTenDigits = true): string | null {
   const trimmed = (phone || "").trim();
   if (!trimmed) {
     return required ? "Phone number is required" : null;
@@ -107,9 +115,28 @@ export function validatePhone(phone: string, required = false): string | null {
   }
 
   // Count raw digits
-  const digitCount = trimmed.replace(/\D/g, "").length;
-  if (digitCount < 7 || digitCount > 15) {
-    return "Phone number must contain between 7 and 15 digits";
+  const rawDigits = trimmed.replace(/\D/g, "");
+
+  if (exactTenDigits) {
+    // Extract core 10 digits if user prefixed with country code (+91 or leading 0)
+    const coreDigits =
+      rawDigits.startsWith("91") && rawDigits.length === 12
+        ? rawDigits.slice(2)
+        : rawDigits.startsWith("0") && rawDigits.length === 11
+        ? rawDigits.slice(1)
+        : rawDigits;
+
+    if (coreDigits.length !== 10) {
+      return "Phone number must be exactly 10 digits";
+    }
+
+    if (/^0{10}$/.test(coreDigits)) {
+      return "Please enter a valid 10-digit phone number";
+    }
+  } else {
+    if (rawDigits.length < 7 || rawDigits.length > 15) {
+      return "Phone number must contain between 7 and 15 digits";
+    }
   }
 
   return null;
@@ -141,7 +168,7 @@ export function validateOptionalText(value: string, fieldName: string, minLength
   return null;
 }
 
-/**
+/*
  * Validates dropdown selects
  */
 export function validateSelect(value: string, fieldName: string): string | null {
@@ -174,17 +201,21 @@ export function validateMessage(message: string, minLength = 10, maxLength = 200
  * Ensures identical rules for required vs optional, min/max lengths, and regex formats.
  */
 export function validateStandardField(fieldName: string, value: string): string | null {
+  if (value && containsSuspiciousPayload(value)) {
+    return "Invalid or unsafe input characters detected";
+  }
+
   switch (fieldName) {
     case "name":
-      return validateName(value, "Name", FIELD_REQUIREMENTS.name.minLength);
+      return validateName(value, "Name", FIELD_REQUIREMENTS.name.minLength, FIELD_REQUIREMENTS.name.maxLength);
     case "firstName":
-      return validateName(value, "First name", FIELD_REQUIREMENTS.name.minLength);
+      return validateName(value, "First name", FIELD_REQUIREMENTS.name.minLength, FIELD_REQUIREMENTS.name.maxLength);
     case "lastName":
-      return validateOptionalName(value, "Last name");
+      return validateOptionalName(value, "Last name", FIELD_REQUIREMENTS.name.maxLength);
     case "email":
-      return validateEmail(value);
+      return validateEmail(value, FIELD_REQUIREMENTS.email.maxLength);
     case "phone":
-      return validatePhone(value, FIELD_REQUIREMENTS.phone.required);
+      return validatePhone(value, true, true);
     case "company":
       return validateOptionalText(value, "Company name", FIELD_REQUIREMENTS.company.minLength);
     case "city":

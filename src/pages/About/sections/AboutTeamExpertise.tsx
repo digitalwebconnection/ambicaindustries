@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Users2 } from "lucide-react";
-import imgTeamFounder from "../../../assets/images/about/team-founder.jpg";
-import imgTeamShailesh from "../../../assets/images/about/team-shailesh.jpg";
-import imgTeamSamir from "../../../assets/images/about/team-samir.jpg";
+import imgTeamFounder from "../../../assets/images/about/team-founder.webp";
+import imgTeamShailesh from "../../../assets/images/about/team-shailesh.webp";
+import imgTeamSamir from "../../../assets/images/about/team-samir.webp";
 
 interface Partner {
   number: string;
@@ -41,7 +41,7 @@ const partners: Partner[] = [
 
 export default function AboutTeamExpertise() {
   return (
-    <section className="py-20 lg:py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200/80">
+    <section className="py-12 sm:py-16 lg:py-24 relative overflow-hidden bg-slate-50/70 border-t border-slate-200/80">
       {/* Ambient background dots */}
       <div
         className="absolute inset-0 opacity-30 mask-[radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none"
@@ -62,7 +62,7 @@ export default function AboutTeamExpertise() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center max-w-2xl mx-auto mb-8 sm:mb-16"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-red/10 border border-accent-red/20 mb-4">
             <Users2 size={14} className="text-accent-red" />

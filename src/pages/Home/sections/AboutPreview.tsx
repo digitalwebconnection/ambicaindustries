@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'framer-motion';
 import { ArrowRight, Award, Gem, Factory } from 'lucide-react';
 
-import mainImg from '../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg';
-import secondaryImg from '../../../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory (1).jpg';
+import mainImg from '../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp';
+import secondaryImg from '../../../assets/images/hero/vibrant-dyeing-bleaching-linen-fabric-factory (1).webp';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -12,7 +12,7 @@ const fadeUp: Variants = {
 
 export default function AboutPreview() {
   return (
-    <section className="py-8 lg:py-14 relative overflow-hidden bg-slate-50">
+    <section className="pt-8 pb-16 lg:py-14 relative overflow-hidden bg-slate-50">
       {/* Decorative Background Elements */}
       <div className="absolute -top-40 -right-40 w-125 h-125 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(217, 23, 156, 0.05) 0%, transparent 70%)' }} />
       <div className="absolute bottom-0 left-0 w-100 h-100 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(253, 195, 1, 0.05) 0%, transparent 70%)' }} />
@@ -23,31 +23,31 @@ export default function AboutPreview() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           transition={{ staggerChildren: 0.1 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-24 items-center"
         >
           {/* Left Content Section */}
           <motion.div variants={fadeUp} className="max-w-2xl">
-            <div className="inline-flex items-center gap-4 mb-6">
-              <span className="h-0.5 w-10 bg-primary rounded-full" />
-              <span className="text-primary font-bold text-sm uppercase tracking-widest">
+            <div className="inline-flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <span className="h-0.5 w-8 sm:w-10 bg-primary rounded-full" />
+              <span className="text-primary font-bold text-xs sm:text-sm uppercase tracking-widest">
                 WELCOME TO AMBICA INDUSTRY
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-primary-dark mb-8 leading-[1.1]">
+            <h2 className="text-3xl sm:text-5xl lg:text-[56px] font-extrabold text-primary-dark mb-6 sm:mb-8 leading-[1.15]">
               Textile & Paper Dyes <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-red to-accent-red-dark">
                 Manufacturer
               </span>
             </h2>
 
-            <p className="text-slate-600 text-lg text-justify leading-relaxed mb-10">
+            <p className="text-slate-600 text-sm sm:text-base lg:text-lg text-left sm:text-justify leading-relaxed mb-6 sm:mb-10">
               Since 1986, Ambica Industry has been a trusted leader in manufacturing high-quality, reliable, and innovative dye solutions specifically tailored for the textile and paper sectors. Founded by our father, we proudly carry forward a second-generation legacy of excellence. Today, we specialize in developing vibrant, deep-penetrating, and long-lasting colors that meet the strict performance demands of fashion, home textiles, industrial fabrics, and diverse paper manufacturing processes worldwide.
             </p>
 
             <Link
               to="/#about"
-              className="group inline-flex items-center gap-3 px-8 py-2.5 bg-primary text-white rounded-full font-semibold text-[15px] hover:bg-accent-red transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-accent-red/30"
+              className="group inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3 sm:py-2.5 bg-primary text-white rounded-full font-semibold text-[15px] hover:bg-accent-red transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-accent-red/30 active:scale-95"
             >
               About Read More
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -55,7 +55,7 @@ export default function AboutPreview() {
           </motion.div>
 
           {/* Right Image & Glass Stats Section */}
-          <motion.div variants={fadeUp} className="relative mt-12 lg:mt-0">
+          <motion.div variants={fadeUp} className="relative mt-8 sm:mt-12 lg:mt-0 mb-6 sm:mb-0">
             {/* Main Image */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl aspect-200/190 w-full max-w-125 ml-auto">
               <img
@@ -80,7 +80,7 @@ export default function AboutPreview() {
             </div>
 
             {/* Floating Stats Card */}
-            <div className="absolute -bottom-8 lg:-bottom-12 -left-4 sm:left-4 lg:-left-12 right-0 sm:right-auto bg-white p-4 sm:py-5 sm:px-6 rounded-xl shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] z-30 border border-slate-50">
+            <div className="absolute -bottom-8 lg:-bottom-12 left-0 right-0 sm:left-4 lg:-left-12 sm:right-auto bg-white p-3.5 sm:py-5 sm:px-6 rounded-2xl shadow-xl sm:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.15)] z-30 border border-slate-100 sm:border-slate-50">
               <div className="flex items-center justify-between gap-3 sm:gap-5 divide-x divide-slate-100">
 
                 {/* Stat 1 */}

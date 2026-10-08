@@ -102,7 +102,7 @@ export default function TermsOfService() {
     };
 
     return (
-        <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-16 md:py-20">
+        <section className="relative overflow-hidden bg-linear-to-b from-slate-50 via-white to-slate-100 py-10 sm:py-16 md:py-20">
             <SEO
                 title={seoConfig.termsOfService.title}
                 description={seoConfig.termsOfService.description}
@@ -115,22 +115,22 @@ export default function TermsOfService() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="mb-10  p-6 md:p-10"
+                    className="mb-6 sm:mb-10 p-2 sm:p-6 md:p-10"
                 >
-                    <h1 className="text-3xl font-black tracking-tight text-accent-red md:text-5xl">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-black tracking-tight text-accent-red">
                         {termsOfService.title}
                     </h1>
 
-                    <p className="mt-3 text-sm text-slate-500 md:text-base">
+                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-slate-500 md:text-base">
                         Last Revised: {termsOfService.lastUpdated}
                     </p>
 
-                    <p className="mt-3 max-w-4xl text-base leading-7 tracking-wide text-slate-600 md:text-lg">
+                    <p className="mt-3 max-w-4xl text-sm sm:text-base leading-relaxed tracking-wide text-slate-600 md:text-lg">
                         {termsOfService.intro.description}
                     </p>
                 </motion.div>
 
-                <div className="max-w-4xl space-y-8">
+                <div className="max-w-4xl space-y-4 sm:space-y-8">
                     {termsOfService.sections.map((section) => (
                         <motion.section
                             key={section.id}
@@ -138,7 +138,7 @@ export default function TermsOfService() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5 }}
-                            className="border-b border-slate-200  p-6 "
+                            className="border-b border-slate-200 p-3 sm:p-6"
                         >
                             <h2 className="text-xl font-bold text-primary md:text-2xl">
                                 {section.id}. {section.title}

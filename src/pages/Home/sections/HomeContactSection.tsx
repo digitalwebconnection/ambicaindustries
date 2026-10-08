@@ -247,8 +247,8 @@ export default function HomeContactSection() {
           {/* Right Side: Contact Form */}
           <motion.div variants={fadeUp} className="relative">
             {/* Form Card */}
-            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,58,124,0.08)] border border-slate-300 p-6 md:p-8 relative z-20">
-              <h3 className="text-xl font-bold text-primary-dark mb-6">Send a Message</h3>
+            <div className="bg-white rounded-xl shadow-[0_10px_40px_-10px_rgba(0,58,124,0.08)] border border-slate-300 p-4 sm:p-6 md:p-8 relative z-20">
+              <h3 className="text-xl font-bold text-primary-dark mb-4 sm:mb-6">Send a Message</h3>
               
               {formStatus === "success" && (
                 <div className="mb-4 p-4 bg-emerald-50 border border-emerald-200 rounded-lg flex items-start gap-3">
@@ -277,7 +277,7 @@ export default function HomeContactSection() {
                       onBlur={handleBlur}
                       placeholder="John" 
                       aria-invalid={!!errors.firstName}
-                      className={`w-full px-4 py-2.5 rounded-lg text-sm transition-all outline-none ${
+                      className={`w-full px-4 py-2.5 rounded-lg text-[16px] sm:text-sm transition-all outline-none ${
                         errors.firstName
                           ? "bg-red-50/40 border border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200"
                           : "bg-slate-50 border border-slate-200 focus:border-primary-dark focus:ring-1 focus:ring-[#003A7C]"
@@ -296,7 +296,7 @@ export default function HomeContactSection() {
                       onBlur={handleBlur}
                       placeholder="Doe" 
                       aria-invalid={!!errors.lastName}
-                      className={`w-full px-4 py-2.5 rounded-lg text-sm transition-all outline-none ${
+                      className={`w-full px-4 py-2.5 rounded-lg text-[16px] sm:text-sm transition-all outline-none ${
                         errors.lastName
                           ? "bg-red-50/40 border border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200"
                           : "bg-slate-50 border border-slate-200 focus:border-primary-dark focus:ring-1 focus:ring-[#003A7C]"
@@ -319,7 +319,7 @@ export default function HomeContactSection() {
                     onBlur={handleBlur}
                     placeholder="john@example.com" 
                     aria-invalid={!!errors.email}
-                    className={`w-full px-4 py-2.5 rounded-lg text-sm transition-all outline-none ${
+                    className={`w-full px-4 py-2.5 rounded-lg text-[16px] sm:text-sm transition-all outline-none ${
                       errors.email
                         ? "bg-red-50/40 border border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200"
                         : "bg-slate-50 border border-slate-200 focus:border-primary-dark focus:ring-1 focus:ring-[#003A7C]"
@@ -341,7 +341,7 @@ export default function HomeContactSection() {
                     onBlur={handleBlur}
                     placeholder="+91 90000 00000" 
                     aria-invalid={!!errors.phone}
-                    className={`w-full px-4 py-2.5 rounded-lg text-sm transition-all outline-none ${
+                    className={`w-full px-4 py-2.5 rounded-lg text-[16px] sm:text-sm transition-all outline-none ${
                       errors.phone
                         ? "bg-red-50/40 border border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200"
                         : "bg-slate-50 border border-slate-200 focus:border-primary-dark focus:ring-1 focus:ring-[#003A7C]"
@@ -368,7 +368,7 @@ export default function HomeContactSection() {
                     onBlur={handleBlur}
                     placeholder="Tell us about your dyeing or product requirements..." 
                     aria-invalid={!!errors.message}
-                    className={`w-full px-4 py-2.5 rounded-lg text-sm transition-all outline-none resize-none ${
+                    className={`w-full px-4 py-2.5 rounded-lg text-[16px] sm:text-sm transition-all outline-none resize-none ${
                       errors.message
                         ? "bg-red-50/40 border border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-200"
                         : "bg-slate-50 border border-slate-200 focus:border-primary-dark focus:ring-1 focus:ring-[#003A7C]"

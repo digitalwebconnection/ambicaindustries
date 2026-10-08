@@ -131,7 +131,7 @@ export default function Enquiry() {
   };
 
   const getInputClass = (fieldName: string) =>
-    `w-full px-4 py-3 border rounded-xl outline-none transition-all text-sm ${
+    `w-full px-4 py-3 border rounded-xl outline-none transition-all text-[16px] sm:text-sm ${
       errors[fieldName]
         ? 'border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-red-200 focus:border-red-500'
         : 'border-gray-200 focus:ring-2 focus:ring-primary/20 focus:border-primary'
@@ -151,13 +151,13 @@ export default function Enquiry() {
       />
       <Breadcrumb title="Enquiry" items={[{ label: 'Enquiry' }]} />
 
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-10 sm:py-16 md:py-24 bg-gray-50">
         <div className="max-w-200 mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-card p-8 md:p-12"
+            className="bg-white rounded-2xl shadow-card p-5 sm:p-8 md:p-12"
           >
             {submitted ? (
               <div className="text-center py-16">

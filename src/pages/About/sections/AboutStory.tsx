@@ -3,12 +3,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useReveal } from "../../../hooks/useReveal";
 import { BorderBeam } from "../../../components/ui/BorderBeam";
 
-import imgStep1 from "/about-us.jpg";
-import imgStep2 from "../../../assets/images/hero/dyeing-fabrics-colorful-vats.jpg";
-import imgStep3 from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg";
-import imgStep4 from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.jpg";
-import imgStep5 from "../../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.jpg";
-import imgStep6 from "../../../assets/images/hero/colorful-yarn-bins-textile-factory.jpg";
+import imgStep1 from "/about-us.webp";
+import imgStep2 from "../../../assets/images/hero/dyeing-fabrics-colorful-vats.webp";
+import imgStep3 from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp";
+import imgStep4 from "../../../assets/images/hero/dyeing-textiles-factory-colorful-process.webp";
+import imgStep5 from "../../../assets/images/hero/industrial-paint-mixing-process-with-colorful-paint-buckets.webp";
+import imgStep6 from "../../../assets/images/hero/colorful-yarn-bins-textile-factory.webp";
 
 export interface TimelineStep {
   step: string;

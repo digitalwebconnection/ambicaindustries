@@ -26,7 +26,7 @@ export default function TopBar() {
             <Phone size={11} className="sm:size-3 text-white group-hover:scale-110 transition-transform" />
           </div>
           <span className="truncate whitespace-nowrap text-[10px] sm:text-[12px] tracking-wide font-extrabold pr-2">
-            Call Us : {siteConfig.phone.india}
+            <span className="hidden sm:inline">Call Us : </span>{siteConfig.phone.india}
           </span>
         </a>
         

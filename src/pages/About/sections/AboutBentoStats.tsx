@@ -1,4 +1,4 @@
-import bentoImg from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.jpg";
+import bentoImg from "../../../assets/images/hero/rows-colorful-dye-vats-industrial-factory.webp";
 
 interface BentoCardProps {
   number: string;
@@ -95,8 +95,8 @@ export default function AboutBentoStats() {
           </div>
 
           {/* Right Column: Tall Photo Card (Col 8-12) */}
-          <div className="lg:col-span-5 h-full min-h-85 sm:min-h-100 lg:min-h-full">
-            <div className="group relative h-full w-full rounded-md sm:rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-black/3 ">
+          <div className="lg:col-span-5 h-full min-h-64 sm:min-h-80 lg:min-h-full">
+            <div className="group relative h-full w-full rounded-lg sm:rounded-xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-black/3 ">
               <img
                 src={bentoImg}
                 alt="Ambica Industry Production Facility & Dye Vats"

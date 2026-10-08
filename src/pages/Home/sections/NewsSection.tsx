@@ -18,17 +18,17 @@ export default function NewsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           transition={{ staggerChildren: 0.08 }}
-          className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16"
+          className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 sm:gap-8 mb-8 sm:mb-16"
         >
           <div className="max-w-2xl relative">
-            <motion.div variants={fadeUp} className="inline-flex items-center gap-4 mb-6">
-              <span className="h-0.5 w-10 bg-primary-dark rounded-full" />
-              <span className="text-primary-dark font-bold text-sm uppercase tracking-widest">
-                News & Insights
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-3 sm:gap-4 mb-3 sm:mb-6">
+              <span className="h-0.5 w-8 sm:w-10 bg-primary-dark rounded-full" />
+              <span className="text-primary-dark font-bold text-xs sm:text-sm uppercase tracking-widest">
+                News &amp; Insights
               </span>
             </motion.div>
-            <motion.h2 variants={fadeUp} className="text-3xl md:text-5xl font-extrabold text-primary-dark leading-[1.1] mb-2">
-              Latest Updates & <br/>
+            <motion.h2 variants={fadeUp} className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-dark leading-[1.15] md:leading-[1.1] mb-2">
+              Latest Updates &amp; <br/>
               <span className="text-transparent bg-clip-text bg-linear-to-r from-accent-red to-accent-red-dark">
                 Industry Perspectives
               </span>
