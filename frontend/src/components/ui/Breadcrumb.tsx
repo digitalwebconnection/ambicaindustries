@@ -47,11 +47,11 @@ export default function Breadcrumb({
 
   return (
     <section
-      className={`relative min-h-[300px] sm:min-h-[360px] md:min-h-[420px] overflow-hidden flex items-center bg-slate-950 text-white ${className}`}
+      className={`relative min-h-75 sm:min-h-90 md:min-h-105 overflow-hidden flex items-center bg-slate-950 text-white ${className}`}
     >
       {/* ================= 1. BASE DEEP COLOR MESH BACKGROUND ================= */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#020b14] via-[#041c38] to-[#0a0720]"
+        className="absolute inset-0 bg-linear-to-br from-[#020b14] via-[#041c38] to-[#0a0720]"
         aria-hidden="true"
       />
 
@@ -74,7 +74,7 @@ export default function Breadcrumb({
           rotate: [0, 180, 360],
         }}
         transition={{ repeat: Infinity, duration: 12, ease: 'easeInOut' }}
-        className="absolute -top-32 -left-20 w-[480px] h-[480px] rounded-full bg-gradient-to-br from-rose-600/60 via-pink-600/50 to-transparent blur-[110px] pointer-events-none"
+        className="absolute -top-32 -left-20 w-120 h-120 rounded-full bg-linear-to-br from-rose-600/60 via-pink-600/50 to-transparent blur-[110px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -87,7 +87,7 @@ export default function Breadcrumb({
           rotate: [360, 180, 0],
         }}
         transition={{ repeat: Infinity, duration: 15, ease: 'easeInOut' }}
-        className="absolute -bottom-32 -right-20 w-[520px] h-[520px] rounded-full bg-gradient-to-tl from-cyan-500/60 via-blue-600/50 to-indigo-700/40 blur-[120px] pointer-events-none"
+        className="absolute -bottom-32 -right-20 w-130 h-130 rounded-full bg-linear-to-tl from-cyan-500/60 via-blue-600/50 to-indigo-700/40 blur-[120px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -99,7 +99,7 @@ export default function Breadcrumb({
           y: [30, -30, 30],
         }}
         transition={{ repeat: Infinity, duration: 9, ease: 'easeInOut' }}
-        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[420px] h-[360px] rounded-full bg-gradient-to-r from-amber-500/45 via-orange-500/40 to-yellow-400/30 blur-[100px] pointer-events-none"
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 w-105 h-90 rounded-full bg-linear-to-r from-amber-500/45 via-orange-500/40 to-yellow-400/30 blur-[100px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -111,7 +111,7 @@ export default function Breadcrumb({
           y: [-30, 35, -30],
         }}
         transition={{ repeat: Infinity, duration: 13, ease: 'easeInOut' }}
-        className="absolute top-1/4 right-1/4 w-[380px] h-[380px] rounded-full bg-purple-600/40 blur-[115px] pointer-events-none"
+        className="absolute top-1/4 right-1/4 w-95 h-95 rounded-full bg-purple-600/40 blur-[115px] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -153,9 +153,8 @@ export default function Breadcrumb({
       {/* ================= 6. HERO CONTENT CONTAINER ================= */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
         <div
-          className={`flex flex-col ${
-            isLeft ? 'items-start text-left' : 'items-center text-center'
-          } max-w-4xl ${isLeft ? '' : 'mx-auto'}`}
+          className={`flex flex-col ${isLeft ? 'items-start text-left' : 'items-center text-center'
+            } max-w-4xl ${isLeft ? '' : 'mx-auto'}`}
         >
           {/* Animated Rainbow Border Badge */}
           {badge && (
@@ -170,7 +169,7 @@ export default function Breadcrumb({
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
-                  className="absolute -inset-[180%] bg-[conic-gradient(from_0deg,#e11d48,#f59e0b,#10b981,#06b6d4,#8b5cf6,#ec4899,#e11d48)]"
+                  className="absolute inset-[-180%] bg-[conic-gradient(from_0deg,#e11d48,#f59e0b,#10b981,#06b6d4,#8b5cf6,#ec4899,#e11d48)]"
                   aria-hidden="true"
                 />
                 <span className="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase bg-slate-950/85 backdrop-blur-2xl text-white/95">
@@ -239,13 +238,13 @@ export default function Breadcrumb({
                   {item.href && !isLast ? (
                     <Link
                       to={item.href}
-                      className="text-slate-200 hover:text-cyan-300 transition-colors font-semibold truncate max-w-[150px] sm:max-w-none"
+                      className="text-slate-200 hover:text-cyan-300 transition-colors font-semibold truncate max-w-37.5 sm:max-w-none"
                     >
                       {item.label}
                     </Link>
                   ) : (
                     <span
-                      className="text-amber-400 font-extrabold truncate max-w-[180px] sm:max-w-xs md:max-w-md"
+                      className="text-amber-400 font-extrabold truncate max-w-45 sm:max-w-xs md:max-w-md"
                       title={item.label}
                     >
                       {item.label}
@@ -263,7 +262,7 @@ export default function Breadcrumb({
         animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
         transition={{ repeat: Infinity, duration: 6, ease: 'linear' }}
         style={{ backgroundSize: '300% 100%' }}
-        className="absolute bottom-0 inset-x-0 h-[3px] bg-gradient-to-r from-accent-red via-accent-gold via-emerald-400 via-cyan-400 via-accent-pink to-accent-red opacity-90 shadow-[0_0_20px_rgba(225,29,72,0.8)]"
+        className="absolute bottom-0 inset-x-0 h-0.75 bg-linear-to-r from-accent-red via-accent-pink to-accent-red opacity-90 shadow-[0_0_20px_rgba(225,29,72,0.8)]"
         aria-hidden="true"
       />
     </section>

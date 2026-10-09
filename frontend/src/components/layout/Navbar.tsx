@@ -181,28 +181,24 @@ export default function Navbar() {
                           handleLinkClick('/products');
                           setDesktopProductsOpen(false);
                         }}
-                        className={`relative inline-flex items-center gap-1.5 px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${
-                          isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
-                        }`}
+                        className={`relative inline-flex items-center gap-1.5 px-4 py-2 text-[15px] font-semibold transition-colors duration-300 group ${isActive ? 'text-accent-red' : 'text-slate-700 hover:text-accent-red'
+                          }`}
                       >
                         <span className="relative z-10">{item.label}</span>
-                        <ChevronDown 
-                          size={14} 
-                          className={`transition-transform duration-300 ${
-                            desktopProductsOpen ? 'rotate-180 text-accent-red' : 'text-slate-400 group-hover:text-accent-red'
-                          }`} 
+                        <ChevronDown
+                          size={14}
+                          className={`transition-transform duration-300 ${desktopProductsOpen ? 'rotate-180 text-accent-red' : 'text-slate-400 group-hover:text-accent-red'
+                            }`}
                         />
                         {scrolled ? (
                           <span
-                            className={`absolute inset-0 bg-accent-red/5 rounded-full scale-50 opacity-0 transition-all duration-300 ease-out ${
-                              isActive ? 'scale-100 opacity-100' : 'group-hover:scale-100 group-hover:opacity-100'
-                            }`}
+                            className={`absolute inset-0 bg-accent-red/5 rounded-full scale-50 opacity-0 transition-all duration-300 ease-out ${isActive ? 'scale-100 opacity-100' : 'group-hover:scale-100 group-hover:opacity-100'
+                              }`}
                           />
                         ) : (
                           <span
-                            className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent-red origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                              isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                            }`}
+                            className={`absolute bottom-0 left-4 right-4 h-0.5 bg-accent-red origin-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                              }`}
                           />
                         )}
                       </Link>
@@ -380,7 +376,7 @@ export default function Navbar() {
             >
               {/* Modern Designed Dual-Accent Line */}
               <div className="h-0.75 w-full flex items-center relative overflow-hidden shrink-0 shadow-xs">
-                <div className="w-1/2 h-full bg-linear-to-r from-red-600 via-accent-red to-accent-red-dark" />  
+                <div className="w-1/2 h-full bg-linear-to-r from-red-600 via-accent-red to-accent-red-dark" />
                 <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-4 bg-linear-to-r from-red-400 via-white to-sky-300 -skew-x-25 shadow-sm z-20" />
                 <div className="w-1/2 h-full bg-linear-to-r from-primary-dark via-primary to-sky-500" />
               </div>

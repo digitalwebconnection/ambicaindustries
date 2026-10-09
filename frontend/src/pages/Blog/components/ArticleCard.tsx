@@ -91,8 +91,8 @@ export default function ArticleCard({ article, index }: ArticleCardProps) {
               />
             ) : (
               /* High-tech chemical dyestuff canvas fallback */
-              <div className="w-full h-full bg-gradient-to-br from-slate-950 via-[#032554] to-slate-900 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden group-hover:scale-105 transition-transform duration-700">
-                <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px] opacity-15" />
+              <div className="w-full h-full bg-linear-to-br from-slate-950 via-[#032554] to-slate-900 flex flex-col items-center justify-center p-6 text-center relative overflow-hidden group-hover:scale-105 transition-transform duration-700">
+                <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[20px_20px] opacity-15" />
                 <div className="absolute -top-10 -right-10 w-36 h-36 bg-accent-red/20 blur-2xl rounded-full" />
                 <div className="absolute -bottom-10 -left-10 w-36 h-36 bg-cyan-500/20 blur-2xl rounded-full" />
 
@@ -109,11 +109,11 @@ export default function ArticleCard({ article, index }: ArticleCardProps) {
             )}
 
             {/* Gradient shadow for text & badge contrast */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-slate-950/70 via-transparent to-slate-950/20 pointer-events-none" />
 
             {/* Magic UI Diagonal Hover Glare sweep */}
             <div
-              className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none -skew-x-12"
+              className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-linear-to-r from-transparent via-white/20 to-transparent pointer-events-none -skew-x-12"
               aria-hidden="true"
             />
 

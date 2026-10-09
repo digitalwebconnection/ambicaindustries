@@ -30,7 +30,7 @@ export default function BlogDetailContent({ content, author }: BlogDetailContent
       </div>
 
       {/* Author Attribution Box */}
-      <div className="mt-12 pt-8 border-t border-slate-100 flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-200/60">
+      <div className="mt-12 pt-8 border-t border-slate-100 flex items-center gap-4 bg-slate-50 p-6 rounded-2xl border">
         <div className="w-12 h-12 rounded-full bg-accent-red/10 border border-accent-red/20 flex items-center justify-center text-accent-red shrink-0">
           <Sparkles size={22} />
         </div>

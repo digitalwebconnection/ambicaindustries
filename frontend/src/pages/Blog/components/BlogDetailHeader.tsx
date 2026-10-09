@@ -88,7 +88,7 @@ export default function BlogDetailHeader({ article }: BlogDetailHeaderProps) {
 
         {/* ================= 3. EDITORIAL LEAD EXCERPT ================= */}
         {article.excerpt && (
-          <div className="relative mb-8 pl-5 py-2 border-l-4 border-accent-red bg-gradient-to-r from-rose-50/60 via-slate-50/40 to-transparent rounded-r-2xl">
+          <div className="relative mb-8 pl-5 py-2 border-l-4 border-accent-red bg-linear-to-r from-rose-50/60 via-slate-50/40 to-transparent rounded-r-2xl">
             <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-sans italic font-normal">
               "{article.excerpt}"
             </p>
@@ -100,7 +100,7 @@ export default function BlogDetailHeader({ article }: BlogDetailHeaderProps) {
           {/* Author Details */}
           <div className="flex items-center gap-3.5 min-w-0">
             {/* Author Avatar with Initials */}
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-dark text-white font-black text-sm flex items-center justify-center shrink-0 shadow-md ring-2 ring-accent-red/20 ring-offset-2">
+            <div className="w-12 h-12 rounded-full bg-linear-to-br from-primary to-primary-dark text-white font-black text-sm flex items-center justify-center shrink-0 shadow-md ring-2 ring-accent-red/20 ring-offset-2">
               {authorInitials}
             </div>
 

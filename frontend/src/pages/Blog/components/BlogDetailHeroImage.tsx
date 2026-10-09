@@ -10,7 +10,7 @@ export default function BlogDetailHeroImage({ article }: BlogDetailHeroImageProp
   const [heroImgError, setHeroImgError] = useState(false);
 
   return (
-    <div className="mb-10 rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 aspect-16/9 sm:aspect-21/9 max-h-[520px] relative group">
+    <div className="mb-10 rounded-3xl overflow-hidden border border-slate-200/90 shadow-xl bg-slate-900 aspect-video sm:aspect-21/9 max-h-130 relative group">
       {!heroImgError && article.imageUrl ? (
         <img
           src={article.imageUrl}
