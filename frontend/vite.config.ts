@@ -27,8 +27,19 @@ export default defineConfig({
     },
   },
   build: {
-    chunkSizeWarningLimit: 1000,
     rollupOptions: {
+      checks: {
+        pluginTimings: false,
+      },
+      onwarn(warning, warn) {
+        if (
+          warning.code === 'PLUGIN_TIMINGS' ||
+          (typeof warning === 'object' && 'code' in warning && warning.code === 'PLUGIN_TIMINGS')
+        ) {
+          return;
+        }
+        warn(warning);
+      },
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
