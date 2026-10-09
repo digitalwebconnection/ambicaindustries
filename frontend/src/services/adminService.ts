@@ -1,6 +1,7 @@
 import type { BlogArticle } from '@/types/blog';
 
-const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+const rawUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+const API_BASE = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
 
 const TOKEN_KEY = 'ambica_admin_token';
 const ADMIN_USER_KEY = 'ambica_admin_user';

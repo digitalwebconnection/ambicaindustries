@@ -1,6 +1,7 @@
 import type { BlogArticle, BlogListResponse, SingleBlogResponse } from '@/types/blog';
 
-const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+const rawUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+const API_BASE = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
 
 export interface FetchBlogsParams {
   category?: string;
