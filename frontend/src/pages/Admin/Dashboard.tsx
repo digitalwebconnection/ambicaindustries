@@ -27,17 +27,35 @@ export default function AdminDashboard() {
   const [filterStatus, setFilterStatus] = useState<'all' | 'published' | 'draft'>('all');
   const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
 
+  const [isOffline, setIsOffline] = useState(typeof navigator !== 'undefined' ? !navigator.onLine : false);
+
   const loadData = async (silent = false) => {
+    if (typeof navigator !== 'undefined' && !navigator.onLine) {
+      setIsOffline(true);
+      if (!silent) setLoading(false);
+      return;
+    }
+
     try {
       if (!silent) setLoading(true);
       const [statsData, blogsData] = await Promise.all([
-        adminService.getStats().catch(() => null),
-        adminService.getAllBlogs(),
+        adminService.getStats().catch((err) => {
+          if (!silent) console.warn('Dashboard stats temporarily unavailable:', err?.message);
+          return null;
+        }),
+        adminService.getAllBlogs().catch((err) => {
+          if (!silent) console.warn('Articles temporarily unavailable:', err?.message);
+          return null;
+        }),
       ]);
+
       if (statsData) setStats(statsData);
       if (blogsData) setArticles(blogsData);
+      setIsOffline(false);
     } catch (err) {
-      console.error('Failed to load admin data:', err);
+      if (!silent) {
+        console.error('Failed to load admin data:', err);
+      }
       if ((err as Error).message?.includes('401') || (err as Error).message?.includes('token')) {
         adminService.logout();
         navigate('/admin/login');
@@ -47,23 +65,39 @@ export default function AdminDashboard() {
     }
   };
 
-  // Auth check & load data with 3s auto-refresh
+  // Auth check & load data with auto-refresh and online/offline event listeners
   useEffect(() => {
     if (!adminService.isAuthenticated()) {
       navigate('/admin/login');
       return;
     }
+
     loadData(false);
 
-    // Auto update views, analytics and articles every 3 seconds
+    const handleOnline = () => {
+      setIsOffline(false);
+      loadData(false);
+    };
+
+    const handleOffline = () => {
+      setIsOffline(true);
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    // Auto update views, analytics and articles every 5 seconds when online
     const intervalId = window.setInterval(() => {
-      // Pause background updates if editor modal is open to avoid conflict
-      if (!modalOpen) {
+      if (!modalOpen && (typeof navigator === 'undefined' || navigator.onLine)) {
         loadData(true);
       }
-    }, 3000);
+    }, 5000);
 
-    return () => window.clearInterval(intervalId);
+    return () => {
+      window.clearInterval(intervalId);
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
   }, [navigate, modalOpen]);
 
   const handleLogout = () => {
@@ -165,6 +199,22 @@ export default function AdminDashboard() {
           loading={loading}
           onRefresh={() => loadData(false)}
         />
+
+        {/* Offline Notification Bar */}
+        {isOffline && (
+          <div className="bg-amber-500 text-white px-4 py-2 text-xs font-semibold flex items-center justify-between shadow-xs z-10">
+            <div className="flex items-center gap-2">
+              <span className="inline-block w-2 h-2 rounded-full bg-white animate-ping" />
+              <span>Internet disconnected. Working in offline mode — data will automatically update once reconnected.</span>
+            </div>
+            <button
+              onClick={() => loadData(false)}
+              className="text-xs bg-white/20 hover:bg-white/30 px-2.5 py-1 rounded cursor-pointer transition-colors font-medium"
+            >
+              Retry Connection
+            </button>
+          </div>
+        )}
 
         {/* Dynamic Body Content */}
         <main data-lenis-prevent className="flex-1 overflow-y-auto p-6 sm:p-8 bg-slate-50/60">
