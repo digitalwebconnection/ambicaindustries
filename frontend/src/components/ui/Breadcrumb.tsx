@@ -205,7 +205,7 @@ export default function Breadcrumb({
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-sm sm:text-base md:text-lg text-slate-100/90 leading-relaxed max-w-2xl mb-7 font-normal drop-shadow-sm line-clamp-3"
+              className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-6xl mb-7 font-normal drop-shadow-sm line-clamp-3"
             >
               {subtitle}
             </motion.p>
