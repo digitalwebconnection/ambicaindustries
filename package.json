@@ -5,11 +5,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "npm --prefix backend install",
+    "build": "node build-frontend.js",
     "postinstall": "npm --prefix backend install",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
-    "build:frontend": "npm --prefix frontend run build",
+    "build:frontend": "node build-frontend.js",
+    "build:backend": "npm --prefix backend install",
     "start:backend": "npm --prefix backend start",
     "install:all": "npm --prefix frontend install && npm --prefix backend install"
   }
