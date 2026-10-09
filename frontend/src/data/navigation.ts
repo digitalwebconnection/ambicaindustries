@@ -21,6 +21,7 @@ export const mainNavItems: NavItem[] = [
       })),
     })),
   },
+  { label: 'Blog', href: '/blogs' },
   { label: 'Contact Us', href: '/contact' },
 ];
 
@@ -31,5 +32,6 @@ export const quickNavItems = [
   { label: 'Industry', href: '/industry' },
   { label: 'R&D', href: '/r&d' },
   { label: 'Why Us', href: '/why-choose-us' },
+  { label: 'Blog', href: '/blogs' },
   { label: 'Contact Us', href: '/contact' },
 ];

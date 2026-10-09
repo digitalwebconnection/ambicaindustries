@@ -13,6 +13,10 @@ const ProductCategory = lazy(() => import('@/pages/ProductCategory'));
 const Enquiry = lazy(() => import('@/pages/Enquiry'));
 const PrivacyPolicy = lazy(() => import('@/pages/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('@/pages/TermsOfService'));
+const Blog = lazy(() => import('@/pages/Blog'));
+const BlogDetail = lazy(() => import('@/pages/Blog/BlogDetail'));
+const AdminDashboard = lazy(() => import('@/pages/Admin/Dashboard'));
+const AdminLogin = lazy(() => import('@/pages/Admin/Login'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
 /**
@@ -54,6 +58,12 @@ export default function AppRoutes() {
 
         <Route path="/contact" element={<Contact />} />
         <Route path="/enquiry" element={<Enquiry />} />
+        <Route path="/blogs" element={<Blog />} />
+        <Route path="/blogs/:slug" element={<BlogDetail />} />
+        <Route path="/blog" element={<Navigate to="/blogs" replace />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/termsof-service" element={<TermsOfService />} />
         <Route path="*" element={<NotFound />} />

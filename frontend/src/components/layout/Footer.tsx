@@ -57,8 +57,9 @@ export default function Footer() {
               {[
                 { name: 'About', path: '/about' },
                 { name: 'Products', path: '/products' },
-                { name: 'Contact', path: '/contact' },
+                { name: 'Blog & Articles', path: '/blogs' },
                 { name: 'R&D', path: '/r&d' },
+                { name: 'Contact', path: '/contact' },
               ].map((item) => (
                 <li key={item.name}>
                   <Link to={item.path} className="text-white/60 hover:text-white transition-colors flex items-center group">

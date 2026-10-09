@@ -135,7 +135,7 @@ export default function RnDExpertise() {
                             return (
                                 <div
                                     key={index}
-                                    className="group relative flex flex-col justify-end min-h-64 sm:min-h-72 overflow-hidden rounded-xl shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg shadow-black/40 md:col-span-1"
+                                    className="group relative flex flex-col justify-end min-h-64 sm:min-h-56 overflow-hidden rounded-xl shadow-sm transition-all duration-700 hover:-translate-y-1 hover:shadow-lg shadow-black/80 md:col-span-1"
                                 >
                                     <img
                                         src={item.image}

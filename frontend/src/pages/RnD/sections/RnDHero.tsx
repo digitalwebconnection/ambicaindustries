@@ -30,7 +30,7 @@ const images = [
     label: "Metal Complex",
     border: "border border-accent-red",
     size: "w-32 h-32 sm:w-40 sm:h-40 lg:w-50 lg:h-50",
-    position: "bottom-2 right-8 sm:bottom-4 sm:right-14 lg:bottom-auto lg:top-60 lg:left-60 lg:right-auto",
+    position: "bottom-2 right-8 sm:bottom-4 sm:right-14 lg:bottom-auto lg:top-60 lg:left-55 lg:right-auto",
     z: "z-10",
   },
 ];

@@ -38,6 +38,29 @@ function ScrollHandler() {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { pathname } = useLocation();
+  const isAdminRoute = pathname.startsWith('/admin');
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (isAdminRoute && lenis) {
+      lenis.stop();
+      return () => {
+        lenis.start();
+      };
+    } else if (lenis) {
+      lenis.start();
+    }
+  }, [isAdminRoute, lenis]);
+
+  if (isAdminRoute) {
+    return (
+      <main data-lenis-prevent className="min-h-screen">
+        {children}
+      </main>
+    );
+  }
+
   return (
     <>
       <ScrollHandler />

@@ -60,7 +60,7 @@ export default function RnDQuality() {
           transition={{ duration: 0.6 }}
           className="mx-auto mb-14 max-w-3xl text-center"
         >
-          <span className="mb-4 inline-block text-sm font-bold uppercase tracking-[2.5px] text-accent-red">
+          <span className="mb-2 inline-block text-sm font-bold uppercase tracking-[2.5px] text-accent-red">
             Quality in Every Development
           </span>
 
@@ -96,13 +96,13 @@ export default function RnDQuality() {
                 </span>
               </h3>
 
-              <p className="mt-5 leading-7 text-left sm:text-justify text-slate-600">
+              <p className="mt-3 leading-7 text-left sm:text-justify text-slate-600">
                 Every formulation is evaluated with practical application and
                 manufacturing requirements in mind. This helps us develop dye
                 solutions that deliver reliable and repeatable performance.
               </p>
         
-              <div className="mt-8 border-l-4 border-accent-red bg-slate-50 p-5">
+              <div className="mt-4 border-l-4 border-accent-red bg-slate-50 p-3">
                 <p className="text-sm font-bold uppercase tracking-wider text-slate-500">
                   Our Objective
                 </p>
@@ -135,7 +135,7 @@ export default function RnDQuality() {
                     <div
                       className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${point.bg}`}
                     >
-                      <Icon className={`h-5 w-5 ${point.color}`} />
+                      <Icon className={`h-5 w-5 ${point.color} group-hover:rotate-360 transition-all duration-300`} />
                     </div>
 
                     <span className="font-semibold leading-5 text-slate-700">

@@ -91,4 +91,12 @@ export const seoConfig: Record<string, PageSEOConfig> = {
     keywords: '404 not found, page missing',
     canonical: '/404',
   },
+  blogs: {
+    title: 'Industry Insights & Technical Blog | Ambica Industry',
+    description:
+      'Stay updated with expert chemical insights, formulation guides, application techniques, and sustainable dyeing practices from Ambica Industry’s color chemistry specialists.',
+    keywords:
+      'dyes technical blog, textile dyeing guides, reactive dye fixation, leather acid dyes, direct dyes troubleshooting, color chemistry insights, Ambica Industry blog',
+    canonical: '/blogs',
+  },
 };
