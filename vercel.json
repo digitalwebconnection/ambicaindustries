@@ -1,6 +1,6 @@
 {
-  "buildCommand": "node build-frontend.js",
-  "outputDirectory": "dist",
+  "buildCommand": "npm --prefix frontend run build",
+  "outputDirectory": "frontend/dist",
   "rewrites": [
     {
       "source": "/sitemap.xml",

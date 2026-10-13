@@ -4,15 +4,17 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "build": "node build-frontend.js",
-    "postinstall": "npm --prefix backend install",
+    "dev": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
-    "build:frontend": "node build-frontend.js",
+    "build": "npm --prefix frontend run build",
+    "build:frontend": "npm --prefix frontend run build",
     "build:backend": "npm --prefix backend install",
-    "start:backend": "npm --prefix backend start",
+    "start": "npm --prefix backend start",
+    "start:root": "node server.js",
+    "test": "npm --prefix backend test",
+    "test:backend": "npm --prefix backend test",
+    "postinstall": "npm --prefix backend install",
     "install:all": "npm --prefix frontend install && npm --prefix backend install"
   }
 }

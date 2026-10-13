@@ -1,3 +1,14 @@
+/**
+ * Ambica Industries - Root Server Entry Point
+ * 
+ * Thin proxy launcher that delegates to the canonical backend server
+ * at `backend/src/server.js` with the correct working directory context.
+ * 
+ * For direct backend startup, prefer running:
+ *   npm --prefix backend start
+ * or from root:
+ *   npm start
+ */
 import { spawn } from 'child_process';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -5,7 +16,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const backendDir = path.join(__dirname, 'backend');
 
-console.log('🚀 Forwarding to backend server from root entry point...');
+console.log('🚀 [Root Launcher] Forwarding to backend server (backend/src/server.js)...');
 
 const child = spawn(process.execPath, ['src/server.js'], {
   cwd: backendDir,

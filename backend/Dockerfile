@@ -1,4 +1,4 @@
-# Multi-stage production Dockerfile for Sunny Solar Express Backend
+# Production Dockerfile for Ambica Industries Express Backend
 FROM node:22-alpine AS runner
 
 WORKDIR /app

@@ -12,7 +12,7 @@ const startServer = async () => {
 
     app.listen(PORT, () => {
       console.log(`=================================`);
-      console.log(`🚀 Sunny Solar Backend Server`);
+      console.log(`🚀 Ambica Industries Backend Server`);
       console.log(`📡 URL: http://localhost:${PORT}`);
       console.log(`🩺 Health: http://localhost:${PORT}/api/health`);
       console.log(`📝 Blogs API: http://localhost:${PORT}/api/blogs`);
