@@ -32,6 +32,7 @@ export const createRateLimiter = ({
       return next();
     }
 
+    const record = ipHits.get(ip);
     if (!record) {
       ipHits.set(ip, { count: 1, firstRequest: now });
       return next();

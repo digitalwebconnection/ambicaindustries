@@ -7,17 +7,15 @@ import { fetchBlogs } from '@/services/blogService';
 import type { BlogArticle } from '@/types/blog';
 import {
   ArticleCard,
-  BlogToolbar,
-  BlogLoadingSkeleton,
+  BlogLoader,
   BlogEmptyState,
 } from './components';
+import { FlaskConical, BookOpen, Sparkles, ShieldCheck } from 'lucide-react';
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<BlogArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [searchTerm, setSearchTerm] = useState<string>('');
 
   const loadBlogs = async () => {
     try {
@@ -37,39 +35,24 @@ export default function BlogPage() {
     loadBlogs();
   }, []);
 
-  // Compute available categories 100% dynamically from the database
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    blogs.forEach((b) => {
-      if (b.category?.trim()) set.add(b.category.trim());
+  // Sort blogs: Newest first
+  const sortedBlogs = useMemo(() => {
+    return [...blogs].sort((a, b) => {
+      const dateA = new Date(a.publishDate || a.createdAt || 0).getTime();
+      const dateB = new Date(b.publishDate || b.createdAt || 0).getTime();
+      return dateB - dateA;
     });
-    return ['All', ...Array.from(set)];
   }, [blogs]);
-
-  // Filtered database articles
-  const filteredBlogs = useMemo(() => {
-    return blogs.filter((blog) => {
-      const matchesCategory =
-        selectedCategory === 'All' ||
-        blog.category?.trim().toLowerCase() === selectedCategory.trim().toLowerCase();
-
-      const matchesSearch =
-        !searchTerm.trim() ||
-        blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.excerpt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.category?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.author?.toLowerCase().includes(searchTerm.toLowerCase());
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [blogs, selectedCategory, searchTerm]);
 
   return (
     <>
       <SEO
-        title={seoConfig.blogs?.title || 'Technical Blog | Ambica Industry'}
-        description={seoConfig.blogs?.description || 'Explore color chemistry insights from Ambica Industry.'}
-        keywords={seoConfig.blogs?.keywords || 'dyes blog, textile color chemistry'}
+        title={seoConfig.blogs?.title || 'Technical Blog & Color Chemistry Insights | Ambica Industry'}
+        description={
+          seoConfig.blogs?.description ||
+          'Explore technical insights on industrial dyestuff, color fastness, textile processing, and chemical innovations from Ambica Industry.'
+        }
+        keywords={seoConfig.blogs?.keywords || 'dyes blog, textile color chemistry, acid dyes insights, reactive dyes guides'}
         canonical={seoConfig.blogs?.canonical || '/blogs'}
         schema={createBreadcrumbSchema([
           { name: 'Home', url: '/' },
@@ -79,51 +62,81 @@ export default function BlogPage() {
 
       {/* Header Banner */}
       <Breadcrumb
-        title="Technical Insights & Blog"
-        badge="Ambica Knowledge Hub • Est. 1986"
+        title="Technical Insights & Knowledge Hub"
+        badge="Ambica Industry • Est. 1986"
         subtitle="Exploring color chemistry, industrial dyestuff synthesis, and textile processing innovations."
         items={[{ label: 'Blog & Articles' }]}
       />
 
-      <section className="py-16 bg-slate-50 min-h-screen">
+      {/* Main Blog Content Section */}
+      <section className="py-8 sm:py-10 bg-slate-50/80 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* 1. Search Bar & Category Filter Pills */}
-          <BlogToolbar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            categories={categories}
-            selectedCategory={selectedCategory}
-            setSelectedCategory={setSelectedCategory}
-            totalCount={blogs.length}
-            loading={loading}
-          />
+          
+          {/* ================= 1. INDUSTRIAL STATS / PILLARS RIBBON ================= */}
+          <div className="mb-12 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="bg-white rounded-xl p-4 sm:p-5 border border-slate-400/90 shadow-lg shadow-black/60 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                <FlaskConical size={20} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-extrabold text-slate-900 text-sm sm:text-base">Dye Chemistry</div>
+                <div className="text-xs text-slate-500 truncate">Synthesis &amp; Fastness</div>
+              </div>
+            </div>
 
-          {/* 2. Loading State */}
-          {loading && <BlogLoadingSkeleton />}
+            <div className="bg-white rounded-xl p-4 sm:p-5 border  border-slate-400/90 shadow-lg shadow-black/60 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-accent-red/10 text-accent-red flex items-center justify-center shrink-0">
+                <BookOpen size={20} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-extrabold text-slate-900 text-sm sm:text-base">Technical Guides</div>
+                <div className="text-xs text-slate-500 truncate">Process &amp; Applications</div>
+              </div>
+            </div>
 
-          {/* 3. Error or Empty State */}
-          {!loading && (error || filteredBlogs.length === 0) && (
+            <div className="bg-white rounded-xl p-4 sm:p-5 border  border-slate-400/90 shadow-lg shadow-black/60 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+                <Sparkles size={20} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-extrabold text-slate-900 text-sm sm:text-base">Color Science</div>
+                <div className="text-xs text-slate-500 truncate">Spectrophotometry &amp; Lab</div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-xl p-4 sm:p-5 border  border-slate-400/90 shadow-lg shadow-black/60 flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+                <ShieldCheck size={20} />
+              </div>
+              <div className="min-w-0">
+                <div className="font-extrabold text-slate-900 text-sm sm:text-base">Quality Certified</div>
+                <div className="text-xs text-slate-500 truncate">ISO &amp; Eco Standards</div>
+              </div>
+            </div>
+          </div>
+
+          {/* ================= 2. LOADING STATE ================= */}
+          {loading && <BlogLoader />}
+
+          {/* ================= 3. EMPTY / ERROR STATE ================= */}
+          {!loading && (error || sortedBlogs.length === 0) && (
             <BlogEmptyState
               error={error}
+              loading={loading}
               onRetry={loadBlogs}
-              searchTerm={searchTerm}
-              selectedCategory={selectedCategory}
-              hasTotalArticles={blogs.length > 0}
-              onReset={() => {
-                setSelectedCategory('All');
-                setSearchTerm('');
-              }}
+              hasTotalArticles={false}
             />
           )}
 
-          {/* 4. Database Grid of Articles */}
-          {!loading && !error && filteredBlogs.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogs.map((article, index) => (
+          {/* ================= 4. ARTICLES CARD GRID ================= */}
+          {!loading && !error && sortedBlogs.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pb-12">
+              {sortedBlogs.map((article, index) => (
                 <ArticleCard key={article.slug} article={article} index={index} />
               ))}
             </div>
           )}
+
         </div>
       </section>
     </>

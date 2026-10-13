@@ -1,118 +1,125 @@
-import { Clock, ThumbsDown, Folder, BookOpen } from 'lucide-react';
+import { useMemo } from 'react';
+import {
+  Eye,
+  FileText,
+  Clock,
+  Layers,
+} from 'lucide-react';
 import type { AdminDashboardStats } from '@/services/adminService';
+import type { BlogArticle } from '@/types/blog';
 
 interface AdminAnalyticsSectionProps {
   totalBlogs: number;
   publishedCount: number;
+  draftCount?: number;
   totalReads: number;
   draftPercentage: string;
   stats: AdminDashboardStats | null;
+  articles?: BlogArticle[];
   lastMonthStr: string;
   todayStr: string;
   onNavigateBlog: () => void;
+  onOpenAddModal?: () => void;
 }
 
 export default function AdminAnalyticsSection({
   totalBlogs,
   publishedCount,
+  draftCount = 0,
   totalReads,
-  draftPercentage,
-  stats: _stats,
-  lastMonthStr,
-  todayStr,
-  onNavigateBlog,
+  stats,
+  articles = [],
+
 }: AdminAnalyticsSectionProps) {
+  // Category breakdown calculation
+  const categoryStats = useMemo(() => {
+    if (stats?.categoryCounts && stats.categoryCounts.length > 0) {
+      return stats.categoryCounts.map((c) => ({
+        name: c._id || 'General',
+        count: c.count,
+        percent: totalBlogs > 0 ? Math.round((c.count / totalBlogs) * 100) : 0,
+      }));
+    }
+
+    const counts: Record<string, number> = {};
+    articles.forEach((a) => {
+      const cat = a.category?.trim() || 'General';
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+
+    const list = Object.entries(counts).map(([name, count]) => ({
+      name,
+      count,
+      percent: totalBlogs > 0 ? Math.round((count / totalBlogs) * 100) : 0,
+    }));
+
+    return list.sort((a, b) => b.count - a.count);
+  }, [stats, articles, totalBlogs]);
+
+
+  const cards = [
+    {
+      title: 'Total Readership',
+      value: totalReads.toLocaleString(),
+      subtitle: 'Across all articles',
+      icon: Eye,
+      iconBg: 'bg-blue-50 text-blue-600',
+    },
+    {
+      title: 'Live Publications',
+      value: publishedCount,
+      subtitle: `${publishedCount} of ${totalBlogs} active`,
+      icon: FileText,
+      iconBg: 'bg-emerald-50 text-emerald-600',
+    },
+    {
+      title: 'Draft Articles',
+      value: draftCount,
+      subtitle: draftCount > 0 ? 'Pending review' : 'All articles live',
+      icon: Clock,
+      iconBg: 'bg-amber-50 text-amber-600',
+    },
+    {
+      title: 'Categories',
+      value: categoryStats.length,
+      subtitle: 'Active topic categories',
+      icon: Layers,
+      iconBg: 'bg-purple-50 text-purple-600',
+    },
+  ];
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
-      {/* ================= 1. ROW OF 4 STATS CARDS ================= */}
+      {/* ================= 1. CLEAN 4 KPI CARDS ================= */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* 1. Total Reads */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                {totalReads}
+        {cards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={card.title}
+              className="bg-white rounded-xl p-5 border border-slate-200/90 shadow-lg flex flex-col justify-between hover:border-slate-300 transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                  {card.title}
+                </span>
+                <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${card.iconBg}`}>
+                  <Icon size={18} />
+                </div>
               </div>
-              <div className="text-xs font-semibold text-slate-500 mt-1">Total Reads</div>
-            </div>
-            <div className="w-8 h-8 rounded-full border border-emerald-500/30 flex items-center justify-center text-emerald-500">
-              <Clock size={16} />
-            </div>
-          </div>
-          <div className="flex items-end justify-between pt-6 mt-2 border-t border-slate-100 font-mono text-[11px] text-slate-400">
-            <span>{lastMonthStr}</span>
-            <div className="h-7 w-1.5 bg-indigo-600 rounded-full" />
-            <span>{todayStr}</span>
-          </div>
-        </div>
 
-        {/* 2. % Content in Draft */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                {draftPercentage}%
+              <div className="mt-3">
+                <div className="text-3xl font-black text-slate-900 tracking-tight">
+                  {card.value}
+                </div>
+                <p className="text-xs text-slate-500 mt-1">{card.subtitle}</p>
               </div>
-              <div className="text-xs font-semibold text-slate-500 mt-1">% Content in Draft</div>
             </div>
-            <div className="w-8 h-8 rounded-full border border-rose-400/30 flex items-center justify-center text-rose-500">
-              <ThumbsDown size={16} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between pt-6 mt-2 border-t border-slate-100 font-mono text-[11px] text-slate-400">
-            <span>{lastMonthStr}</span>
-            <span>{todayStr}</span>
-          </div>
-        </div>
-
-        {/* 3. Blog */}
-        <div
-          onClick={onNavigateBlog}
-          className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs flex flex-col justify-between hover:border-accent-red/50 transition-colors cursor-pointer group"
-        >
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-3xl font-extrabold text-slate-900 tracking-tight group-hover:text-accent-red transition-colors">
-                {totalBlogs}
-              </div>
-              <div className="text-xs font-semibold text-slate-500 mt-1">Blog</div>
-            </div>
-            <div className="w-8 h-8 rounded-full border border-blue-400/30 flex items-center justify-center text-blue-500">
-              <Folder size={16} />
-            </div>
-          </div>
-          <div className="flex items-end justify-between pt-6 mt-2 border-t border-slate-100 font-mono text-[11px] text-slate-400">
-            <span>{lastMonthStr}</span>
-            <div className="flex items-end gap-1">
-              <div className="h-7 w-1.5 bg-indigo-600 rounded-full" />
-              <div className="h-4 w-1.5 bg-indigo-600 rounded-full" />
-            </div>
-            <span>{todayStr}</span>
-          </div>
-        </div>
-
-        {/* 4. Knowledge Hub */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/90 shadow-2xs flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="text-3xl font-extrabold text-slate-900 tracking-tight">
-                {publishedCount}
-              </div>
-              <div className="text-xs font-semibold text-slate-500 mt-1">Knowledge Hub</div>
-            </div>
-            <div className="w-8 h-8 rounded-full border border-slate-300 flex items-center justify-center text-slate-700">
-              <BookOpen size={16} />
-            </div>
-          </div>
-          <div className="flex items-center justify-between pt-6 mt-2 border-t border-slate-100 font-mono text-[11px] text-slate-400">
-            <span>{lastMonthStr}</span>
-            <span>{todayStr}</span>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-
+      
     </div>
   );
 }

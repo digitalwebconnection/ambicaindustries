@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import {
   ArrowLeft,
   Clock,
-  Eye,
   Calendar,
   Share2,
   Check,
@@ -86,17 +85,10 @@ export default function BlogDetailHeader({ article }: BlogDetailHeaderProps) {
           {article.title}
         </h1>
 
-        {/* ================= 3. EDITORIAL LEAD EXCERPT ================= */}
-        {article.excerpt && (
-          <div className="relative mb-8 pl-5 py-2 border-l-4 border-accent-red bg-linear-to-r from-rose-50/60 via-slate-50/40 to-transparent rounded-r-2xl">
-            <p className="text-base sm:text-lg md:text-xl text-slate-700 leading-relaxed font-sans italic font-normal">
-              "{article.excerpt}"
-            </p>
-          </div>
-        )}
+
 
         {/* ================= 4. AUTHOR BYLINE & INTERACTIVE SHARE SUITE ================= */}
-        <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200/90 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
           {/* Author Details */}
           <div className="flex items-center gap-3.5 min-w-0">
             {/* Author Avatar with Initials */}
@@ -124,15 +116,7 @@ export default function BlogDetailHeader({ article }: BlogDetailHeaderProps) {
                   <Clock size={12} className="text-slate-400" />
                   {article.readTime || '5 min read'}
                 </span>
-                {article.views !== undefined && (
-                  <>
-                    <span>•</span>
-                    <span className="flex items-center gap-1 text-slate-600">
-                      <Eye size={12} className="text-slate-400" />
-                      {article.views} views
-                    </span>
-                  </>
-                )}
+             
               </div>
             </div>
           </div>

@@ -205,8 +205,8 @@ export const createBlog = async (req, res, next) => {
           day: 'numeric',
           year: 'numeric'
         }),
-      author: author || 'Trent Palmer',
-      authorRole: authorRole || 'Founder & Master Electrician',
+      author: author || 'Ambica Industries',
+      authorRole: authorRole || 'Technical Specialist',
       imageUrl: imageUrl || '/images/blog/default.webp',
       content: content || 'Article content coming soon.',
       keyTakeaways: keyTakeaways || [],

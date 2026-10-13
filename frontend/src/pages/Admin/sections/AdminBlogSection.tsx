@@ -168,12 +168,12 @@ export default function AdminBlogSection({
 
       {/* Main Content: Table or Grid View */}
       {loading ? (
-        <div className="bg-white rounded-2xl border border-slate-200 p-16 text-center text-slate-400 text-xs">
+        <div className="bg-white  border border-slate-200 p-16 text-center text-slate-400 text-xs">
           <RefreshCw size={24} className="animate-spin mx-auto mb-2 text-accent-red" />
           Loading articles from database...
         </div>
       ) : filteredArticles.length === 0 ? (
-        <div className="bg-white rounded-2xl border border-slate-200 p-16 text-center text-slate-400">
+        <div className="bg-white rounded-xl border border-slate-200 p-16 text-center text-slate-400">
           <FileText size={38} className="mx-auto mb-2 text-slate-300" />
           <p className="text-sm font-bold text-slate-700">No articles found</p>
           <p className="text-xs text-slate-400 mt-1 mb-4">
@@ -190,24 +190,24 @@ export default function AdminBlogSection({
         </div>
       ) : viewMode === 'table' ? (
         /* ================= TABLE VIEW WITH THUMBNAILS ================= */
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
-          <div className="overflow-x-auto">
+        <div className="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+          <div className="overflow-x-auto scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                  <th className="py-3.5 px-6">Article</th>
-                  <th className="py-3.5 px-4">Category</th>
-                  <th className="py-3.5 px-4">Author</th>
-                  <th className="py-3.5 px-4">Status</th>
-                  <th className="py-3.5 px-4">Views</th>
-                  <th className="py-3.5 px-6 text-right">Actions</th>
+                  <th className="py-3.5 px-4 sm:px-6">Article</th>
+                  <th className="py-3.5 px-3 sm:px-4">Category</th>
+
+                  <th className="py-3.5 px-3 sm:px-4">Status</th>
+                  <th className="py-3.5 px-3 sm:px-4">Views</th>
+                  <th className="py-3.5 px-4 sm:px-6 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-xs sm:text-sm">
                 {filteredArticles.map((art) => (
                   <tr key={art._id} className="hover:bg-slate-50/60 transition-colors">
                     {/* Article Column with Image Thumbnail */}
-                    <td className="py-4 px-6 max-w-md">
+                    <td className="py-4 px-4 sm:px-6">
                       <div className="flex items-center gap-3.5">
                         <div className="w-14 h-14 rounded-xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 relative group/thumb shadow-2xs">
                           <AdminThumbnail
@@ -217,35 +217,28 @@ export default function AdminBlogSection({
                           />
                         </div>
 
-                        <div className="min-w-0">
+                        <div className="min-w-0 max-w-xs sm:max-w-sm md:max-w-sm">
                           <div className="font-bold text-slate-900 line-clamp-1 mb-0.5">
                             {art.title}
                           </div>
                           <div className="text-xs text-slate-500 line-clamp-1 mb-1">
                             {art.excerpt}
                           </div>
-                          <div className="text-[11px] font-mono text-slate-400 truncate">
-                            /blogs/{art.slug}
-                          </div>
+                         
                         </div>
                       </div>
                     </td>
 
                     {/* Category */}
-                    <td className="py-4 px-4 whitespace-nowrap">
+                    <td className="py-4 px-3 sm:px-4 whitespace-nowrap">
                       <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
                         {art.category}
                       </span>
                     </td>
 
-                    {/* Author */}
-                    <td className="py-4 px-4 whitespace-nowrap text-slate-600 text-xs">
-                      <div className="font-semibold text-slate-800">{art.author}</div>
-                      <div className="text-[11px] text-slate-400">{art.publishDate}</div>
-                    </td>
 
                     {/* Status */}
-                    <td className="py-4 px-4 whitespace-nowrap">
+                    <td className="py-4 px-3 sm:px-4 whitespace-nowrap">
                       <button
                         onClick={() => onTogglePublish(art._id)}
                         disabled={actionLoading}
@@ -266,7 +259,7 @@ export default function AdminBlogSection({
                     </td>
 
                     {/* Views */}
-                    <td className="py-4 px-4 whitespace-nowrap text-xs text-slate-500">
+                    <td className="py-4 px-3 sm:px-4 whitespace-nowrap text-xs text-slate-500">
                       <span className="flex items-center gap-1">
                         <Eye size={12} className="text-slate-400" />
                         {art.views || 0}
@@ -274,7 +267,7 @@ export default function AdminBlogSection({
                     </td>
 
                     {/* Actions */}
-                    <td className="py-4 px-6 text-right whitespace-nowrap">
+                    <td className="py-4 px-4 sm:px-6 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-2">
                         <Link
                           to={`/blogs/${art.slug}`}
@@ -316,7 +309,7 @@ export default function AdminBlogSection({
           {filteredArticles.map((art) => (
             <div
               key={art._id}
-              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group"
             >
               {/* Featured Thumbnail */}
               <div className="relative aspect-video bg-slate-900 overflow-hidden">

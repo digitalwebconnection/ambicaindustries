@@ -10,21 +10,27 @@ export default function BlogDetailContent({ content, author }: BlogDetailContent
   const renderContent = (data: string[] | string) => {
     if (Array.isArray(data)) {
       return data.map((para, i) => (
-        <p key={i} className="text-slate-700 text-base sm:text-lg leading-relaxed mb-6 font-normal">
+        <p
+          key={i}
+          data-toc-heading={i < 6 ? '' : undefined}
+          className={`text-slate-700 text-base sm:text-[17px] leading-[1.85] mb-6 font-normal ${
+            i === 0 ? 'first-letter:text-5xl first-letter:font-serif first-letter:font-black first-letter:text-slate-900 first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:leading-none' : ''
+          }`}
+        >
           {para}
         </p>
       ));
     }
     return (
       <div
-        className="prose prose-slate max-w-none text-slate-700 leading-relaxed"
+        className="prose prose-slate prose-lg max-w-none text-slate-700 leading-[1.85] prose-headings:font-serif prose-headings:tracking-tight prose-h2:text-2xl prose-h2:font-black prose-h2:text-slate-900 prose-h2:mt-10 prose-h2:mb-4 prose-h3:text-xl prose-h3:font-bold prose-p:text-[17px] prose-a:text-accent-red prose-a:font-semibold prose-blockquote:border-l-accent-red prose-blockquote:bg-slate-50 prose-blockquote:rounded-r-xl prose-blockquote:py-3 prose-blockquote:px-5 prose-blockquote:not-italic prose-blockquote:text-slate-600 prose-strong:text-slate-900 first:prose-p:first-letter:text-5xl first:prose-p:first-letter:font-serif first:prose-p:first-letter:font-black first:prose-p:first-letter:float-left first:prose-p:first-letter:mr-3 first:prose-p:first-letter:mt-1 first:prose-p:first-letter:leading-none"
         dangerouslySetInnerHTML={{ __html: data }}
       />
     );
   };
 
   return (
-    <main className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-xs mb-12">
+    <main className="mb-10">
       <div className="text-slate-800 leading-relaxed font-sans">
         {renderContent(content)}
       </div>

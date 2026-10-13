@@ -8,12 +8,12 @@ import type { BlogArticle } from '@/types/blog';
 import {
   BlogDetailSkeleton,
   BlogDetailNotFound,
-  BlogDetailHeader,
   BlogDetailHeroImage,
   BlogDetailTakeaways,
   BlogDetailContent,
   BlogDetailRelated,
   BlogDetailCTA,
+  BlogDetailSidebar,
 } from './components';
 
 export default function BlogDetailPage() {
@@ -98,28 +98,39 @@ export default function BlogDetailPage() {
       />
 
       <article className="py-12 sm:py-16 bg-slate-50 min-h-screen">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* 1. Header Card (Back Link, Badges, Title, Excerpt, Author, Share Buttons) */}
-          <BlogDetailHeader article={article} />
-
-          {/* 2. Featured Hero Image Banner */}
+        {/* ===== Full-Width Hero with Overlaid Title ===== */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <BlogDetailHeroImage article={article} />
+        </div>
 
-          {/* 3. Executive Summary / Technical Takeaways */}
-          {article.keyTakeaways && article.keyTakeaways.length > 0 && (
-            <BlogDetailTakeaways keyTakeaways={article.keyTakeaways} />
-          )}
+        {/* ===== Editorial Layout: Content (70%) + Sidebar (30%) ===== */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+            {/* Main Content Column */}
+            <div className="flex-1 min-w-0">
+              {/* Key Takeaways Card (red left-border) */}
+              {article.keyTakeaways && article.keyTakeaways.length > 0 && (
+                <BlogDetailTakeaways keyTakeaways={article.keyTakeaways} />
+              )}
 
-          {/* 4. Article Main Body Content & Author Attribution Box */}
-          <BlogDetailContent
-            content={article.content}
-            author={article.author || 'Trent Palmer'}
-          />
+              {/* Article Body with Drop-Cap */}
+              <BlogDetailContent
+                content={article.content}
+                author={article.author || 'Ambica Industries'}
+              />
+            </div>
 
-          {/* 5. Related Technical Publications */}
+            {/* Sidebar Column — Author, Share, TOC */}
+            <BlogDetailSidebar article={article} />
+          </div>
+        </div>
+
+        {/* ===== Full-Width Bottom Sections ===== */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+          {/* Related Articles */}
           <BlogDetailRelated relatedArticles={relatedArticles} />
 
-          {/* 6. Call To Action (Sample Request) */}
+          {/* CTA Banner */}
           <BlogDetailCTA />
         </div>
       </article>

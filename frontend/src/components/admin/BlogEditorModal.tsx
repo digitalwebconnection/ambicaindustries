@@ -20,8 +20,10 @@ import {
   Eye,
   Clock,
   User,
+  CheckCircle2,
 } from 'lucide-react';
 import type { BlogArticle } from '@/types/blog';
+import toast from 'react-hot-toast';
 import { adminService, type BlogPayload } from '@/services/adminService';
 
 interface BlogEditorModalProps {
@@ -144,8 +146,8 @@ export default function BlogEditorModal({
   const [slug, setSlug] = useState('');
   const [category, setCategory] = useState('Textile Dyes');
   const [readTime, setReadTime] = useState('5 min read');
-  const [author, setAuthor] = useState('Trent Palmer');
-  const [authorRole, setAuthorRole] = useState('Founder & Master Electrician');
+  const [author, setAuthor] = useState('Ambica Industries');
+  const [authorRole, setAuthorRole] = useState('Chemical & Textile Specialist');
   const [publishDate, setPublishDate] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [excerpt, setExcerpt] = useState('');
@@ -181,8 +183,8 @@ export default function BlogEditorModal({
       setSlug(article.slug || '');
       setCategory(article.category || 'Textile Dyes');
       setReadTime(article.readTime || '5 min read');
-      setAuthor(article.author || 'Trent Palmer');
-      setAuthorRole(article.authorRole || 'Founder & Master Electrician');
+      setAuthor(article.author || 'Ambica Industries');
+      setAuthorRole(article.authorRole || 'Chemical & Textile Specialist');
       setPublishDate(article.publishDate || '');
       setImageUrl(article.imageUrl || '');
       setExcerpt(article.excerpt || '');
@@ -209,8 +211,8 @@ export default function BlogEditorModal({
       setSlug('');
       setCategory('Textile Dyes');
       setReadTime('5 min read');
-      setAuthor('Trent Palmer');
-      setAuthorRole('Founder & Master Electrician');
+      setAuthor('Ambica Industries');
+      setAuthorRole('Chemical & Textile Specialist');
       setPublishDate(formattedDate);
       setImageUrl('');
       setExcerpt('');
@@ -269,6 +271,7 @@ export default function BlogEditorModal({
   // Sync calculated read time
   const handleCalculateReadTime = () => {
     setReadTime(`${estimatedMins} min read`);
+    toast.success(`Read time set to ${estimatedMins} min read`);
   };
 
   // Image Upload handler (Base64 -> Cloudinary / Fallback)
@@ -284,9 +287,11 @@ export default function BlogEditorModal({
         try {
           const hostedUrl = await adminService.uploadImage(base64);
           setImageUrl(hostedUrl);
+          toast.success('Image uploaded to cloud!');
         } catch {
           // Cloudinary not configured or offline - keep data URI directly so it displays without errors!
           setImageUrl(base64);
+          toast.success('Image loaded locally!');
         } finally {
           setUploadingImage(false);
         }
@@ -294,6 +299,7 @@ export default function BlogEditorModal({
       reader.readAsDataURL(file);
     } catch (err) {
       console.error('File read error:', err);
+      toast.error('Failed to read image file');
       setUploadingImage(false);
     }
   };
@@ -332,6 +338,7 @@ export default function BlogEditorModal({
       if (editorRef.current) {
         editorRef.current.innerHTML = '';
       }
+      toast.success('Content cleared');
     }
   };
 
@@ -339,6 +346,7 @@ export default function BlogEditorModal({
   const handleCopyCode = () => {
     navigator.clipboard.writeText(editorHtml);
     setCopiedCode(true);
+    toast.success('HTML code copied to clipboard!');
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
@@ -353,6 +361,7 @@ export default function BlogEditorModal({
     }
     setSmartPasteText('');
     setSmartPasteOpen(false);
+    toast.success('Content converted & inserted!');
   };
 
   // Auto-Detect & Import All Details from Document
@@ -453,7 +462,7 @@ export default function BlogEditorModal({
       image: imageUrl || 'https://ambicaindustry.com/images/blog/default.webp',
       author: {
         '@type': 'Person',
-        name: author || 'Trent Palmer',
+        name: author ,
         jobTitle: authorRole || 'Founder & Master Electrician',
       },
       publisher: {
@@ -468,24 +477,22 @@ export default function BlogEditorModal({
   };
 
   // Submit & Save Article
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const saveArticle = async (publishTarget: boolean) => {
     if (!title.trim()) {
-      alert('Please enter a Blog Title');
+      toast.error('Please enter a Blog Title', { id: 'blog-title-required' });
       setActiveTab('info');
       return;
     }
 
     if (!excerpt.trim()) {
-      alert('Please enter an Excerpt / Summary');
+      toast.error('Please enter an Excerpt / Summary', { id: 'blog-excerpt-required' });
       setActiveTab('info');
       return;
     }
 
     const currentContent = isCodeView ? editorHtml : (editorRef.current?.innerHTML || editorHtml);
     if (!currentContent.trim()) {
-      alert('Please provide Article Content');
+      toast.error('Please provide Article Content', { id: 'blog-content-required' });
       setActiveTab('content');
       return;
     }
@@ -503,8 +510,8 @@ export default function BlogEditorModal({
         category,
         readTime: readTime.trim() || `${estimatedMins} min read`,
         publishDate: publishDate.trim(),
-        author: author.trim(),
-        authorRole: authorRole.trim(),
+        author: author.trim() || 'Ambica Industries',
+        authorRole: authorRole.trim() || 'Chemical & Textile Specialist',
         imageUrl: imageUrl.trim(),
         excerpt: excerpt.trim(),
         content: currentContent,
@@ -514,23 +521,30 @@ export default function BlogEditorModal({
         keywords: keywords.trim(),
         metaDescription: metaDescription.trim(),
         schemaMarkup: schemaMarkup.trim(),
-        isPublished,
+        isPublished: publishTarget,
       };
 
       if (article) {
         await adminService.updateBlog(article._id, payload);
+        toast.success(publishTarget ? 'Article updated and published live!' : 'Article updated and saved as draft!');
       } else {
         await adminService.createBlog(payload);
+        toast.success(publishTarget ? 'New article published live!' : 'New article saved as draft!');
       }
 
       onSaved();
       onClose();
     } catch (err) {
       console.error('Failed to save blog:', err);
-      alert((err as Error).message || 'Failed to save article to database');
+      toast.error((err as Error).message || 'Failed to save article to database');
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    saveArticle(isPublished);
   };
 
   if (!isOpen) return null;
@@ -731,7 +745,6 @@ export default function BlogEditorModal({
                   </label>
                   <input
                     type="text"
-                    placeholder="Trent Palmer"
                     value={author}
                     onChange={(e) => setAuthor(e.target.value)}
                     className="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-slate-800 text-xs focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
@@ -1266,163 +1279,248 @@ export default function BlogEditorModal({
           )}
 
           {/* TAB 4: CARD & ARTICLE LIVE PREVIEW */}
-          {activeTab === 'preview' && (
-            <div className="space-y-6">
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs text-slate-600">
-                <div className="flex items-center gap-2">
-                  <Eye size={16} className="text-accent-red" />
-                  <span className="font-semibold text-slate-800">Live Website Simulation</span>
-                  <span>— Preview how this article appears to website visitors</span>
-                </div>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white border border-slate-200">
-                  {isPublished ? 'Status: Live Public' : 'Status: Draft'}
-                </span>
-              </div>
+          {activeTab === 'preview' && (() => {
+            const currentContent = isCodeView ? editorHtml : (editorRef.current?.innerHTML || editorHtml);
+            const authorDisplayName = author.trim() || 'Ambica Industries';
 
-              {/* Grid with Card Preview & Hero Banner Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                
-                {/* 1. Blog Card Preview */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                    Card Preview (as shown on /blogs grid)
-                  </h4>
-                  <div className="max-w-sm mx-auto bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md">
-                    <div className="relative aspect-16/10 overflow-hidden bg-slate-900">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt={title || 'Preview'}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-linear-to-br from-slate-950 via-slate-900 to-primary-dark flex flex-col items-center justify-center p-6 text-center">
-                          <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-white border border-white/20 mb-1">
+            return (
+              <div className="space-y-6">
+                {/* Simulation Header Banner */}
+                <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+                  <div className="flex items-center gap-2">
+                    <Eye size={16} className="text-accent-red" />
+                    <span className="font-bold text-slate-800">Live Website Preview</span>
+                    <span>— Review exactly how visitors will see this before publishing</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold ${
+                      isPublished ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
+                    }`}>
+                      {isPublished ? 'Live Public' : 'Draft Only'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Grid: Card Preview (Left) + Hero Banner (Right) */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+                  {/* 1. Blog Card Preview */}
+                  <div>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+                      <span>Card Preview (Blog Grid &amp; Home)</span>
+                      <span className="text-[10px] text-slate-400 font-normal">/blogs</span>
+                    </h4>
+                    <div className="max-w-sm mx-auto bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md">
+                      <div className="relative aspect-16/10 overflow-hidden bg-slate-900">
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt={title || 'Preview'}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-linear-to-br from-slate-950 via-slate-900 to-primary-dark flex flex-col items-center justify-center p-6 text-center">
+                            <span className="px-3 py-1 rounded-full text-[11px] font-bold bg-white/10 text-white border border-white/20 mb-1">
+                              {category}
+                            </span>
+                            <span className="text-white/40 text-[11px] font-mono">
+                              Ambica Industries
+                            </span>
+                          </div>
+                        )}
+                        <div className="absolute top-3 left-3 z-10">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-slate-800 shadow-xs">
                             {category}
                           </span>
-                          <span className="text-white/40 text-[11px] font-mono">
-                            Ambica Industry
+                        </div>
+                        <div className="absolute top-3 right-3 z-10">
+                          <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/80 backdrop-blur-md text-white shadow-xs flex items-center gap-1">
+                            <Clock size={11} />
+                            {readTime || `${estimatedMins} min read`}
                           </span>
                         </div>
-                      )}
-                      <div className="absolute top-3 left-3 z-10">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-bold bg-white/90 backdrop-blur-md text-slate-800 shadow-xs">
+                      </div>
+
+                      <div className="p-5">
+                        <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
+                          {title || 'Your Article Title'}
+                        </h3>
+                        <p className="text-xs text-slate-600 line-clamp-3 mb-4 leading-relaxed">
+                          {excerpt || 'Your article summary will be displayed here on the preview card...'}
+                        </p>
+                        <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                          <span className="font-semibold text-slate-800 flex items-center gap-1">
+                            <User size={12} className="text-slate-400" />
+                            {authorDisplayName}
+                          </span>
+                          <span className="text-accent-red font-bold text-xs flex items-center gap-1">
+                            Read &rarr;
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 2. Article Header Simulation */}
+                  <div>
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5 flex items-center justify-between">
+                      <span>Article Page Header</span>
+                      <span className="text-[10px] text-slate-400 font-normal">/blogs/{slug || 'article'}</span>
+                    </h4>
+                    <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-md space-y-4">
+                      <div className="flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-accent-red/10 text-accent-red border border-accent-red/20 uppercase tracking-wider">
                           {category}
                         </span>
-                      </div>
-                      <div className="absolute top-3 right-3 z-10">
-                        <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-900/80 backdrop-blur-md text-white shadow-xs flex items-center gap-1">
-                          <Clock size={11} />
-                          {readTime || `${estimatedMins} min read`}
+                        <span className="text-xs text-slate-400 font-medium">
+                          {publishDate || 'Today'} • {readTime || `${estimatedMins} min read`}
                         </span>
                       </div>
-                    </div>
 
-                    <div className="p-5">
-                      <h3 className="text-base font-bold text-slate-900 mb-2 line-clamp-2">
-                        {title || 'Your Article Title'}
-                      </h3>
-                      <p className="text-xs text-slate-600 line-clamp-3 mb-4 leading-relaxed">
-                        {excerpt || 'Your article summary will be displayed here on the preview card...'}
-                      </p>
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                        <span className="font-semibold text-slate-800 flex items-center gap-1">
-                          <User size={12} className="text-slate-400" />
-                          {author || 'Trent Palmer'}
-                        </span>
-                        <span className="text-accent-red font-bold text-xs flex items-center gap-1">
-                          Read &rarr;
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      <h2 className="text-xl font-extrabold text-slate-900 leading-snug">
+                        {title || 'Article Title Heading'}
+                      </h2>
 
-                {/* 2. Article Header Simulation */}
-                <div>
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                    Hero Preview (as shown on separate /blogs/{slug || 'article'} page)
-                  </h4>
-                  <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-md space-y-4">
-                    <div className="flex items-center gap-2">
-                      <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-accent-red/10 text-accent-red border border-accent-red/20 uppercase tracking-wider">
-                        {category}
-                      </span>
-                      <span className="text-xs text-slate-400 font-medium">
-                        {publishDate || 'Today'} • {readTime || `${estimatedMins} min read`}
-                      </span>
-                    </div>
-
-                    <h2 className="text-xl font-extrabold text-slate-900 leading-snug">
-                      {title || 'Article Title Heading'}
-                    </h2>
-
-                    <p className="text-xs text-slate-600 leading-relaxed border-l-2 border-accent-red pl-3 italic">
-                      {excerpt || 'Article summary snippet...'}
-                    </p>
-
-                    {/* Hero Image */}
-                    <div className="aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
-                      {imageUrl ? (
-                        <img
-                          src={imageUrl}
-                          alt="Hero"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-linear-to-br from-slate-900 to-slate-800 flex items-center justify-center text-white/40 text-xs">
-                          Featured Hero Banner
+                      <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                        <div className="w-6 h-6 rounded-full bg-accent-red text-white font-bold text-[10px] flex items-center justify-center">
+                          AI
                         </div>
-                      )}
-                    </div>
+                        <span>By <strong className="text-slate-800">{authorDisplayName}</strong></span>
+                        <span className="text-slate-300">•</span>
+                        <span>{authorRole.trim() || 'Chemical & Textile Specialist'}</span>
+                      </div>
 
-                    {/* Word Count & Stats */}
-                    <div className="p-3 bg-slate-50 rounded-xl text-xs text-slate-500 flex items-center justify-between">
-                      <span>Article Length: {wordCount} words</span>
-                      <span>Est. Reading: {readTime}</span>
+                      <p className="text-xs text-slate-600 leading-relaxed border-l-2 border-accent-red pl-3 italic bg-slate-50/50 py-2 rounded-r-lg">
+                        {excerpt || 'Article summary snippet...'}
+                      </p>
+
+                      {/* Hero Image */}
+                      <div className="aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200">
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt="Hero"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-linear-to-br from-slate-900 to-slate-800 flex items-center justify-center text-white/40 text-xs">
+                            Featured Hero Banner
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Word Count & Stats */}
+                      <div className="p-3 bg-slate-50 rounded-xl text-xs text-slate-500 flex items-center justify-between">
+                        <span>Article Length: {wordCount} words</span>
+                        <span>Est. Reading: {readTime || `${estimatedMins} min read`}</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
+                {/* 3. Full Rendered Article Body Preview */}
+                <div className="pt-6 border-t border-slate-200">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
+                    <FileText size={15} className="text-accent-red" />
+                    <span>Full Article Body Simulation</span>
+                  </h4>
+
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                    {/* Key Takeaways Card */}
+                    {takeawaysRaw.trim() && (
+                      <div className="p-4 sm:p-5 rounded-xl bg-accent-red/5 border-l-4 border-accent-red">
+                        <h5 className="text-xs font-bold text-accent-red uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                          <Sparkles size={14} />
+                          Key Takeaways
+                        </h5>
+                        <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-700">
+                          {takeawaysRaw.split('\n').filter(Boolean).map((t, idx) => (
+                            <li key={idx} className="leading-relaxed">{t}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Article Content Rendered HTML */}
+                    {currentContent.trim() ? (
+                      <div
+                        className="prose prose-slate max-w-none text-slate-800 text-sm sm:text-[15px] leading-relaxed [&_p]:mb-4 [&_h1]:text-2xl [&_h1]:font-black [&_h1]:mb-3 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mb-3 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_blockquote]:border-l-4 [&_blockquote]:border-slate-300 [&_blockquote]:pl-4 [&_blockquote]:italic [&_img]:rounded-xl [&_img]:my-4"
+                        dangerouslySetInnerHTML={{ __html: currentContent }}
+                      />
+                    ) : (
+                      <div className="py-12 text-center text-xs text-slate-400 italic">
+                        No article content written yet. Switch to Tab 2 (Article Content) to write or paste your blog.
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
 
           {/* ================= MODAL FOOTER ================= */}
-          <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-4">
+          <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
             
-            {/* Publish immediately checkbox */}
-            <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={isPublished}
-                onChange={(e) => setIsPublished(e.target.checked)}
-                className="w-4 h-4 rounded text-slate-900 accent-slate-900 cursor-pointer"
-              />
-              <span className="text-xs font-semibold text-slate-800">
-                Publish immediately on live blog
+            {/* Status indicator note */}
+            <div className="flex items-center gap-2">
+              <span className={`w-2.5 h-2.5 rounded-full ${isPublished ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+              <span className="text-xs font-semibold text-slate-700">
+                {isPublished ? 'Will Publish Live to Public' : 'Will Save as Draft (Unpublished)'}
               </span>
-            </label>
+            </div>
 
             {/* Action Buttons */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors cursor-pointer"
+                className="px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors cursor-pointer"
               >
                 Cancel
               </button>
 
+              {/* Preview First button when not on preview tab */}
+              {activeTab !== 'preview' ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('preview')}
+                  className="px-3.5 py-2 rounded-xl border border-accent-red/30 bg-accent-red/5 hover:bg-accent-red/10 text-accent-red text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                >
+                  <Eye size={14} />
+                  <span>Preview First</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('content')}
+                  className="px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-all cursor-pointer"
+                >
+                  &larr; Back to Editor
+                </button>
+              )}
+
+              {/* Save as Draft */}
               <button
-                type="submit"
+                type="button"
                 disabled={saving}
-                className="px-5 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold shadow-md transition-all cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                onClick={() => saveArticle(false)}
+                className="px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold shadow-2xs transition-all cursor-pointer disabled:opacity-50"
               >
-                {saving && <RefreshCw size={13} className="animate-spin" />}
-                <span>
-                  {saving ? 'Publishing...' : article ? 'Update Article' : 'Publish Article'}
-                </span>
+                {saving && !isPublished ? 'Saving Draft...' : 'Save Draft'}
+              </button>
+
+              {/* Publish Live */}
+              <button
+                type="button"
+                disabled={saving}
+                onClick={() => saveArticle(true)}
+                className="px-4 py-2 rounded-xl bg-accent-red hover:bg-accent-red-dark text-white text-xs font-bold shadow-md transition-all cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+              >
+                {saving && isPublished ? (
+                  <RefreshCw size={13} className="animate-spin" />
+                ) : (
+                  <CheckCircle2 size={13} />
+                )}
+                <span>Publish Live</span>
               </button>
             </div>
 

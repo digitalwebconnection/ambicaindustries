@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { adminService, type AdminDashboardStats } from '@/services/adminService';
 import type { BlogArticle } from '@/types/blog';
 import BlogEditorModal from '@/components/admin/BlogEditorModal';
@@ -67,12 +68,28 @@ export default function AdminDashboard() {
 
   // Auth check & load data with auto-refresh and online/offline event listeners
   useEffect(() => {
-    if (!adminService.isAuthenticated()) {
-      navigate('/admin/login');
-      return;
+    let isMounted = true;
+
+    async function initAuth() {
+      if (!adminService.isAuthenticated()) {
+        navigate('/admin/login');
+        return;
+      }
+
+      // Verify token authenticity with backend
+      const verified = await adminService.verifyAuth();
+      if (!isMounted) return;
+
+      if (!verified) {
+        adminService.logout();
+        navigate('/admin/login');
+        return;
+      }
+
+      loadData(false);
     }
 
-    loadData(false);
+    initAuth();
 
     const handleOnline = () => {
       setIsOffline(false);
@@ -102,6 +119,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     adminService.logout();
+    toast.success('Signed out successfully');
     navigate('/admin/login');
   };
 
@@ -121,10 +139,13 @@ export default function AdminDashboard() {
   const handleTogglePublish = async (id: string) => {
     try {
       setActionLoading(true);
+      const article = articles.find((a) => a._id === id);
+      const willPublish = article?.isPublished === false;
       await adminService.togglePublish(id);
+      toast.success(willPublish ? 'Article published live!' : 'Article moved to drafts');
       await loadData();
     } catch (err) {
-      alert((err as Error).message || 'Failed to toggle status');
+      toast.error((err as Error).message || 'Failed to toggle status');
     } finally {
       setActionLoading(false);
     }
@@ -136,9 +157,10 @@ export default function AdminDashboard() {
     try {
       setActionLoading(true);
       await adminService.deleteBlog(id);
+      toast.success(`Deleted "${title}"`);
       await loadData();
     } catch (err) {
-      alert((err as Error).message || 'Failed to delete article');
+      toast.error((err as Error).message || 'Failed to delete article');
     } finally {
       setActionLoading(false);
     }
@@ -222,12 +244,15 @@ export default function AdminDashboard() {
             <AdminAnalyticsSection
               totalBlogs={totalBlogs}
               publishedCount={publishedCount}
+              draftCount={draftCount}
               totalReads={totalViews}
               draftPercentage={draftPercentage}
               stats={stats}
+              articles={articles}
               lastMonthStr={lastMonthStr}
               todayStr={todayStr}
               onNavigateBlog={() => setCurrentView('blog')}
+              onOpenAddModal={openAddModal}
             />
           ) : (
             <AdminBlogSection

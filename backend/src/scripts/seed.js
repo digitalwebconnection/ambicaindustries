@@ -18,14 +18,17 @@ const seedData = async () => {
     const existingAdmin = await Admin.findOne({ email: adminEmail.toLowerCase() });
     if (!existingAdmin) {
       await Admin.create({
-        name: 'Master Admin',
+        name: 'Ambica Industries',
         email: adminEmail,
         password: adminPassword,
         role: 'admin'
       });
       console.log(`✅ Admin account created: ${adminEmail}`);
     } else {
-      console.log(`ℹ️ Admin account already exists: ${adminEmail}`);
+      existingAdmin.name = 'Ambica Industries';
+      existingAdmin.password = adminPassword;
+      await existingAdmin.save();
+      console.log(`ℹ️ Admin account synced: ${adminEmail} (Name: Ambica Industries)`);
     }
 
     console.log('🎉 Seeding completed (0 blogs, clean database)!');

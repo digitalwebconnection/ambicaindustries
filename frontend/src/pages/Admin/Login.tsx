@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Lock, Mail, ArrowRight, AlertCircle, ShieldCheck, Eye, EyeOff } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { adminService } from '@/services/adminService';
 
 export default function AdminLogin() {
@@ -11,20 +12,62 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Clear inputs and error on mount to prevent any auto-filled or residual data
+  useEffect(() => {
+    setEmail('');
+    setPassword('');
+    setError(null);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !password) {
-      setError('Please provide both email and password');
+    const cleanEmail = email.trim();
+
+    // 1. Strict input validation
+    if (!cleanEmail) {
+      setError('Please enter your admin email address.');
+      toast.error('Please enter your admin email address.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      setError('Please provide a valid email format (e.g. admin@ambicaindustry.com).');
+      toast.error('Please provide a valid email format.');
+      return;
+    }
+
+    if (!password) {
+      setError('Please enter your admin password.');
+      toast.error('Please enter your admin password.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      toast.error('Password must be at least 6 characters long.');
       return;
     }
 
     try {
       setLoading(true);
       setError(null);
-      await adminService.login(email, password);
+
+      // 2. Perform authenticated login handshake
+      await adminService.login(cleanEmail, password);
+
+      // 3. Verify server token authenticity & admin session before navigating
+      const verifiedAdmin = await adminService.verifyAuth();
+      if (!verifiedAdmin) {
+        throw new Error('Authentication verification failed. Access denied.');
+      }
+
+      toast.success(`Welcome back, ${verifiedAdmin.name || 'Ambica Industries'}!`);
       navigate('/admin');
     } catch (err) {
-      setError((err as Error).message || 'Invalid credentials');
+      const msg = (err as Error).message || 'Invalid admin credentials. Access denied.';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -60,41 +103,71 @@ export default function AdminLogin() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Email */}
+        {/* Form with autofill prevention */}
+        <form onSubmit={handleSubmit} autoComplete="off" className="space-y-5">
+          {/* Hidden honeypot / autofill dummy inputs to block browser credential autofill */}
+          <input
+            type="text"
+            name="fake_username_remember"
+            tabIndex={-1}
+            autoComplete="off"
+            className="hidden"
+            aria-hidden="true"
+          />
+          <input
+            type="password"
+            name="fake_password_remember"
+            tabIndex={-1}
+            autoComplete="new-password"
+            className="hidden"
+            aria-hidden="true"
+          />
+
+          {/* Email Field */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+            <label
+              htmlFor="admin_login_identity"
+              className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2"
+            >
               Admin Email
             </label>
             <div className="relative">
-              <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Mail size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
               <input
+                id="admin_login_identity"
+                name="admin_login_identity"
                 type="email"
                 required
-                autoComplete="email"
+                autoComplete="off"
+                spellCheck={false}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter admin email"
-                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red transition-all"
+                className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red transition-all [&:-webkit-autofill]:shadow-[0_0_0_1000px_#f8fafc_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:#0f172a]"
               />
             </div>
           </div>
 
-          {/* Password */}
+          {/* Password Field */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
+            <label
+              htmlFor="admin_login_secret"
+              className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2"
+            >
               Password
             </label>
             <div className="relative">
-              <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+              <Lock size={18} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
               <input
+                id="admin_login_secret"
+                name="admin_login_secret"
                 type={showPassword ? 'text' : 'password'}
                 required
-                autoComplete="current-password"
+                autoComplete="new-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
-                className="w-full pl-10 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red transition-all"
+                className="w-full pl-10 pr-11 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red transition-all [&:-webkit-autofill]:shadow-[0_0_0_1000px_#f8fafc_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:#0f172a]"
               />
               <button
                 type="button"

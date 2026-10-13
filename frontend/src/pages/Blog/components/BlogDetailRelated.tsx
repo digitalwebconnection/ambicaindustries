@@ -27,14 +27,14 @@ export default function BlogDetailRelated({ relatedArticles }: BlogDetailRelated
           <Link
             key={rel.slug}
             to={`/blogs/${rel.slug}`}
-            className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-accent-red/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+            className="group bg-white rounded-xl overflow-hidden border border-slate-200/90 hover:border-accent-red/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
           >
             <div className="aspect-16/10 bg-slate-900 relative overflow-hidden shrink-0">
               {rel.imageUrl ? (
                 <img
                   src={rel.imageUrl}
                   alt={rel.title}
-                  className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-fill group-hover:scale-108 transition-transform duration-500 ease-out"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}

@@ -39,11 +39,11 @@ const blogSchema = new mongoose.Schema(
     },
     author: {
       type: String,
-      default: 'Trent Palmer'
+      default: 'Ambica Industries'
     },
     authorRole: {
       type: String,
-      default: 'Founder & Master Electrician'
+      default: 'Chemical & Textile Specialists'
     },
     imageUrl: {
       type: String,

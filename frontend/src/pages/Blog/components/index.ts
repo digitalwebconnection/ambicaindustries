@@ -1,7 +1,10 @@
 // Blog Index Components
 export { default as ArticleCard, getCategoryBadge } from './ArticleCard';
 export { default as BlogToolbar } from './BlogToolbar';
+export { default as BlogFeaturedHero } from './BlogFeaturedHero';
+
 export { default as BlogLoadingSkeleton } from './BlogLoadingSkeleton';
+export { default as BlogLoader } from './BlogLoader';
 export { default as BlogEmptyState } from './BlogEmptyState';
 
 // Blog Detail Components
@@ -11,5 +14,6 @@ export { default as BlogDetailTakeaways } from './BlogDetailTakeaways';
 export { default as BlogDetailContent } from './BlogDetailContent';
 export { default as BlogDetailRelated } from './BlogDetailRelated';
 export { default as BlogDetailCTA } from './BlogDetailCTA';
+export { default as BlogDetailSidebar } from './BlogDetailSidebar';
 export { default as BlogDetailSkeleton } from './BlogDetailSkeleton';
 export { default as BlogDetailNotFound } from './BlogDetailNotFound';

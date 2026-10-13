@@ -78,7 +78,7 @@ function NewsCardItem({ item }: { item: BlogArticle }) {
           <div className="flex flex-col">
             <span className="font-semibold text-slate-800 flex items-center gap-1">
               <User size={12} className="text-slate-400" />
-              {item.author || 'Trent Palmer'}
+              {item.author || 'Ambica Industries'}
             </span>
             <span className="text-[11px] text-slate-400 flex items-center gap-1">
               <Calendar size={11} /> {item.publishDate}

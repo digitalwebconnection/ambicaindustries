@@ -1,4 +1,5 @@
 import { ReactLenis } from 'lenis/react';
+import AppToaster from '@/components/ui/AppToaster';
 import Layout from '@/components/layout/Layout';
 import AppRoutes from '@/routes';
 
@@ -17,6 +18,7 @@ const lenisOptions = {
 export default function App() {
   return (
     <ReactLenis root options={lenisOptions}>
+      <AppToaster />
       <Layout>
         <AppRoutes />
       </Layout>

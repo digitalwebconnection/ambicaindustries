@@ -74,15 +74,50 @@ export const adminService = {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await res.json();
-    if (!res.ok || !data.success) {
-      throw new Error(data.message || 'Login failed');
+    let data: any;
+    try {
+      data = await res.json();
+    } catch {
+      throw new Error(`Unable to connect to server (HTTP ${res.status}). Please make sure the backend server is running.`);
+    }
+
+    if (!res.ok || !data?.success) {
+      throw new Error(data?.message || 'Login failed');
     }
 
     localStorage.setItem(TOKEN_KEY, data.token);
     localStorage.setItem(ADMIN_USER_KEY, JSON.stringify(data.admin));
 
     return data;
+  },
+
+  // Verify current token with backend
+  async verifyAuth(): Promise<AdminUser | null> {
+    const token = this.getToken();
+    if (!token) return null;
+
+    try {
+      const res = await fetch(`${API_BASE}/admin/me`, {
+        headers: this.getHeaders(),
+      });
+
+      if (!res.ok) {
+        this.logout();
+        return null;
+      }
+
+      const data = await res.json();
+      if (!data.success || !data.admin) {
+        this.logout();
+        return null;
+      }
+
+      localStorage.setItem(ADMIN_USER_KEY, JSON.stringify(data.admin));
+      return data.admin;
+    } catch {
+      // If offline or network issue, fallback to stored user only if valid token exists
+      return this.getUser();
+    }
   },
 
   // Headers helper

@@ -41,18 +41,13 @@ export const loginAdmin = async (req, res, next) => {
       ]
     });
 
-    const envEmail = (process.env.ADMIN_EMAIL || 'admin@sunnysolar.com.au').toLowerCase().trim();
+    const envEmail = (process.env.ADMIN_EMAIL || 'admin@ambicaindustry.com').toLowerCase().trim();
     const envPassword = process.env.ADMIN_PASSWORD || 'Admin@123';
 
-    // If admin record does not exist yet for this email, auto-create if matching admin email or typo email
-    if (
-      !admin &&
-      (rawEmail === envEmail ||
-       cleanedEmail === envEmail ||
-       cleanedEmail === 'admin@sunnysolar.com.au')
-    ) {
+    // If admin record does not exist yet for this email, auto-create
+    if (!admin && (rawEmail === envEmail || cleanedEmail === envEmail)) {
       admin = await Admin.create({
-        name: 'Master Admin',
+        name: 'Ambica Industries',
         email: envEmail,
         password: envPassword,
         role: 'admin'
@@ -80,6 +75,11 @@ export const loginAdmin = async (req, res, next) => {
         success: false,
         message: 'Invalid email or password'
       });
+    }
+
+    if (admin.name !== 'Ambica Industries') {
+      admin.name = 'Ambica Industries';
+      await admin.save();
     }
 
     const token = generateToken(admin._id);

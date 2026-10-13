@@ -418,4 +418,35 @@
     overflow-x: auto;
     margin: 1.25rem 0;
   }
-}
+}
+
+/* ===== Magic UI Animation Keyframes ===== */
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-450px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 6s linear infinite;
+}
+
+/* ===== Custom Scrollbar Utilities ===== */
+.scrollbar-none,
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
