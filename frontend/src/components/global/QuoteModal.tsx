@@ -170,10 +170,9 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
   };
 
   const getInputClass = (fieldName: string) =>
-    `w-full pl-9 pr-3.5 py-2.5 sm:py-3 rounded-xl outline-none transition-all text-[16px] sm:text-sm ${
-      errors[fieldName]
-        ? 'border border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-red-200'
-        : 'bg-slate-100 border border-slate-200 text-slate-700 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red'
+    `w-full pl-9 pr-3.5 py-2.5 sm:py-3 rounded-xl outline-none transition-all text-[16px] sm:text-sm ${errors[fieldName]
+      ? 'border border-red-500 bg-red-50/40 text-slate-800 placeholder:text-slate-400 focus:ring-2 focus:ring-red-200'
+      : 'bg-slate-100 border border-slate-200 text-slate-700 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-accent-red/20 focus:border-accent-red'
     }`;
 
   return (
@@ -209,12 +208,12 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
 
           {/* Left - Branding / Visual */}
           <div className="hidden md:flex md:w-2/5 relative p-6 lg:p-10 flex-col justify-between overflow-hidden min-h-110 lg:min-h-125">
-            <div 
-              className="absolute inset-0 bg-cover bg-center z-0" 
+            <div
+              className="absolute inset-0 bg-cover bg-center z-0"
               style={{ backgroundImage: `url(${quoteBg})` }}
             />
             <div className="absolute inset-0 bg-slate-200/90 z-0 backdrop-blur-xs" />
-            
+
             <div className="relative z-10">
               <img src={LOGO} alt="Ambica Industry" className="h-14 lg:h-16 mb-6 object-contain" />
               <h2 className="text-2xl lg:text-3xl font-serif font-bold text-slate-900 mb-3 leading-tight tracking-wide">
@@ -240,7 +239,7 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
           {/* Right - Form */}
           <div className="w-full md:w-3/5 p-4 sm:p-7 lg:p-10 bg-white relative overflow-y-auto overscroll-contain max-h-[90vh] md:max-h-none flex flex-col justify-start md:justify-center">
             {submitted ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="flex flex-col items-center justify-center h-full text-center py-8 sm:py-12"

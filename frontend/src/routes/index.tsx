@@ -66,6 +66,8 @@ export default function AppRoutes() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/termsof-service" element={<TermsOfService />} />
+        <Route path="/terms-of-service" element={<Navigate to="/termsof-service" replace />} />
+        <Route path="/terms" element={<Navigate to="/termsof-service" replace />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

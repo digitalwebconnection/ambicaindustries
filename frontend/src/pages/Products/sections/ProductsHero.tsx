@@ -77,19 +77,19 @@ export default function ProductsHero() {
   return (
     <section className="relative pt-8 pb-8 sm:pt-12 sm:pb-10 md:pt-14 md:pb-12 overflow-hidden bg-white border-b border-gray-100">
       {/* Professional Background Pattern & Elements */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.02]" 
-        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2306408c\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} 
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.02]"
+        style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%2306408c\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}
       />
-      
+
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-20%] right-[10%] w-72 sm:w-120 h-72 sm:h-120 rounded-full bg-primary/5 blur-[80px] sm:blur-[100px]" />
         <div className="absolute bottom-[-10%] left-[-5%] w-60 sm:w-[20rem] h-60 sm:h-80 rounded-full bg-accent-red/5 blur-[60px] sm:blur-[80px]" />
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-8 items-center">
-          
+
           {/* Content (Bottom on mobile order-2, Left on desktop lg:order-1) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -105,15 +105,15 @@ export default function ProductsHero() {
                 <div className="absolute -bottom-1 left-0 w-full h-1 bg-accent-red/80 rounded-full transform -rotate-1" />
               </span>
             </h1>
-            
+
             <p className="text-sm sm:text-base text-justify text-gray-text leading-relaxed max-w-lg mt-2 sm:mt-4">
               Explore our comprehensive range of high-performance colorants, carefully formulated for exceptional brilliance, fastness, and reliability across all industrial applications.
             </p>
 
             <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-4 sm:gap-5 w-full sm:w-auto">
-              <a 
-                href="#catalog" 
-                onClick={scrollToCatalog} 
+              <a
+                href="#catalog"
+                onClick={scrollToCatalog}
                 className="w-full sm:w-auto text-center inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-2.5 rounded-full font-bold shadow-[0_8px_20px_rgba(6,64,140,0.25)] hover:shadow-[0_12px_25px_rgba(6,64,140,0.35)] hover:-translate-y-1 active:scale-95 transition-all duration-300"
               >
                 <span>Browse Catalog</span>
@@ -124,7 +124,7 @@ export default function ProductsHero() {
 
           {/* Mobile View: "One uper one sliding and stop" Interactive Slider (Shown only on mobile < lg) */}
           <div className="block lg:hidden order-1 w-full max-w-85 xs:max-w-[360px] mx-auto">
-            <div 
+            <div
               className="relative w-full aspect-4/3 rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-slate-900 group select-none touch-pan-y"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
@@ -184,11 +184,10 @@ export default function ProductsHero() {
                     key={idx}
                     type="button"
                     onClick={() => setCurrentSlide(idx)}
-                    className={`transition-all duration-300 rounded-full ${
-                      idx === currentSlide
+                    className={`transition-all duration-300 rounded-full ${idx === currentSlide
                         ? 'w-5 h-1.5 bg-accent-red'
                         : 'w-1.5 h-1.5 bg-white/60 hover:bg-white'
-                    }`}
+                      }`}
                     aria-label={`Go to slide ${idx + 1}`}
                   />
                 ))}
@@ -204,45 +203,45 @@ export default function ProductsHero() {
             className="relative hidden lg:block order-2 w-full max-w-none"
           >
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-linear-to-tr from-primary/10 to-accent-red/5 rounded-full blur-[60px] -z-10" />
-            
+
             <div className="grid grid-cols-2 gap-4 h-95">
               {/* Column 1 */}
               <div className="flex flex-col gap-6 pt-8 h-full">
                 <div className="w-full flex-[1.35] min-h-0 rounded-3xl overflow-hidden shadow-xl border-[6px] border-white group relative">
-                   <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                   <img 
-                     src={productCategories[0]?.image} 
-                     alt="Dye Colors" 
-                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
-                   />
+                  <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <img
+                    src={productCategories[0]?.image}
+                    alt="Dye Colors"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
                 </div>
                 <div className="w-full flex-1 min-h-0 rounded-3xl overflow-hidden shadow-xl border-[6px] border-white group relative">
-                   <div className="absolute inset-0 bg-accent-red/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                   <img 
-                     src={productCategories[1]?.image} 
-                     alt="Industrial Dyes" 
-                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
-                   />
+                  <div className="absolute inset-0 bg-accent-red/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <img
+                    src={productCategories[1]?.image}
+                    alt="Industrial Dyes"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
                 </div>
               </div>
-              
+
               {/* Column 2 */}
               <div className="flex flex-col gap-6 pb-8 h-full">
                 <div className="w-full flex-1 min-h-0 rounded-3xl overflow-hidden shadow-xl border-[6px] border-white group relative">
-                   <div className="absolute inset-0 bg-accent-gold/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                   <img 
-                     src={productCategories[2]?.image} 
-                     alt="Fabric Dyeing" 
-                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
-                   />
+                  <div className="absolute inset-0 bg-accent-gold/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <img
+                    src={productCategories[2]?.image}
+                    alt="Fabric Dyeing"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
                 </div>
                 <div className="w-full flex-[1.35] min-h-0 rounded-3xl overflow-hidden shadow-xl border-[6px] border-white group relative">
-                   <div className="absolute inset-0 bg-primary-dark/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                   <img 
-                     src={productCategories[4]?.image || productCategories[3]?.image} 
-                     alt="Color Mix" 
-                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
-                   />
+                  <div className="absolute inset-0 bg-primary-dark/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                  <img
+                    src={productCategories[4]?.image || productCategories[3]?.image}
+                    alt="Color Mix"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  />
                 </div>
               </div>
             </div>

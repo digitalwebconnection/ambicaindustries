@@ -42,7 +42,8 @@ export const siteConfig = {
     whatsapp: 'https://wa.me/919924441544?text=Hello%20Ambica%20Industry%2C%20I%20contacted%20you%20through%20your%20website.',
   },
   footerDescription:
-    'We are leading Manufacturer and exporter of Food Color in India. We are in this industries from last two decades. Our Monopoly is better and cost effective manufacturing of dyes.',
+    'Leading manufacturer and exporter of industrial dyes and food colors in India. Trusted across industries for over three decades with cost-effective, high-purity chemical manufacturing.',
+
   geo: {
     lat: 23.0734,
     lng: 72.6616,

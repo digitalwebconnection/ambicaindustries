@@ -43,7 +43,7 @@ export default function RnDProcess() {
   ];
 
   return (
-    <section className="py-14 md:py-12 bg-primary-dark overflow-hidden relative">
+    <section id="rnd-process" className="py-14 md:py-12 bg-primary-dark overflow-hidden relative">
 
       <div className="absolute inset-0 h-full  overflow-hidden z-0">
         <div

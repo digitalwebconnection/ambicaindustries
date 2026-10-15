@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
 import { productMapping } from "@/data/industries";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+
+const getCategorySlug = (name: string) => {
+  return name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+};
 
 export default function ProductIndustryMapping() {
   return (
@@ -29,40 +34,48 @@ export default function ProductIndustryMapping() {
             </div>
 
             <div>
-              {productMapping.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.06,
-                  }}
-                  className="group relative py-6 sm:py-10 border-b border-slate-200 hover:bg-primary/2 transition-colors duration-300">
-                  <div className="grid grid-cols-1 sm:grid-cols-[0.80fr_1fr] gap-4 sm:gap-6 px-1 sm:px-4">
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-dark group-hover:text-accent-red-dark transition-colors duration-300">{item.name}</h3>
-                      </div>
-                      <p className="mt-2 sm:mt-3 text-xs sm:text-sm font-semibold text-accent-red sm:text-slate-500">{item.material}</p>
-                      <p className="mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 max-w-md">{item.description}</p>
-                    </div>
+              {productMapping.map((item, index) => {
+                const categorySlug = getCategorySlug(item.name);
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.06,
+                    }}
+                  >
+                    <Link
+                      to={`/products/${categorySlug}`}
+                      className="group block relative py-6 sm:py-10 border-b border-slate-200 hover:bg-primary/2 transition-colors duration-300 cursor-pointer"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-[0.80fr_1fr] gap-4 sm:gap-6 px-1 sm:px-4">
+                        <div>
+                          <div className="flex items-center gap-3">
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-primary-dark group-hover:text-accent-red-dark transition-colors duration-300">{item.name}</h3>
+                          </div>
+                          <p className="mt-2 sm:mt-3 text-xs sm:text-sm font-semibold text-accent-red sm:text-slate-500">{item.material}</p>
+                          <p className="mt-2 sm:mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 max-w-md">{item.description}</p>
+                        </div>
 
-                    <div className="pt-3 sm:pt-0 sm:pl-6 border-t sm:border-t-0 sm:border-l border-slate-200 flex flex-col justify-between">
-                      <div>
-                        <p className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-500 font-bold">Suitable For</p>
-                        <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-slate-700">
-                          {item.applications}
-                        </p>
+                        <div className="pt-3 sm:pt-0 sm:pl-6 border-t sm:border-t-0 sm:border-l border-slate-200 flex flex-col justify-between">
+                          <div>
+                            <p className="text-[11px] sm:text-xs uppercase tracking-wider text-slate-500 font-bold">Suitable For</p>
+                            <p className="mt-1.5 sm:mt-3 text-xs sm:text-sm md:text-base leading-relaxed text-slate-700">
+                              {item.applications}
+                            </p>
+                          </div>
+                          <div className="flex justify-end sm:justify-start">
+                            <ArrowUpRight className="mt-2 sm:mt-5 h-5 w-5 text-slate-300 group-hover:text-accent-red-dark group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"/>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex justify-end sm:justify-start">
-                        <ArrowUpRight className="mt-2 sm:mt-5 h-5 w-5 text-slate-300 group-hover:text-accent-red-dark group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"/>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                    </Link>
+                  </motion.div>
+                );
+              })}
             </div>
 
           </div>

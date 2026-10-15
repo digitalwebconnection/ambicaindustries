@@ -63,8 +63,8 @@ export const loginAdmin = async (req, res, next) => {
 
     let isMatch = await admin.comparePassword(password);
 
-    // If password in MongoDB does not match, auto-sync if candidate password matches process.env.ADMIN_PASSWORD or standard default
-    if (!isMatch && (password === envPassword || password === 'Admin@123' || password === 'Admin@12345')) {
+    // If password in MongoDB does not match, auto-sync only if candidate password matches configured process.env.ADMIN_PASSWORD
+    if (!isMatch && process.env.ADMIN_PASSWORD && password === process.env.ADMIN_PASSWORD) {
       admin.password = password;
       await admin.save();
       isMatch = true;

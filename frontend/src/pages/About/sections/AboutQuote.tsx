@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import { siteConfig } from "@/data/siteConfig";
 
 export default function AboutQuote() {
   return (
@@ -46,7 +47,9 @@ export default function AboutQuote() {
                   Founders & Management
                 </p>
                 <a
-                  href="#"
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-white/40 hover:text-accent-red transition-colors inline-flex items-center justify-center p-1"
                   aria-label="LinkedIn"
                 >

@@ -46,7 +46,7 @@ export default function AboutPreview() {
             </p>
 
             <Link
-              to="/#about"
+              to="/about"
               className="group inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3 sm:py-2.5 bg-primary text-white rounded-full font-semibold text-[15px] hover:bg-accent-red transition-all duration-300 shadow-xl shadow-primary/20 hover:shadow-accent-red/30 active:scale-95"
             >
               About Read More

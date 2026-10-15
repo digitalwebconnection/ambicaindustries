@@ -9,7 +9,7 @@ interface SubProductContentProps {
   slug?: string;
 }
 
-export default function   SubProductContent({ cat, subProduct, slug }: SubProductContentProps) {
+export default function SubProductContent({ cat, subProduct, slug }: SubProductContentProps) {
   const benefits = [
     'Exceptional Color Fastness',
     'High Purity Levels',
@@ -45,7 +45,7 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
     <section className="py-12 sm:py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          
+
           {/* Main content - Editorial Layout */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -126,7 +126,7 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
                   </div>
                 </div>
               </div>
-              
+
               {/* Packaging Card */}
               <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-gray-100 shadow-xl shadow-gray-200/50 relative overflow-hidden">
                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-2xl" />
@@ -156,7 +156,7 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8 sm:space-y-10">
             <div className="lg:sticky lg:top-24 space-y-8 sm:space-y-10">
-              
+
               {/* Other Products */}
               <div>
                 <h3 className="text-xs sm:text-sm font-bold tracking-widest uppercase text-gray-800 mb-4 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-300">
@@ -167,11 +167,10 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
                     <Link
                       key={sub.slug}
                       to={`/products/${cat.slug}/${sub.slug}`}
-                      className={`group flex items-center justify-between p-3.5 sm:p-4 rounded-xl border transition-all duration-300 ${
-                        sub.slug === slug
+                      className={`group flex items-center justify-between p-3.5 sm:p-4 rounded-xl border transition-all duration-300 ${sub.slug === slug
                           ? 'bg-primary border-primary text-white shadow-md'
                           : 'bg-white border-gray-200 hover:border-primary/30 hover:shadow-xs text-gray-600'
-                      }`}
+                        }`}
                     >
                       <span className="font-medium text-xs sm:text-sm">{sub.name}</span>
                       <ChevronRight size={16} className={sub.slug === slug ? 'text-white' : 'text-gray-300 group-hover:text-primary transition-colors'} />
@@ -189,7 +188,7 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
           {/* Decorative background for CTA */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[50px] rounded-full pointer-events-none" />
           <div className="absolute bottom-0 left-10 w-40 h-40 bg-accent-gold/20 blur-2xl rounded-full pointer-events-none" />
-          
+
           <div className="relative z-10">
             <div className="text-accent-gold font-bold text-xs sm:text-sm tracking-wider uppercase mb-2">Custom Formulation</div>
             <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-3 sm:mb-4">Need Specialized Dye Solutions?</h3>
@@ -197,7 +196,7 @@ export default function   SubProductContent({ cat, subProduct, slug }: SubProduc
               Our technical team can help you find the exact dye formulation for your specific industrial needs. We offer tailored matching, technical support, and prompt global delivery.
             </p>
           </div>
-          
+
           <Link
             to="/contact"
             className="relative z-10 shrink-0 w-full sm:w-auto text-center justify-center bg-white text-primary-dark font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-gray-50 shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all flex items-center gap-2 group"

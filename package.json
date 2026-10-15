@@ -4,7 +4,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "npm --prefix backend run dev",
+    "dev": "concurrently -n \"frontend,backend\" -c \"cyan,magenta\" \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
+    "dev:all": "concurrently -n \"frontend,backend\" -c \"cyan,magenta\" \"npm --prefix frontend run dev\" \"npm --prefix backend run dev\"",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
     "build": "npm --prefix frontend run build",
@@ -16,5 +17,8 @@
     "test:backend": "npm --prefix backend test",
     "postinstall": "npm --prefix backend install",
     "install:all": "npm --prefix frontend install && npm --prefix backend install"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
   }
 }

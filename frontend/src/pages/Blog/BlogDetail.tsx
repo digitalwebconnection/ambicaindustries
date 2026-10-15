@@ -35,7 +35,7 @@ export default function BlogDetailPage() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         const data = await fetchBlogBySlug(slug as string);
-        if (!isMounted) return;
+        if (!isMounted) return;                                                                           
         setArticle(data);
 
         // Fetch related articles

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import hero1 from '@/assets/images/industries/indushero1.webp';
 import hero2 from '@/assets/images/industries/indushero2.webp';
 import { ArrowRight } from "lucide-react";
@@ -30,14 +31,13 @@ export default function HeroIndustry() {
               From organic cotton and paper pulp to automotive textiles, leather goods, and specialized inks — Ambica Industry formulates dye solutions across a diverse range of application sectors worldwide.
             </p>
 
-            <a
-              href="/contact"
-              type="button"
+            <Link
+              to="/contact"
               className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-3 sm:py-2.5 rounded-full bg-primary hover:bg-primary-dark cursor-pointer text-white text-base font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
             >
               <span>Talk to an expert</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
+            </Link>
           </motion.div>
 
           {/* Right Images (Top on mobile order-1, Right on desktop lg:order-2) */}

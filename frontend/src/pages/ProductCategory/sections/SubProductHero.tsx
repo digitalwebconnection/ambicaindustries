@@ -13,10 +13,10 @@ export default function SubProductHero({ cat, subProduct }: SubProductHeroProps)
     <section className="relative pt-20 pb-16 md:pt-32 md:pb-28 overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        <img 
-          src={cat.image} 
-          alt={subProduct.name} 
-          className="w-full h-full object-cover object-center opacity-40 mix-blend-overlay scale-105" 
+        <img
+          src={cat.image}
+          alt={subProduct.name}
+          className="w-full h-full object-cover object-center opacity-40 mix-blend-overlay scale-105"
         />
         <div className="absolute inset-0 bg-black/60 to-transparent" />
       </div>
@@ -48,13 +48,13 @@ export default function SubProductHero({ cat, subProduct }: SubProductHeroProps)
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 leading-[1.15] tracking-tight px-4 sm:px-6 py-2">
             {subProduct.name}
           </h1>
-          
+
           <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed mb-8 sm:mb-10 drop-shadow max-w-2xl">
             Premium quality {subProduct.name.toLowerCase()} engineered for industrial applications. Delivering exceptional color fastness, high purity, and consistent, brilliant results.
           </p>
 
-          <Link 
-            to="/enquiry" 
+          <Link
+            to="/enquiry"
             className="w-full sm:w-auto justify-center bg-accent-red text-white px-8 sm:px-10 py-3.5 sm:py-4 rounded-full font-bold shadow-[0_0_20px_rgba(227,24,55,0.3)] hover:scale-105 active:scale-95 hover:shadow-[0_0_30px_rgba(227,24,55,0.5)] transition-all duration-300 flex items-center gap-2 group text-center"
           >
             <span>Request a Quote</span>

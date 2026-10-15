@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 import { Shield, Lightbulb, Leaf, Users, ArrowRight } from "lucide-react";
 
@@ -97,8 +98,8 @@ export default function WhyChooseUs() {
           </div>
 
           <motion.div variants={fadeUp} className="w-full sm:w-auto max-w-md md:text-right pb-2">
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2.5 sm:py-2.5 bg-primary-dark font-semibold text-white text-[15px] rounded-full hover:bg-accent-red hover:text-white active:scale-95 transition-all group shadow-xl shadow-[#003A7C]/20 hover:shadow-accent-red/30"
             >
               Partner With Us
@@ -106,7 +107,7 @@ export default function WhyChooseUs() {
                 size={16}
                 className="group-hover:translate-x-1 transition-transform duration-300"
               />
-            </a>
+            </Link>
           </motion.div>
         </motion.div>
 

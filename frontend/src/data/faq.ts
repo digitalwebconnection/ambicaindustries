@@ -91,7 +91,7 @@ export const productsFaqs: FAQ[] = [
       "To place an order, contact our team with your product requirements. After discussing the product, quantity, specifications, pricing, and delivery details, our team will guide you through the ordering process.",
   },
   // NEW — review before publishing
-  
+
 ];
 
 export const industriesFaqs: FAQ[] = [

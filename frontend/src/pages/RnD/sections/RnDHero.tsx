@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
 import imgRndReactive from '@/assets/images/rnd/rnd-hero-reactive.webp';
 import imgRndLeather from '@/assets/images/rnd/rnd-hero-leather.webp';
 import imgRndMetalComplex from '@/assets/images/rnd/rnd-hero-metal-complex.webp';
@@ -76,13 +75,16 @@ export default function HeroSection() {
                 <span>Request a Quote</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
               </button>
-              <Link
-                to="/r&d"
+              <button
+                type="button"
+                onClick={() => {
+                  document.getElementById('rnd-process')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="w-full sm:w-auto group inline-flex text-accent-red items-center justify-center gap-3 px-8 py-3 sm:py-2.5 rounded-full border-2 border-accent-red/70 bg-white hover:bg-accent-red/5 hover:text-accent-red text-base font-bold shadow-md shadow-accent-red/20 hover:shadow-lg hover:shadow-accent-red/35 hover:-translate-y-1 active:scale-95 transition-all duration-300 cursor-pointer"
               >
                 <span>Explore Our R&D</span>
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
+              </button>
             </div>
           </motion.div>
 

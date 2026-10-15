@@ -41,9 +41,10 @@ const CATEGORIES = [
   'Reactive Dyes',
   'Acid Dyes',
   'Company News',
-  'Solar Basics',
+  'Color Chemistry',
   'Technical Insights',
 ];
+
 
 // Helper to convert Markdown / plaintext to HTML
 function markdownToHtml(raw: string): string {

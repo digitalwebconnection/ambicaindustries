@@ -27,6 +27,8 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'esnext',
+    reportCompressedSize: false,
     rollupOptions: {
       checks: {
         pluginTimings: false,

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import avatar11 from '@/assets/images/avatars/avatar-11.webp';
 import avatar33 from '@/assets/images/avatars/avatar-33.webp';
@@ -35,12 +36,12 @@ export default function AboutCTA() {
               <span className="text-white">Let's formulate the</span><br />
               <span className="text-accent-red">colors they'll copy.</span>
             </h2>
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               className="w-full sm:w-auto inline-flex items-center justify-center bg-accent-red text-white px-7 sm:px-8 py-3 rounded-full font-bold text-base sm:text-lg hover:bg-white hover:text-accent-red active:scale-95 transition-all duration-300 shadow-[0_4px_14px_rgba(211,2,2,0.3)] hover:shadow-lg hover:-translate-y-0.5 text-center"
             >
               Talk to an expert now
-            </a>
+            </Link>
           </div>
 
           {/* Right Side: Team Avatars and Sub-copy */}

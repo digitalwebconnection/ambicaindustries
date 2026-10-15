@@ -197,7 +197,6 @@ export default function AdminBlogSection({
                 <tr className="bg-slate-50/80 border-b border-slate-200 text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                   <th className="py-3.5 px-4 sm:px-6">Article</th>
                   <th className="py-3.5 px-3 sm:px-4">Category</th>
-
                   <th className="py-3.5 px-3 sm:px-4">Status</th>
                   <th className="py-3.5 px-3 sm:px-4">Views</th>
                   <th className="py-3.5 px-4 sm:px-6 text-right">Actions</th>

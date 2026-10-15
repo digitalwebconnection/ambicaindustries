@@ -7,11 +7,11 @@ export default function NotFound() {
     <>
       <SEO title="Page Not Found | Ambica Industry" noindex={true} />
       <div className="min-h-[70vh] flex items-center justify-center px-4 py-20 bg-slate-50">
-        <div className="max-w-md w-full text-center bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-100">
+        <div className="max-w-2xl w-full text-center ">
           <span className="text-6xl sm:text-7xl font-black text-accent-red tracking-tight block mb-2">
             404
           </span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-primary-dark mb-3">
+          <h1 className="text-2xl sm:text-3xl  font-serif font-extrabold text-primary-dark mb-3">
             Page Not Found
           </h1>
           <p className="text-sm text-slate-600 mb-8 leading-relaxed">

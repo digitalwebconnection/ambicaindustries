@@ -1,7 +1,7 @@
 {
-  "name": "sunny-solar-backend",
+  "name": "ambica-industries-backend",
   "version": "1.0.0",
-  "description": "Backend API for Sunny Solar using Node.js and Express",
+  "description": "Backend API for Ambica Industries using Node.js and Express",
   "main": "src/server.js",
   "type": "module",
   "scripts": {

@@ -8,6 +8,9 @@ import { getSitemapXml } from './controllers/sitemap.controller.js';
 
 const app = express();
 
+// Trust reverse proxy (Render, Vercel, Nginx, Cloudflare) for accurate client IP rate limiting
+app.set('trust proxy', 1);
+
 // Helper to get allowed origins (splits comma-separated CLIENT_URL and includes local dev)
 export const getAllowedOrigins = () => {
   const rawOrigins = process.env.CLIENT_URL || '';
@@ -161,13 +164,14 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 // Root route
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to Sunny Solar API',
+    message: 'Welcome to Ambica Industries API',
     endpoints: {
       health: '/api/health',
       sitemap: '/sitemap.xml'
     }
   });
 });
+
 
 // Direct XML Sitemap for search engines and crawlers
 app.get('/sitemap.xml', getSitemapXml);

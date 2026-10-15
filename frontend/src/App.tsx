@@ -2,6 +2,7 @@ import { ReactLenis } from 'lenis/react';
 import AppToaster from '@/components/ui/AppToaster';
 import Layout from '@/components/layout/Layout';
 import AppRoutes from '@/routes';
+import { AuthProvider, ModalProvider } from '@/context';
 
 // Lenis smooth scrolling options calibrated for premium fluid momentum
 const lenisOptions = {
@@ -17,11 +18,16 @@ const lenisOptions = {
 
 export default function App() {
   return (
-    <ReactLenis root options={lenisOptions}>
-      <AppToaster />
-      <Layout>
-        <AppRoutes />
-      </Layout>
-    </ReactLenis>
+    <AuthProvider>
+      <ModalProvider>
+        <ReactLenis root options={lenisOptions}>
+          <AppToaster />
+          <Layout>
+            <AppRoutes />
+          </Layout>
+        </ReactLenis>
+      </ModalProvider>
+    </AuthProvider>
   );
 }
+
