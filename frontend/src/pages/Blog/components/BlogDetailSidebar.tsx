@@ -84,7 +84,7 @@ export default function BlogDetailSidebar({ article }: BlogDetailSidebarProps) {
       className="w-full lg:w-75 xl:w-[320px] shrink-0 space-y-6"
     >
       {/* ================== AUTHOR CARD ================== */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sticky top-24">
+      <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 lg:sticky lg:top-24">
         {/* Author Info */}
         <div className="flex items-center gap-3.5 mb-4 pb-4 border-b border-slate-100">
           <div className="w-14 h-14 rounded-full bg-linear-to-br from-primary to-primary-dark text-white font-black text-base flex items-center justify-center shrink-0 shadow-md ring-2 ring-accent-red/20 ring-offset-2">

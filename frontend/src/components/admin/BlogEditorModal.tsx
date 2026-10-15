@@ -599,11 +599,11 @@ export default function BlogEditorModal({
         </div>
 
         {/* ================= 4 TABS NAVIGATION ================= */}
-        <div className="flex items-center gap-6 px-6 pt-2 border-b border-slate-200 text-xs sm:text-sm font-semibold select-none bg-slate-50/50">
+        <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6 pt-2 border-b border-slate-200 text-xs sm:text-sm font-semibold select-none bg-slate-50/50 overflow-x-auto scrollbar-none whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <button
             type="button"
             onClick={() => setActiveTab('info')}
-            className={`pb-3 relative transition-colors cursor-pointer ${
+            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'info'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
@@ -614,7 +614,7 @@ export default function BlogEditorModal({
           <button
             type="button"
             onClick={() => setActiveTab('content')}
-            className={`pb-3 relative transition-colors cursor-pointer ${
+            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'content'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
@@ -625,7 +625,7 @@ export default function BlogEditorModal({
           <button
             type="button"
             onClick={() => setActiveTab('seo')}
-            className={`pb-3 relative transition-colors cursor-pointer ${
+            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'seo'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
@@ -636,7 +636,7 @@ export default function BlogEditorModal({
           <button
             type="button"
             onClick={() => setActiveTab('preview')}
-            className={`pb-3 relative transition-colors cursor-pointer flex items-center gap-1.5 ${
+            className={`pb-3 relative transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
               activeTab === 'preview'
                 ? 'text-accent-red font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'

@@ -52,16 +52,16 @@ export default function BlogEmptyState({
   return (
     <div className="max-w-4xl mx-auto text-center py-20 px-6 ">
       <div className="w-16 h-16 mx-auto rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 mb-5 shadow-xs">
-        <Search size={30} />
+        {!hasTotalArticles ? <Sparkles size={30} className="text-amber-500" /> : <Search size={30} />}
       </div>
 
       <h3 className="font-serif text-2xl font-bold text-slate-900 mb-2">
-        No Matching Publications Found
+        {!hasTotalArticles ? 'No Articles Published Yet' : 'No Matching Publications Found'}
       </h3>
 
       <p className="text-sm text-slate-600 mb-6 max-w-3xl mx-auto leading-relaxed">
         {!hasTotalArticles
-          ? 'No articles have been published in the database yet. Check back soon for color chemistry updates.'
+          ? 'No articles have been published in the database yet. Articles published through the Admin Panel will appear here automatically.'
           : `We couldn't find any articles matching "${searchTerm || selectedCategory}". Try adjusting your keywords or browse popular categories below.`}
       </p>
 
