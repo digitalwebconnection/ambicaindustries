@@ -1,8 +1,18 @@
 /**
  * API Endpoints & Request Constants
  */
-const rawUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
-export const API_BASE_URL = rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
+const getApiBaseUrl = (): string => {
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ) {
+    return '/api';
+  }
+  const rawUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+  return rawUrl.endsWith('/api') ? rawUrl : `${rawUrl}/api`;
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 
 export const API_ENDPOINTS = {
   HEALTH: `${API_BASE_URL}/health`,
@@ -19,7 +29,7 @@ export const API_ENDPOINTS = {
   },
   LEADS: {
     SUBMIT: `${API_BASE_URL}/leads`,
-    ADMIN_LIST: `${API_BASE_URL}/admin/leads`,
+    ADMIN_LIST: `${API_BASE_URL}/leads`,
   },
   UPLOAD: `${API_BASE_URL}/upload`,
 } as const;

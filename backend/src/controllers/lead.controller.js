@@ -1,5 +1,6 @@
 import Lead from '../models/Lead.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
+import { detectCountryFromRequest } from '../utils/viewTracker.js';
 
 /**
  * @desc    Submit a new customer lead / assessment inquiry
@@ -10,8 +11,12 @@ export const createLead = async (req, res, next) => {
   try {
     const {
       name,
+      fullName,
+      company,
       email,
       phone,
+      city,
+      country,
       suburb,
       service,
       consultType,
@@ -20,49 +25,79 @@ export const createLead = async (req, res, next) => {
       sourcePage,
       fileName,
       fileData, // optional base64
-      fileUrl
+      fileUrl,
+      ip: bodyIp
     } = req.body;
 
-    if (!name || !email || !phone) {
+    const leadName = (name || fullName || '').trim();
+    const leadEmail = (email || '').trim();
+    const leadPhone = (phone || '').trim();
+
+    if (!leadName || !leadEmail || !leadPhone) {
       return res.status(400).json({
         success: false,
         message: 'Name, email, and phone number are required.'
       });
     }
 
+    // Capture visitor IP address
+    let clientIp =
+      req.headers['cf-connecting-ip'] ||
+      req.headers['x-real-ip'] ||
+      req.headers['x-forwarded-for']?.split(',')[0].trim() ||
+      req.socket?.remoteAddress ||
+      req.ip ||
+      bodyIp ||
+      '';
+
+    if (clientIp.startsWith('::ffff:')) {
+      clientIp = clientIp.replace('::ffff:', '');
+    }
+
+    const geo = detectCountryFromRequest(req);
+    const ipLocation = [geo.region, geo.country].filter(Boolean).join(', ') || geo.country || '';
+
     let uploadedFileUrl = fileUrl || '';
 
-    // If customer uploaded a base64 file, save it to Cloudinary in 'sunny-solar/bills'
+    // If customer uploaded a base64 file, save it to Cloudinary
     if (fileData && !uploadedFileUrl) {
       try {
-        const uploadResult = await uploadToCloudinary(fileData, 'sunny-solar/customer-bills');
+        const uploadResult = await uploadToCloudinary(fileData, 'ambica/inquiry-attachments');
         uploadedFileUrl = uploadResult?.url || '';
       } catch (uploadErr) {
         console.warn('Lead file upload failed (continuing lead creation):', uploadErr.message);
       }
     }
 
+    const randomSuffix = Math.floor(100000 + Math.random() * 900000);
+
     const lead = await Lead.create({
-      name,
-      email,
-      phone,
-      suburb: suburb || '',
-      service: service || 'General Solar Inquiry',
+      name: leadName,
+      company: company ? company.trim() : '',
+      email: leadEmail,
+      phone: leadPhone,
+      city: city ? city.trim() : '',
+      country: country ? country.trim() : '',
+      suburb: suburb ? suburb.trim() : '',
+      ip: clientIp,
+      ipLocation: ipLocation !== 'Unknown' ? ipLocation : '',
+      service: service || 'General Requirement',
       consultType: consultType || '',
-      message: message || '',
-      referenceId: referenceId || `QLD-${Math.floor(100000 + Math.random() * 900000)}`,
+      message: message ? message.trim() : '',
+      referenceId: referenceId || `AMB-${randomSuffix}`,
       fileName: fileName || '',
       fileUrl: uploadedFileUrl,
-      sourcePage: sourcePage || 'Free Assessment Form',
+      sourcePage: sourcePage || 'Website Enquiry',
       status: 'new'
     });
 
     res.status(201).json({
       success: true,
-      message: 'Assessment request recorded successfully',
+      message: 'Enquiry recorded successfully in database',
       data: {
         id: lead._id,
         referenceId: lead.referenceId,
+        ip: lead.ip,
         fileUrl: lead.fileUrl
       }
     });
@@ -78,8 +113,13 @@ export const createLead = async (req, res, next) => {
  */
 export const getLeads = async (req, res, next) => {
   try {
-    const { status, search, page = 1, limit = 50 } = req.query;
+    const { status, search, includeDeleted, page = 1, limit = 50 } = req.query;
     const query = {};
+
+    // Soft delete filter: do not return leads deleted by admin (retained safely in database)
+    if (includeDeleted !== 'true') {
+      query.isDeleted = { $ne: true };
+    }
 
     if (status && status !== 'all') {
       query.status = status;
@@ -88,10 +128,16 @@ export const getLeads = async (req, res, next) => {
     if (search) {
       query.$or = [
         { name: { $regex: search, $options: 'i' } },
+        { company: { $regex: search, $options: 'i' } },
         { email: { $regex: search, $options: 'i' } },
         { phone: { $regex: search, $options: 'i' } },
+        { city: { $regex: search, $options: 'i' } },
+        { country: { $regex: search, $options: 'i' } },
+        { service: { $regex: search, $options: 'i' } },
         { suburb: { $regex: search, $options: 'i' } },
-        { referenceId: { $regex: search, $options: 'i' } }
+        { referenceId: { $regex: search, $options: 'i' } },
+        { ip: { $regex: search, $options: 'i' } },
+        { ipLocation: { $regex: search, $options: 'i' } }
       ];
     }
 
@@ -144,20 +190,31 @@ export const updateLeadStatus = async (req, res, next) => {
 };
 
 /**
- * @desc    Delete a lead (Admin)
+ * @desc    Delete a lead from admin panel
+ *          Soft delete: removes from Admin Panel view but safely retains the record in MongoDB database
  * @route   DELETE /api/leads/:id
  * @access  Private/Admin
  */
 export const deleteLead = async (req, res, next) => {
   try {
-    const lead = await Lead.findByIdAndDelete(req.params.id);
+    const lead = await Lead.findByIdAndUpdate(
+      req.params.id,
+      {
+        isDeleted: true,
+        deletedAt: new Date(),
+        status: 'archived'
+      },
+      { new: true }
+    );
+
     if (!lead) {
       return res.status(404).json({ success: false, message: 'Lead not found' });
     }
 
     res.json({
       success: true,
-      message: 'Lead deleted successfully'
+      message: 'Lead removed from admin panel successfully (safely kept in database)',
+      data: lead
     });
   } catch (error) {
     next(error);

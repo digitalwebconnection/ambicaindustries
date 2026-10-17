@@ -38,7 +38,22 @@ export async function apiClient<T = any>(
     }
   }
 
-  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE_URL}${endpoint.startsWith('/') ? '' : '/'}${endpoint}`;
+  let url: string;
+  if (endpoint.startsWith('http://') || endpoint.startsWith('https://')) {
+    url = endpoint;
+  } else {
+    const cleanEp = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    if (cleanEp.startsWith('/api/') || cleanEp === '/api') {
+      if (API_BASE_URL.startsWith('http://') || API_BASE_URL.startsWith('https://')) {
+        const origin = new URL(API_BASE_URL).origin;
+        url = `${origin}${cleanEp}`;
+      } else {
+        url = cleanEp;
+      }
+    } else {
+      url = `${API_BASE_URL}${cleanEp}`;
+    }
+  }
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), timeoutMs);

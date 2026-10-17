@@ -4,6 +4,7 @@ import { ArrowRight, Mail, MapPin, Phone, CheckCircle2, RotateCcw, AlertCircle }
 import { siteConfig } from "@/data/siteConfig";
 import FieldError from "@/components/ui/FieldError";
 import { validateStandardField } from "@/utils/validation";
+import { leadService } from "@/services/leadService";
 
 const serviceOptions = [
   "Food Colors",
@@ -180,20 +181,43 @@ export default function ContactForm() {
       payload.append("service", formData.service || "General Requirement");
       payload.append("message", formData.message);
 
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // 1. Save lead into MongoDB Database
+      const dbPromise = leadService.submitLead({
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        service: formData.service || "General Requirement",
+        message: formData.message,
+        sourcePage: "Contact Page",
+      }).catch((dbErr) => {
+        console.warn("MongoDB lead recording notice:", dbErr);
+        return null;
+      });
+
+      // 2. Dispatch email notification via Web3Forms
+      const emailPromise = fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           Accept: "application/json",
         },
         body: payload,
-      });
+      })
+        .then((res) => res.json())
+        .catch((emailErr) => {
+          console.warn("Email dispatch notice:", emailErr);
+          return null;
+        });
 
-      const data = await response.json();
-      if (data.success) {
+      const [dbResult, emailResult] = await Promise.all([dbPromise, emailPromise]);
+
+      if (emailResult?.success || dbResult?.success) {
         setStatus("success");
       } else {
         setStatus("error");
-        setErrorMessage(data.message || "Failed to submit enquiry. Please try again or reach out directly.");
+        setErrorMessage(
+          emailResult?.message || "Failed to submit enquiry. Please try again or reach out directly."
+        );
       }
     } catch (err) {
       console.error("Contact submission error:", err);

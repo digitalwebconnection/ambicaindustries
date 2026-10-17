@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/sitemap.xml",
-      "destination": "https://ambicaindustries-1.onrender.com/sitemap.xml"
+      "destination": "https://ambicaindustries-nods.onrender.com/sitemap.xml"
     },
     {
       "source": "/(.*)",

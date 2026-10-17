@@ -558,34 +558,35 @@ export default function BlogEditorModal({
     >
       <div
         data-lenis-prevent
-        className="bg-white rounded-2xl w-full max-w-4xl shadow-2xl border border-slate-200/90 flex flex-col max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="bg-white rounded-2xl w-full max-w-4xl shadow-2xl border border-slate-200/90 flex flex-col max-h-[94vh] sm:max-h-[92vh] overflow-hidden animate-in fade-in zoom-in-95 duration-150"
       >
         
         {/* ================= MODAL HEADER ================= */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-xs">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 gap-2">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center shadow-xs shrink-0">
               <FileText size={17} />
             </div>
-            <div>
-              <h3 className="text-base font-bold text-slate-900 leading-tight">
+            <div className="min-w-0">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-tight truncate">
                 {article ? 'Edit Blog Article' : 'New Blog Article'}
               </h3>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[10px] sm:text-[11px] text-slate-500 truncate">
                 Set article details, formatted content, and SEO metadata.
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={() => setAutoImportOpen(true)}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50/80 hover:bg-amber-100/80 text-amber-900 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50/80 hover:bg-amber-100/80 text-amber-900 text-[11px] sm:text-xs font-semibold shadow-2xs transition-colors cursor-pointer whitespace-nowrap"
               title="Paste markdown or document to auto-fill all tabs"
             >
-              <Sparkles size={13} className="text-amber-600" />
-              Auto-Detect & Import
+              <Sparkles size={13} className="text-amber-600 shrink-0" />
+              <span className="hidden sm:inline">Auto-Detect &amp; Import</span>
+              <span className="sm:hidden font-bold">Auto-Fill</span>
             </button>
 
             <button
@@ -599,51 +600,55 @@ export default function BlogEditorModal({
         </div>
 
         {/* ================= 4 TABS NAVIGATION ================= */}
-        <div className="flex items-center gap-4 sm:gap-6 px-4 sm:px-6 pt-2 border-b border-slate-200 text-xs sm:text-sm font-semibold select-none bg-slate-50/50 overflow-x-auto scrollbar-none whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex items-center gap-2.5 sm:gap-6 px-3.5 sm:px-6 pt-2 border-b border-slate-200 text-xs sm:text-sm font-semibold select-none bg-slate-50/50 overflow-x-auto scrollbar-none whitespace-nowrap [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <button
             type="button"
             onClick={() => setActiveTab('info')}
-            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
+            className={`pb-2.5 sm:pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'info'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
-            1. Details &amp; Media
+            <span className="hidden sm:inline">1. Details &amp; Media</span>
+            <span className="sm:hidden">1. Details</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('content')}
-            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
+            className={`pb-2.5 sm:pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'content'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
-            2. Article Content
+            <span className="hidden sm:inline">2. Article Content</span>
+            <span className="sm:hidden">2. Content</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('seo')}
-            className={`pb-3 relative transition-colors cursor-pointer shrink-0 ${
+            className={`pb-2.5 sm:pb-3 relative transition-colors cursor-pointer shrink-0 ${
               activeTab === 'seo'
                 ? 'text-slate-900 font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
-            3. SEO &amp; Schema
+            <span className="hidden sm:inline">3. SEO &amp; Schema</span>
+            <span className="sm:hidden">3. SEO</span>
           </button>
           <button
             type="button"
             onClick={() => setActiveTab('preview')}
-            className={`pb-3 relative transition-colors cursor-pointer flex items-center gap-1.5 shrink-0 ${
+            className={`pb-2.5 sm:pb-3 relative transition-colors cursor-pointer flex items-center gap-1 sm:gap-1.5 shrink-0 ${
               activeTab === 'preview'
                 ? 'text-accent-red font-bold border-b-2 border-accent-red'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
-            <Eye size={14} />
-            <span>4. Live Card Preview</span>
+            <Eye size={13} />
+            <span className="hidden sm:inline">4. Live Card Preview</span>
+            <span className="sm:hidden">4. Preview</span>
           </button>
         </div>
 
@@ -651,12 +656,12 @@ export default function BlogEditorModal({
         <form
           data-lenis-prevent
           onSubmit={handleSubmit}
-          className="flex-1 overflow-y-auto overscroll-contain p-5 sm:p-6 space-y-5"
+          className="flex-1 overflow-y-auto overscroll-contain p-3.5 sm:p-6 space-y-4 sm:space-y-5"
         >
           
           {/* TAB 1: BLOG INFO */}
           {activeTab === 'info' && (
-            <div className="border border-blue-100/80 rounded-2xl p-5 bg-white space-y-4 shadow-2xs">
+            <div className="border border-blue-100/80 rounded-2xl p-3.5 sm:p-5 bg-white space-y-4 shadow-2xs">
               
               {/* Blog Title */}
               <div>
@@ -920,21 +925,22 @@ export default function BlogEditorModal({
 
           {/* TAB 2: ARTICLE CONTENT */}
           {activeTab === 'content' && (
-            <div className="border border-blue-100/80 rounded-2xl p-5 bg-white space-y-4 shadow-2xs">
-              
+            <div className="border border-blue-100/80 rounded-2xl p-3.5 sm:p-5 bg-white space-y-4 shadow-2xs">
+               
               {/* Header row */}
-              <div className="flex items-center justify-between pb-1">
-                <span className="text-xs font-bold tracking-wider text-slate-800 uppercase">
+              <div className="flex items-center justify-between pb-1 gap-2">
+                <span className="text-xs font-bold tracking-wider text-slate-800 uppercase truncate">
                   ARTICLE BODY CONTENT
                 </span>
 
                 <button
                   type="button"
                   onClick={() => setSmartPasteOpen(true)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100/80 text-amber-900 text-xs font-semibold shadow-2xs transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-amber-300 bg-amber-50 hover:bg-amber-100/80 text-amber-900 text-[11px] sm:text-xs font-semibold shadow-2xs transition-colors cursor-pointer shrink-0"
                 >
                   <FileText size={13} className="text-amber-600" />
-                  Paste Any Doc — Auto Detect Formatting
+                  <span className="hidden sm:inline">Paste Any Doc — Auto Detect Formatting</span>
+                  <span className="sm:hidden font-bold">Smart Paste</span>
                 </button>
               </div>
 
@@ -1168,7 +1174,7 @@ export default function BlogEditorModal({
 
           {/* TAB 3: SEO & META TAGS */}
           {activeTab === 'seo' && (
-            <div className="border border-blue-100/80 rounded-2xl p-5 bg-white space-y-4 shadow-2xs">
+            <div className="border border-blue-100/80 rounded-2xl p-3.5 sm:p-5 bg-white space-y-4 shadow-2xs">
               
               {/* Meta Title */}
               <div>
@@ -1459,22 +1465,22 @@ export default function BlogEditorModal({
           })()}
 
           {/* ================= MODAL FOOTER ================= */}
-          <div className="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+          <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 sm:gap-3">
             
             {/* Status indicator note */}
             <div className="flex items-center gap-2">
-              <span className={`w-2.5 h-2.5 rounded-full ${isPublished ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+              <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${isPublished ? 'bg-emerald-500' : 'bg-amber-500'}`} />
               <span className="text-xs font-semibold text-slate-700">
                 {isPublished ? 'Will Publish Live to Public' : 'Will Save as Draft (Unpublished)'}
               </span>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2">
+            {/* Action Buttons: 2x2 grid on mobile, flex row on sm+ */}
+            <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 w-full sm:w-auto">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-3.5 py-2 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors cursor-pointer"
+                className="py-2.5 px-3 sm:px-3.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs font-semibold transition-colors cursor-pointer text-center"
               >
                 Cancel
               </button>
@@ -1484,18 +1490,18 @@ export default function BlogEditorModal({
                 <button
                   type="button"
                   onClick={() => setActiveTab('preview')}
-                  className="px-3.5 py-2 rounded-xl border border-accent-red/30 bg-accent-red/5 hover:bg-accent-red/10 text-accent-red text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5"
+                  className="py-2.5 px-3 sm:px-3.5 rounded-xl border border-accent-red/30 bg-accent-red/5 hover:bg-accent-red/10 text-accent-red text-xs font-bold transition-all cursor-pointer flex items-center justify-center gap-1.5"
                 >
-                  <Eye size={14} />
-                  <span>Preview First</span>
+                  <Eye size={14} className="shrink-0" />
+                  <span>Preview</span>
                 </button>
               ) : (
                 <button
                   type="button"
                   onClick={() => setActiveTab('content')}
-                  className="px-3.5 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-all cursor-pointer"
+                  className="py-2.5 px-3 sm:px-3.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition-all cursor-pointer text-center"
                 >
-                  &larr; Back to Editor
+                  &larr; Editor
                 </button>
               )}
 
@@ -1504,9 +1510,9 @@ export default function BlogEditorModal({
                 type="button"
                 disabled={saving}
                 onClick={() => saveArticle(false)}
-                className="px-4 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold shadow-2xs transition-all cursor-pointer disabled:opacity-50"
+                className="py-2.5 px-3 sm:px-4 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-800 text-xs font-bold shadow-2xs transition-all cursor-pointer disabled:opacity-50 text-center"
               >
-                {saving && !isPublished ? 'Saving Draft...' : 'Save Draft'}
+                {saving && !isPublished ? 'Saving...' : 'Save Draft'}
               </button>
 
               {/* Publish Live */}
@@ -1514,12 +1520,12 @@ export default function BlogEditorModal({
                 type="button"
                 disabled={saving}
                 onClick={() => saveArticle(true)}
-                className="px-4 py-2 rounded-xl bg-accent-red hover:bg-accent-red-dark text-white text-xs font-bold shadow-md transition-all cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                className="py-2.5 px-3 sm:px-4 rounded-xl bg-accent-red hover:bg-accent-red-dark text-white text-xs font-bold shadow-md transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5"
               >
                 {saving && isPublished ? (
-                  <RefreshCw size={13} className="animate-spin" />
+                  <RefreshCw size={13} className="animate-spin shrink-0" />
                 ) : (
-                  <CheckCircle2 size={13} />
+                  <CheckCircle2 size={13} className="shrink-0" />
                 )}
                 <span>Publish Live</span>
               </button>

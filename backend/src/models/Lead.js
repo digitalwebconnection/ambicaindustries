@@ -18,7 +18,32 @@ const leadSchema = new mongoose.Schema(
       required: [true, 'Phone number is required'],
       trim: true
     },
+    company: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    city: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    country: {
+      type: String,
+      trim: true,
+      default: ''
+    },
     suburb: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    ip: {
+      type: String,
+      trim: true,
+      default: ''
+    },
+    ipLocation: {
       type: String,
       trim: true,
       default: ''
@@ -26,7 +51,7 @@ const leadSchema = new mongoose.Schema(
     service: {
       type: String,
       trim: true,
-      default: 'General Solar Inquiry'
+      default: 'General Requirement'
     },
     consultType: {
       type: String,
@@ -63,6 +88,15 @@ const leadSchema = new mongoose.Schema(
     notes: {
       type: String,
       default: ''
+    },
+    isDeleted: {
+      type: Boolean,
+      default: false,
+      index: true
+    },
+    deletedAt: {
+      type: Date,
+      default: null
     }
   },
   {

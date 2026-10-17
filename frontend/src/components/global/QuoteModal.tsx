@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import FieldError from '@/components/ui/FieldError';
 import { siteConfig } from '@/data/siteConfig';
 import { validateStandardField } from '@/utils/validation';
+import { leadService } from '@/services/leadService';
 import quoteBg from '@/assets/images/quote/quote-bg.webp';
 import avatar1 from '@/assets/images/avatars/avatar-1.webp';
 import avatar2 from '@/assets/images/avatars/avatar-2.webp';
@@ -136,16 +137,37 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
       payload.append('phone', formData.phone);
       payload.append('message', formData.message);
 
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // 1. Save lead into MongoDB Database
+      const dbPromise = leadService.submitLead({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        city: formData.city,
+        service: 'Quick Quote Request',
+        message: formData.message,
+        sourcePage: 'Quote Modal',
+      }).catch((dbErr) => {
+        console.warn('MongoDB lead recording notice:', dbErr);
+        return null;
+      });
+
+      // 2. Dispatch email notification via Web3Forms
+      const emailPromise = fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
         },
         body: payload,
-      });
+      })
+        .then((res) => res.json())
+        .catch((emailErr) => {
+          console.warn('Email dispatch notice:', emailErr);
+          return null;
+        });
 
-      const data = await response.json();
-      if (data.success) {
+      const [dbResult, emailResult] = await Promise.all([dbPromise, emailPromise]);
+
+      if (emailResult?.success || dbResult?.success) {
         setIsSubmitting(false);
         setSubmitted(true);
         setFormData({
@@ -160,7 +182,9 @@ export default function QuoteModal({ onClose }: QuoteModalProps) {
         setTimeout(onClose, 2500);
       } else {
         setIsSubmitting(false);
-        setSubmitError(data.message || 'Failed to submit quote request. Please try again.');
+        setSubmitError(
+          emailResult?.message || 'Failed to submit quote request. Please try again.'
+        );
       }
     } catch (err) {
       console.error('Quote modal submission error:', err);
