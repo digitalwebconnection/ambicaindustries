@@ -13,6 +13,22 @@ describe('Backend API Tests', () => {
       expect(response.status).toBe(200);
       expect(response.body.success).toBe(true);
       expect(response.body.message).toContain('running smoothly');
+      expect(response.body.status).toBe('healthy');
+      expect(response.body.database).toBeDefined();
+      expect(response.body.system).toBeDefined();
+      expect(response.headers['cache-control']).toContain('no-cache');
+    });
+
+    it('GET /health (root level) should also return 200 and healthy status', async () => {
+      const response = await request(app).get('/health');
+      expect(response.status).toBe(200);
+      expect(response.body.success).toBe(true);
+    });
+
+    it('HEAD /api/health should return 200 status without body', async () => {
+      const response = await request(app).head('/api/health');
+      expect(response.status).toBe(200);
+      expect(response.headers['cache-control']).toContain('no-cache');
     });
   });
 

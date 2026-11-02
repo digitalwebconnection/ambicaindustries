@@ -3,6 +3,8 @@ import { getHealth } from '../controllers/health.controller.js';
 
 const router = Router();
 
-router.get('/health', getHealth);
+router.route('/health')
+  .get(getHealth)
+  .head(getHealth);
 
 export default router;

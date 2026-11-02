@@ -1,7 +1,16 @@
-import 'dotenv/config';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ensure .env is loaded whether run from repo root or backend folder
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config();
+
 import app, { getAllowedOrigins } from './app.js';
 import { connectDB } from './config/db.js';
-import { initKeepAlive } from './services/keepAlive.service.js';
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,9 +29,6 @@ const startServer = async () => {
       console.log(`⚙️  Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`🌐 Allowed CORS Origins: ${getAllowedOrigins().join(', ')}`);
       console.log(`=================================`);
-
-      // Initialize 14-minute auto-health keep-alive for Render
-      initKeepAlive();
     });
   } catch (error) {
     console.error(`Failed to start server:`, error.message);

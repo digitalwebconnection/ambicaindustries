@@ -3,7 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import apiRouter from './routes/index.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
-
+import { getHealth } from './controllers/health.controller.js';
 import { getSitemapXml } from './controllers/sitemap.controller.js';
 
 const app = express();
@@ -172,6 +172,11 @@ app.get('/', (req, res) => {
   });
 });
 
+
+// Direct health check route (for Render, Docker, or monitoring hitting /health)
+app.route('/health')
+  .get(getHealth)
+  .head(getHealth);
 
 // Direct XML Sitemap for search engines and crawlers
 app.get('/sitemap.xml', getSitemapXml);
